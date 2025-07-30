@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import HamburgerMenu from "../Icons/HamburgerMenu";
 import XMark from "../Icons/XMark";
 
+
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -16,7 +18,8 @@ const Header = () => {
         WeCAR.
       </h1>
       <div className={`sm:hidden max-sm:flex items-center gap-3 max-sm:p-4 `}>
-        <button className="border px-2 cursor-pointer rounded-sm text-sm py-0.5">
+        <button className="border-2 outline-none focus:outline-none focus:ring-1 border-gray-700 px-2 cursor-pointer rounded-sm bg-white transition-colors duration-300 ring-gray-400 hover:bg-gray-50">
+          {" "}
           Sign In
         </button>
         <button
@@ -32,7 +35,7 @@ const Header = () => {
         className={` absolute  top-[100%]  max-sm:right-0 max-sm:pr-1  max-sm:h max-sm:shadow-sm text-sm sm:text-base 
           ${
             !isMenuOpen && "hidden"
-          } sm:relative sm:flex sm:gap-2 md:gap-10  lg:gap-15 xl:gap-20 justify-center max-sm:space-y-2 max-sm:*:hover:bg-gray-200 *:px-2  *:cursor-pointer max-sm:*:p-2 *:text-nowrap`}
+          } sm:relative sm:flex sm:gap-2 md:gap-10  lg:gap-15 xl:gap-20 justify-center max-sm:*:hover:bg-white *:px-2  *:cursor-pointer max-sm:*:p-2 *:text-nowrap *:border-b`}
       >
         <li className="">Home</li>
         <li>Rental Cars</li>
@@ -41,7 +44,7 @@ const Header = () => {
         <li>FAQs</li>
       </ul>
       <div className="sign-up sm:flex gap-2 hidden text-nowrap ">
-        <button className="border px-2 cursor-pointer rounded-sm text-sm py-0.5">
+        <button className="border-2 outline-none focus:outline-none focus:ring-1 border-gray-700 px-2 cursor-pointer rounded-sm bg-white transition-colors duration-300 ring-gray-400 hover:bg-gray-50 ">
           Sign In
         </button>
       </div>
