@@ -1,8 +1,14 @@
 import React from 'react'
+import Header from './../components/Header';
 
 const RentalCars = () => {
   return (
-    <div>RentalCars</div>
+    <div>
+      <Header/>
+
+
+      
+    </div>
   )
 }
 
