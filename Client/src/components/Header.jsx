@@ -50,7 +50,7 @@ useEffect(() => {
         className={` absolute  top-[100%]  max-sm:right-0 max-sm:pr-1  max-sm:h max-sm:shadow-sm text-sm sm:text-base 
           ${
             !isMenuOpen && "hidden"
-          } sm:relative sm:flex sm:gap-5 md:gap-10  lg:gap-15 xl:gap-20 justify-center   `}
+          } sm:relative sm:flex sm:gap-5 md:gap-10  lg:gap-15 xl:gap-20 justify-center  z-100 bg-gray-100 `}
       >
         {Navs.map((nav, index) => (
           <Link
