@@ -16,7 +16,7 @@ const SignUp = () => {
           className="w-full h-full max-w-full object-fit"
         />
       </div>
-      <div className=" min-h-svh  bg-inherit text-black w-full flex flex-col sm:w-[633px] mx-auto p-4  mt-20 gap-5">
+      <div className="bg-inherit h-screen text-black w-full flex flex-col sm:w-[633px] mx-auto p-4 pt-20  gap-5">
         <div className="flex flex-col text-center">
           <h1 className="font-grenze font-bold text-2xl leading-8 sm:text-3xl ">
             {isRegistration ? "Sign Up" : "Sign In"}
