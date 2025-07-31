@@ -26,13 +26,13 @@ useEffect(() => {
   };
 
   return (
-    <header className="flex  justify-between sm:justify-between sm:p-3  md:px-8 text-gray-900 relative sm:gap-4 font-roboto shadow-sm items-center ">
+    <header className="flex  justify-between sm:justify-between sm:p-3  md:px-8 text-gray-900 relative sm:gap-4 font-eczar shadow-sm items-center ">
       <h1 className="max-sm:p-3  hover:cursor-pointer text-lg font-semibold">
         WeCAR.
       </h1>
       <div className={`sm:hidden max-sm:flex items-center gap-3 max-sm:p-4 `}>
         <Link
-          className="border-2 outline-none focus:outline-none focus:ring-1 border-gray-700 px-2 cursor-pointer rounded-sm bg-white transition-colors duration-300 ring-gray-400 hover:bg-gray-50 "
+          className="border-2 outline-none focus:outline-none focus:ring-1 border-gray-700 px-2 cursor-pointer rounded-sm bg-white transition-colors duration-300 ring-gray-400 hover:bg-gray-50 active:bg-gray-50"
           to={"/sign-up"}
         >
           Sign In

@@ -11,6 +11,7 @@ const Button = ({ text, btnFunction }) => {
         shadow-[2px_2px_0px_0px_#BED1E7]
         
         hover:shadow-[0]
+        active:shadow-[0]
         "
       onClick={btnFunction}
     >
