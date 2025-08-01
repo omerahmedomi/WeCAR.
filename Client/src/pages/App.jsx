@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "./../components/Header";
 import { motion } from "framer-motion";
+import Call from "../Icons/Call";
 
 const App = () => {
   return (
@@ -36,12 +37,58 @@ const App = () => {
             </p>
           </div>
 
-          <div>
-            <div>
-              <div>
-                <img src="" alt="" />
+          <div className=" mt-3 w-full md:w-auto max-sm:space-y-2 md:grid grid-cols-2 gap-2">
+            <div className="flex gap-2 w- bg-red-200 p-2">
+              <div className="size-10 text-blue-900 bg-cyan-200 flex justify-center items-center rounded-lg   ">
+                <Call />
               </div>
-              <p></p>
+              <div className="flex flex-col gap-y-2 w-100">
+                <h2>24 Hour Support</h2>
+                <p>
+                  {" "}
+                  We Stand As Your Trusted Partner. Our Dedication to Quality,
+                  Innovation, And Customer Satisfaction Sets Us Apart
+                </p>
+              </div>
+            </div>
+            <div className="flex gap-2 w- bg-red-200 p-2">
+              <div className="size-10 text-blue-900 bg-cyan-200 flex justify-center items-center rounded-lg   ">
+                <Call />
+              </div>
+              <div className="flex flex-col gap-y-2 w-100">
+                <h2>24 Hour Support</h2>
+                <p>
+                  {" "}
+                  We Stand As Your Trusted Partner. Our Dedication to Quality,
+                  Innovation, And Customer Satisfaction Sets Us Apart
+                </p>
+              </div>
+            </div>
+            <div className="flex gap-2 w- bg-red-200 p-2">
+              <div className="size-10 text-blue-900 bg-cyan-200 flex justify-center items-center rounded-lg   ">
+                <Call />
+              </div>
+              <div className="flex flex-col gap-y-2 w-100">
+                <h2>24 Hour Support</h2>
+                <p>
+                  {" "}
+                  We Stand As Your Trusted Partner. Our Dedication to Quality,
+                  Innovation, And Customer Satisfaction Sets Us Apart
+                </p>
+              </div>
+            </div>
+            <div className="flex gap-2 w- bg-red-200 p-2">
+              <div className="size-10 text-blue-900 bg-cyan-200 flex justify-center items-center rounded-lg   ">
+                <Call />
+              </div>
+              <div className="flex flex-col gap-y-2 w-100">
+                <h2>24 Hour Support</h2>
+                <p>
+                  {" "}
+                  We Stand As Your Trusted Partner. Our Dedication to Quality,
+                  Innovation, And Customer Satisfaction Sets Us Apart
+                </p>
+              </div>
             </div>
           </div>
         </section>
