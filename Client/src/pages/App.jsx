@@ -26,9 +26,9 @@ const App = () => {
           </motion.div>
         </section>
 
-        <section className="why mt-30  flex flex-col justify-center items-center">
+        <section className="why mt-20  flex flex-col justify-center items-center">
           <div className="max-w-150">
-            <h1 className="text-center font-bold font-grenze text-3xl sm:text-4xl 2xl:text-5xl mb-2">
+            <h1 className="text-center font-bold font-grenze text-3xl sm:text-4xl 2xl:text-5xl mb-2 ">
               Why Choose Us
             </h1>
             <p className="text-center font-eczar sm:text-lg">
@@ -37,7 +37,7 @@ const App = () => {
             </p>
           </div>
 
-          <div className=" mt-3 w-full md:w-auto max-sm:space-y-2 md:grid grid-cols-2 gap-2">
+          <div className=" mt-3 w-full md:w-auto max-sm:space-y-2 md:grid grid-cols-2 gap-2 2xl:gap-10">
             <div className="flex gap-2 w- bg-red-200 p-2">
               <div className="size-10 text-blue-900 bg-cyan-200 flex justify-center items-center rounded-lg   ">
                 <Call />
@@ -93,11 +93,39 @@ const App = () => {
           </div>
         </section>
 
-        <section className="achievement">
-          <h1>Our Achievement</h1>
-          <p></p>
-          <div>
-
+        <section className="achievement flex flex-col justify-center items-center text-center mt-15 p-2">
+          <h1 className="font-grenze font-bold text-3xl sm:text-4xl 2xl:text-5xl mb-2">
+            Our Achievement
+          </h1>
+          <p className="font-eczar sm:text-lg">
+            Our journey of success is a testament to collective effor and
+            determination of our team.
+          </p>
+          <div className="shadow-2xl flex divide-x-1 py-2 sm:py-5 mt-4 md:mt-6">
+            <div className=" pl-2 sm:pl-10 md:pl-15 lg:pl-20 pr-2 sm:pr-5 md:pr-10 lg:pr-12">
+              <p className="font-bold text-cyan-500 text-2xl sm:text-3xl 2xl:text-4xl font-grenze">
+                4000+
+              </p>
+              <p className="text-nowrap font-semibold font-eczar text-sm sm:text-base 2xl:text-lg ">
+                Active member
+              </p>
+            </div>
+            <div className="  px-2 sm:px-5 md:px-10 lg:px-12 ">
+              <p className="font-bold text-cyan-500 text-2xl sm:text-3xl 2xl:text-4xl font-grenze">
+                4000+
+              </p>
+              <p className="text-nowrap font-semibold font-eczar text-sm sm:text-base 2xl:text-lg ">
+                Active member
+              </p>
+            </div>
+            <div className="  pr-2 sm:pr-10 md:pr-15 lg:pr-20   pl-2 sm:pl-5 md:pl-10 lg:pl-12">
+              <p className="font-bold text-cyan-500 text-2xl sm:text-3xl 2xl:text-4xl font-grenze">
+                4000+
+              </p>
+              <p className="text-nowrap font-semibold font-eczar text-sm sm:text-base 2xl:text-lg ">
+                Active member
+              </p>
+            </div>
           </div>
         </section>
 
