@@ -4,14 +4,14 @@ import { motion } from "framer-motion";
 import Call from "../Icons/Call";
 import { useInView } from "react-intersection-observer";
 
-import CountUp from 'react-countup'
+import CountUp from "react-countup";
+import Testimonial from "../components/Testimonial";
 
 const App = () => {
-  const {ref,inView}=useInView({
+  const { ref, inView } = useInView({
     threshold: 0.5,
-    triggerOnce:true
-    
-  })
+    triggerOnce: true,
+  });
   return (
     <div className="">
       <Header />
@@ -101,15 +101,16 @@ const App = () => {
           </div>
         </section>
 
-        <section className="achievement flex flex-col justify-center items-center text-center mt-15 p-2"
-        ref={ref}
+        <section
+          className="achievement flex flex-col justify-center items-center text-center mt-15 p-2"
+          ref={ref}
         >
           <h1 className="font-grenze font-bold text-3xl sm:text-4xl 2xl:text-5xl mb-2">
             Our Achievement
           </h1>
           <p className="font-eczar sm:text-lg">
             Our journey of success is a testament to collective effort and
-            determination of our team. 
+            determination of our team.
           </p>
           <div className="shadow-2xl flex divide-x-1 py-2 sm:py-5 mt-4 md:mt-6">
             <div className=" pl-2 sm:pl-10 md:pl-15 lg:pl-20 pr-2 sm:pr-5 md:pr-10 lg:pr-12">
@@ -139,7 +140,19 @@ const App = () => {
           </div>
         </section>
 
-        <section className="testimonials"></section>
+        <section className="testimonials mt-20 flex flex-col justify-center items-center  ">
+          <h1 className="font-grenze font-bold text-3xl sm:text-4xl 2xl:text-5xl mb-5">
+            What Our Customers Have To Say
+          </h1>
+          <div>
+            <Testimonial
+              name="Umer Ahmed"
+              type="customer"
+              image
+              text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta doloremque dolorem a error repudiandae possimus quidem labore laudantium! Odio odit nihil suscipit, excepturi distinctio nam voluptate voluptates similique maxime soluta."
+            />
+          </div>
+        </section>
       </main>
     </div>
   );
