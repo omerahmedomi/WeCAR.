@@ -7,9 +7,9 @@ const App = () => {
   return (
     <div className="">
       <Header />
-      <main>
+      <main className="relative pt-10 ">
         <section class="hero relative h-[400px] md:h-[600px] lg:h-screen bg-[url('https://images.unsplash.com/photo-1432462770865-65b70566d673?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwcm9maWxlLWxpa2VkfDE0fHx8ZW58MHx8fHx8')] bg-cover bg-center bg-no-repeat flex flex-col justify-center items-center">
-          <div class="absolute inset-0  bg-black opacity-60 "></div>
+          <div class="absolute inset-0  bg-black opacity-60 z-10"></div>
 
           <motion.div
             class="relative z-10 text-white p-6 font-eczar sm:text-center justify-center"
@@ -26,7 +26,7 @@ const App = () => {
           </motion.div>
         </section>
 
-        <section className="why mt-5  flex flex-col justify-center items-center">
+        <section className="why mt-30  flex flex-col justify-center items-center">
           <div className="max-w-150">
             <h1 className="text-center font-bold font-grenze text-3xl sm:text-4xl 2xl:text-5xl mb-2">
               Why Choose Us
@@ -90,6 +90,14 @@ const App = () => {
                 </p>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section className="achievement">
+          <h1>Our Achievement</h1>
+          <p></p>
+          <div>
+
           </div>
         </section>
 

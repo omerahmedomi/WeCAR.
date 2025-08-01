@@ -26,7 +26,7 @@ useEffect(() => {
   };
 
   return (
-    <header className="flex  justify-between sm:justify-between sm:p-3  md:px-8 text-gray-900 relative sm:gap-4 font-eczar shadow-sm items-center ">
+    <header className="flex  justify-between sm:justify-between sm:p-3  md:px-8 text-gray-900 fixed top-0 w-full z-50 sm:gap-4 font-eczar shadow-sm items-center bg-gray-100">
       <h1 className="max-sm:p-3  hover:cursor-pointer text-lg font-semibold">
         WeCAR.
       </h1>
