@@ -2,10 +2,16 @@ import React from "react";
 import Header from "./../components/Header";
 import { motion } from "framer-motion";
 import Call from "../Icons/Call";
+import { useInView } from "react-intersection-observer";
 
 import CountUp from 'react-countup'
 
 const App = () => {
+  const {ref,inView}=useInView({
+    threshold: 0.5,
+    triggerOnce:true
+    
+  })
   return (
     <div className="">
       <Header />
@@ -95,18 +101,20 @@ const App = () => {
           </div>
         </section>
 
-        <section className="achievement flex flex-col justify-center items-center text-center mt-15 p-2">
+        <section className="achievement flex flex-col justify-center items-center text-center mt-15 p-2"
+        ref={ref}
+        >
           <h1 className="font-grenze font-bold text-3xl sm:text-4xl 2xl:text-5xl mb-2">
             Our Achievement
           </h1>
           <p className="font-eczar sm:text-lg">
-            Our journey of success is a testament to collective effor and
+            Our journey of success is a testament to collective effort and
             determination of our team. 
           </p>
           <div className="shadow-2xl flex divide-x-1 py-2 sm:py-5 mt-4 md:mt-6">
             <div className=" pl-2 sm:pl-10 md:pl-15 lg:pl-20 pr-2 sm:pr-5 md:pr-10 lg:pr-12">
               <p className="font-bold text-cyan-500 text-2xl sm:text-3xl 2xl:text-4xl font-grenze">
-                <CountUp end={4000} duration={3} suffix="+" />
+                {inView && <CountUp end={4000} duration={3} suffix="+" />}
               </p>
               <p className="text-nowrap font-semibold font-eczar text-sm sm:text-base 2xl:text-lg ">
                 Active member
@@ -114,7 +122,7 @@ const App = () => {
             </div>
             <div className="  px-2 sm:px-5 md:px-10 lg:px-12 ">
               <p className="font-bold text-cyan-500 text-2xl sm:text-3xl 2xl:text-4xl font-grenze">
-                <CountUp end={4000} duration={3} suffix="+" />
+                {inView && <CountUp end={4000} duration={3} suffix="+" />}
               </p>
               <p className="text-nowrap font-semibold font-eczar text-sm sm:text-base 2xl:text-lg ">
                 Active member
@@ -122,7 +130,7 @@ const App = () => {
             </div>
             <div className="  pr-2 sm:pr-10 md:pr-15 lg:pr-20   pl-2 sm:pl-5 md:pl-10 lg:pl-12">
               <p className="font-bold text-cyan-500 text-2xl sm:text-3xl 2xl:text-4xl font-grenze">
-                <CountUp end={4000} duration={3} suffix="+" />
+                {inView && <CountUp end={4000} duration={3} suffix="+" />}
               </p>
               <p className="text-nowrap font-semibold font-eczar text-sm sm:text-base 2xl:text-lg ">
                 Active member
