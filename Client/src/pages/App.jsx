@@ -142,7 +142,7 @@ const App = () => {
 
         <section className="testimonials mt-20 flex flex-col justify-center items-center  ">
           <h1 className="font-grenze font-bold text-3xl sm:text-4xl 2xl:text-5xl mb-5">
-            What Our Customers Have To Say
+            What Our Customers Have To Say!
           </h1>
           <div>
             <Testimonial
