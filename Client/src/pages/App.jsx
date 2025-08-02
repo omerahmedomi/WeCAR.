@@ -141,7 +141,7 @@ const App = () => {
           </div>
         </section>
 
-        <section className="testimonials mt-20 flex flex-col justify-center items-center !w-full bg-green-300  ">
+        <section className="testimonials mt-20 flex flex-col justify-center items-center !w-full bg-green-300 mb-10 ">
           <h1 className="font-grenze font-bold text-3xl sm:text-4xl 2xl:text-5xl mb-5 text-center">
             What Our Customers Have To Say!
           </h1>
