@@ -6,6 +6,7 @@ import { useInView } from "react-intersection-observer";
 
 import CountUp from "react-countup";
 import Testimonial from "../components/Testimonial";
+import Footer from "../components/Footer";
 
 const App = () => {
   const { ref, inView } = useInView({
@@ -140,8 +141,8 @@ const App = () => {
           </div>
         </section>
 
-        <section className="testimonials mt-20 flex flex-col justify-center items-center  ">
-          <h1 className="font-grenze font-bold text-3xl sm:text-4xl 2xl:text-5xl mb-5">
+        <section className="testimonials mt-20 flex flex-col justify-center items-center !w-full bg-green-300  ">
+          <h1 className="font-grenze font-bold text-3xl sm:text-4xl 2xl:text-5xl mb-5 text-center">
             What Our Customers Have To Say!
           </h1>
           <div>
@@ -153,9 +154,12 @@ const App = () => {
             />
           </div>
         </section>
+
+        <Footer/>
       </main>
     </div>
   );
 };
+
 
 export default App;
