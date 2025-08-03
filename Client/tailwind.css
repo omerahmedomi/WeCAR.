@@ -16,3 +16,8 @@
 body {
   @apply bg-gray-100;
 }
+
+.prices ,.colors , .gears{
+  grid-template-columns: repeat(2,auto);
+}
+
