@@ -21,3 +21,6 @@ body {
   grid-template-columns: repeat(2,auto);
 }
 
+input[type='radio']{
+ @apply md:size-4
+}
