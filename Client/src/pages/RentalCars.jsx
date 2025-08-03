@@ -18,7 +18,7 @@ const RentalCars = () => {
           <Search />
         </span>
       </div>
-      <div className=" bg   flex flex-col items-center lg:items-start mt-4">
+      <div className=" bg   flex flex-col items-center lg:items-start mt-4 accent-cyan-600">
         <div className="cat-and-car-wrapper lg:flex lg:items-start  font-eczar ">
           <div className="categories  flex text-nowrap gap-x-10 sm:gap-x-0 p-2 text-sm flex-wrap max-[415px]:justify-around lg:flex-col  max-lg:justify-around md:text-base md:space-y-7 md:px-9 ">
             <div className="type flex flex-col items-center gears max-[479px]:order-4 max-[479px]:flex-2 space-y-2">
@@ -121,7 +121,7 @@ const RentalCars = () => {
               </div>
             </div>
           </div>
-          <div className="cars text-white bg-black lg:h-[92svh] lg:overflow-y-scroll p-3">
+          <div className="cars  lg:h-[92svh] lg:overflow-y-scroll p-3">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt
             voluptates minus quisquam, nisi recusandae sint natus? Repellendus
             tenetur perspiciatis est inventore maiores velit atque praesentium.
