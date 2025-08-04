@@ -11,6 +11,7 @@ const Header = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const location = useLocation();
 
+
 useEffect(() => {
   const currentPath = location.pathname
   const foundIndex = navRoutes.indexOf(currentPath)

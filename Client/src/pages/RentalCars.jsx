@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "./../components/Header";
 import Footer from "./../components/Footer";
 import Search from "../Icons/Search";
 import CarCard from "../components/CarCard";
 
 const RentalCars = () => {
+  const [selectedGear, setSelectedGear] = useState("any");
+  const [selectedPrice, setSelectedPrice] = useState("any");
+  const [selectedColor, setSelectedColor] = useState("any");
+
+  const gearOptions = ["any", "manual", "electric", "hybrid", "automatic"];
+  const priceOptions = ["any", "below 15K", "15K-20K", "20K-25K", "above 20K"];
+  const colorOptions = ["any", "red", "black", "gray", "white"];
   return (
     <>
       <Header />
@@ -21,26 +28,29 @@ const RentalCars = () => {
 
       <div className="cat-and-car-wrapper lg:flex lg:items-start w-full shadow-[3px]   font-eczar mt-4 pb-5">
         <div className="categories lg:border-r-1 border-gray-300 flex text-nowrap gap-x-10 sm:gap-x-0 p-2  flex-wrap max-[415px]:justify-around lg:flex-col  max-lg:justify-around  md:space-y-7 md:px-9  ">
-          <div className="type flex flex-col items-center gears max-[522px]:order-4   max-[522px]:flex-2 space-y-2">
+          <div className="type flex flex-col items-center  space-y-2">
             <p className="font-semibold ">Gear</p>
-            <div className="self-center *:space-x-1 *:space-y-3">
-              <div>
-                <input type="radio" name="type" value="Any" className="" />
-                <label for="Any">Any</label>
-              </div>
-              <div>
-                <input
-                  type="radio"
-                  name="type"
-                  value="Automatic"
-                  className=""
-                />
-                <label for="Automatic">Automatic</label>
-              </div>
-              <div>
-                <input type="radio" name="type" value="Manual" />
-                <label for="Manual">Manual</label>
-              </div>
+            <div className="grid grid-cols-2 prices lg:flex flex-col *:space-x-1  *:space-y-3">
+              {gearOptions.map((type, index) => {
+                return (
+                  <div>
+                    <input
+                      key={index}
+                      type="radio"
+                      name="type"
+                      value={type}
+                      className=""
+                      checked={selectedGear == type}
+                      onChange={(e) => {
+                        setSelectedGear(e.target.value);
+                      }}
+                    />
+                    <label for="Any">
+                      {type.split("")[0].toUpperCase() + type.slice(1)}
+                    </label>
+                  </div>
+                );
+              })}
             </div>
           </div>
           <div className="price flex flex-col items-center space-y-2">
@@ -48,76 +58,51 @@ const RentalCars = () => {
               Price / <span className="text-sm">Day</span>
             </p>
             <div className="grid grid-cols-2 prices lg:flex flex-col *:space-x-1 *:space-y-3">
-              <div className="">
-                <input type="radio" name="price" value="Any" className="" />
-                <label for="Any">Any</label>
-              </div>
-              <div>
-                <input
-                  type="radio"
-                  name="price"
-                  value="Automatic"
-                  className=""
-                />
-                <label for="Automatic">Below 15K</label>
-              </div>
-              <div>
-                <input
-                  type="radio"
-                  name="price"
-                  value="Automatic"
-                  className=""
-                />
-                <label for="Automatic">15K-20k</label>
-              </div>
-              <div>
-                <input
-                  type="radio"
-                  name="price"
-                  value="Automatic"
-                  className=""
-                />
-                <label for="Automatic">20K-25K</label>
-              </div>
-              <div>
-                <input
-                  type="radio"
-                  name="price"
-                  value="Automatic"
-                  className=""
-                />
-                <label for="Automatic">Above 25K</label>
-              </div>
+              {priceOptions.map((price, index) => {
+                return (
+                  <div>
+                    <input
+                      key={index}
+                      type="radio"
+                      name="price"
+                      value={price}
+                      className=""
+                      checked={selectedPrice == price}
+                      onChange={(e) => {
+                        setSelectedPrice(e.target.value);
+                      }}
+                    />
+                    <label for="Any">
+                      {price.split("")[0].toUpperCase() + price.slice(1)}
+                    </label>
+                  </div>
+                );
+              })}
             </div>
           </div>
           <div className="color flex flex-col items-center space-y-2 ">
             <p className="font-semibold">Color</p>
             <div className="colors grid grid-cols-2   lg:flex flex-col *:space-x-1 *:space-y-3">
-              <div>
-                <input type="radio" name="color" value="Any" className="" />
-                <label for="Any">Any</label>
-              </div>
-              <div>
-                <input
-                  type="radio"
-                  name="color"
-                  value="Automatic"
-                  className=""
-                />
-                <label for="WhiteGray">White/Gray</label>
-              </div>
-              <div>
-                <input type="radio" name="color" value="Manual" />
-                <label for="Red">Red</label>
-              </div>
-              <div>
-                <input type="radio" name="color" value="Manual" />
-                <label for="Black">Black</label>
-              </div>
-              <div>
-                <input type="radio" name="color" value="Manual" />
-                <label for="Yellow">Yellow</label>
-              </div>
+              {colorOptions.map((color, index) => {
+                return (
+                  <div>
+                    <input
+                      key={index}
+                      type="radio"
+                      name="color"
+                      value={color}
+                      className=""
+                      checked={selectedColor == color}
+                      onChange={(e) => {
+                        setSelectedColor(e.target.value);
+                      }}
+                    />
+                    <label for="Any">
+                      {color.split("")[0].toUpperCase() + color.slice(1)}
+                    </label>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
