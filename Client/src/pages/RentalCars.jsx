@@ -4,7 +4,6 @@ import Footer from "./../components/Footer";
 import Search from "../Icons/Search";
 import CarCard from "../components/CarCard";
 
-
 const RentalCars = () => {
   return (
     <>
@@ -20,9 +19,9 @@ const RentalCars = () => {
         </span>
       </div>
 
-      <div className="cat-and-car-wrapper lg:flex lg:items-start w-full   font-eczar mt-4">
-        <div className="categories  flex text-nowrap gap-x-10 sm:gap-x-0 p-2 text-sm flex-wrap max-[415px]:justify-around lg:flex-col  max-lg:justify-around md:text-base md:space-y-7 md:px-9 ">
-          <div className="type flex flex-col items-center gears max-[479px]:order-4 max-[479px]:flex-2 space-y-2">
+      <div className="cat-and-car-wrapper lg:flex lg:items-start w-full shadow-[3px]   font-eczar mt-4 pb-5">
+        <div className="categories lg:border-r-1 border-gray-300 flex text-nowrap gap-x-10 sm:gap-x-0 p-2  flex-wrap max-[415px]:justify-around lg:flex-col  max-lg:justify-around  md:space-y-7 md:px-9  ">
+          <div className="type flex flex-col items-center gears max-[522px]:order-4   max-[522px]:flex-2 space-y-2">
             <p className="font-semibold ">Gear</p>
             <div className="self-center *:space-x-1 *:space-y-3">
               <div>
@@ -123,10 +122,16 @@ const RentalCars = () => {
           </div>
         </div>
         <div
-          className="cars bg-pink-300 lg:h-[92svh] lg:overflow-y-scroll p-3 
-grid grid-cols-[repeat(1,_min-content)] sm:grid-cols-[repeat(2,_min-content)] min-[1170px]:!grid-cols-[repeat(3,_min-content)] 2xl:!grid-cols-[repeat(4,_min-content)]
-content-start justify-center gap-5 sm:gap-10 lg:gap-15  grow "
+          className="cars lg:h-[92svh] lg:overflow-y-scroll p-3 
+           grid grid-cols-[repeat(1,_min-content)] sm:grid-cols-[repeat(2,_min-content)] min-[1170px]:!grid-cols-[repeat(3,_min-content)] 2xl:!grid-cols-[repeat(4,_min-content)]
+          content-start justify-center gap-5 sm:gap-10 lg:gap-15  grow  "
         >
+          <CarCard />
+          <CarCard />
+          <CarCard />
+          <CarCard />
+          <CarCard />
+          <CarCard />
           <CarCard />
           <CarCard />
           <CarCard />
