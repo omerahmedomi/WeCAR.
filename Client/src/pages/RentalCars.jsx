@@ -122,10 +122,11 @@ const RentalCars = () => {
           </div>
         </div>
         <div
-          className="cars lg:h-[92svh] lg:overflow-y-scroll p-3 
+          className="cars lg:h-[92svh] min-h-[50svh] lg:overflow-y-scroll p-3 
            grid grid-cols-[repeat(1,_min-content)] sm:grid-cols-[repeat(2,_min-content)] min-[1170px]:!grid-cols-[repeat(3,_min-content)] 2xl:!grid-cols-[repeat(4,_min-content)]
           content-start justify-center gap-5 sm:gap-10 lg:gap-15  grow  "
         >
+          {/* <CarCard />
           <CarCard />
           <CarCard />
           <CarCard />
@@ -136,8 +137,7 @@ const RentalCars = () => {
           <CarCard />
           <CarCard />
           <CarCard />
-          <CarCard />
-          <CarCard />
+          <CarCard /> */}
         </div>
       </div>
       <Footer />

@@ -47,7 +47,13 @@ const App = () => {
           </div>
 
           <div className=" mt-3 w-full md:w-auto max-sm:space-y-2 md:grid grid-cols-2 gap-2 2xl:gap-10">
-            <div className="flex gap-2 w- bg-red-200 p-2">
+            <motion.div
+              className="flex gap-2  bg-red-200 p-2 "
+              initial={{ opacity: 0, x: -200 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: "easeInOut" }} // Animation duration
+              viewport={{ once: true, amount: 0.3 }}
+            >
               <div className="size-10 text-blue-900 bg-cyan-200 flex justify-center items-center rounded-lg   ">
                 <Call />
               </div>
@@ -59,8 +65,14 @@ const App = () => {
                   Innovation, And Customer Satisfaction Sets Us Apart
                 </p>
               </div>
-            </div>
-            <div className="flex gap-2 w- bg-red-200 p-2">
+            </motion.div>
+            <motion.div
+              className="flex gap-2 w- bg-red-200 p-2"
+              initial={{ opacity: 0, x: 200 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: "easeInOut" }} // Animation duration
+              viewport={{ once: true, amount: 0.3 }}
+            >
               <div className="size-10 text-blue-900 bg-cyan-200 flex justify-center items-center rounded-lg   ">
                 <Call />
               </div>
@@ -72,8 +84,14 @@ const App = () => {
                   Innovation, And Customer Satisfaction Sets Us Apart
                 </p>
               </div>
-            </div>
-            <div className="flex gap-2 w- bg-red-200 p-2">
+            </motion.div>
+            <motion.div
+              className="flex gap-2 w- bg-red-200 p-2"
+              initial={{ opacity: 0, x: -200 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: "easeInOut" }} // Animation duration
+              viewport={{ once: true, amount: 0.3 }}
+            >
               <div className="size-10 text-blue-900 bg-cyan-200 flex justify-center items-center rounded-lg   ">
                 <Call />
               </div>
@@ -85,8 +103,14 @@ const App = () => {
                   Innovation, And Customer Satisfaction Sets Us Apart
                 </p>
               </div>
-            </div>
-            <div className="flex gap-2 w- bg-red-200 p-2">
+            </motion.div>
+            <motion.div
+              className="flex gap-2 w- bg-red-200 p-2"
+              initial={{ opacity: 0, x: 200 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: "easeInOut" }} // Animation duration
+              viewport={{ once: true, amount: 0.3 }}
+            >
               <div className="size-10 text-blue-900 bg-cyan-200 flex justify-center items-center rounded-lg   ">
                 <Call />
               </div>
@@ -98,7 +122,7 @@ const App = () => {
                   Innovation, And Customer Satisfaction Sets Us Apart
                 </p>
               </div>
-            </div>
+            </motion.div>
           </div>
         </section>
 
@@ -155,7 +179,7 @@ const App = () => {
           </div>
         </section>
 
-        <Footer/>
+        <Footer />
       </main>
     </div>
   );

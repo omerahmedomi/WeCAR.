@@ -32,7 +32,7 @@ const Footer = () => {
           </ul>
         </div>
       </div>
-      <div className="flex justify-around text-xs max-sm:flex-col max-sm:gap-y-5">
+      <div className="flex justify-around text-xs md:text-sm max-sm:flex-col max-sm:gap-y-5">
         <p className="font-semibold  text-nowrap max-sm:order-2 max-sm:self-center">
           &copy; {new Date().getFullYear()} WeCAR. All Rights Reserved.
         </p>
