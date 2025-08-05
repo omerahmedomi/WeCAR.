@@ -1,17 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./../components/Header";
 import Footer from "./../components/Footer";
 import Search from "../Icons/Search";
 import CarCard from "../components/CarCard";
+import { carss } from "../cars";
 
 const RentalCars = () => {
   const [selectedGear, setSelectedGear] = useState("any");
   const [selectedPrice, setSelectedPrice] = useState("any");
   const [selectedColor, setSelectedColor] = useState("any");
+  const [cars,setCars] = useState([])
 
-  const gearOptions = ["any", "manual", "electric", "hybrid", "automatic"];
+  const gearOptions = ["any", "manual", "hybrid", "automatic"];
   const priceOptions = ["any", "below 15K", "15K-20K", "20K-25K", "above 20K"];
   const colorOptions = ["any", "red", "black", "gray", "white"];
+
+  useEffect(() => {
+    
+    setCars(carss)
+  }, []);
   return (
     <>
       <Header />
@@ -109,20 +116,18 @@ const RentalCars = () => {
         <div
           className="cars lg:h-[92svh] min-h-[50svh] lg:overflow-y-scroll p-3 
            grid grid-cols-[repeat(1,_min-content)] sm:grid-cols-[repeat(2,_min-content)] min-[1170px]:!grid-cols-[repeat(3,_min-content)] 2xl:!grid-cols-[repeat(4,_min-content)]
-          content-start justify-center gap-5 sm:gap-10 lg:gap-15  grow  "
+          content-start justify-start  gap-5 sm:gap-10 lg:gap-15  grow bg-amber-100 "
         >
           {/* <CarCard />
           <CarCard />
           <CarCard />
-          <CarCard />
-          <CarCard />
-          <CarCard />
-          <CarCard />
-          <CarCard />
-          <CarCard />
-          <CarCard />
-          <CarCard />
           <CarCard /> */}
+
+          {cars.map((car,index)=>{
+            return(
+              <CarCard key={index} car={car}/>
+            )
+          })}
         </div>
       </div>
       <Footer />
