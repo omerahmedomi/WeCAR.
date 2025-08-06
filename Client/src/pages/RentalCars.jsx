@@ -114,20 +114,13 @@ const RentalCars = () => {
         </div>
         <div
           className="cars lg:h-[92svh] min-h-[50svh] lg:overflow-y-scroll p-3 
-           grid grid-cols-[repeat(1,_min-content)] sm:grid-cols-[repeat(2,_min-content)] min-[1170px]:!grid-cols-[repeat(3,_min-content)] 2xl:!grid-cols-[repeat(4,_min-content)]
+           grid grid-cols-[repeat(1,_min-content)] sm:grid-cols-[repeat(2,_min-content)] min-[964px]:!grid-cols-[repeat(3,_min-content)]  min-[1150px]:!grid-cols-[repeat(3,_min-content)] 2xl:!grid-cols-[repeat(4,_min-content)]
           content-start justify-center sm:justify-around
-           gap-10 sm:gap-15 lg:gap-24  grow  bg-blue-400 min-[1170px]:!justify-evenly"
+           gap-y-10 sm:gap-y-15 lg:gap-x-3   grow  bg-blue-400 w-full"
         >
-          <CarCard />
-          <CarCard />
-          <CarCard />
-          <CarCard />
-
-          {/* {cars.map((car,index)=>{
-            return(
-              <CarCard key={index} car={car}/>
-            )
-          })} */}
+          {cars.map((car, index) => {
+            return <CarCard key={index} car={car} />;
+          })}
         </div>
       </div>
       <Footer />
