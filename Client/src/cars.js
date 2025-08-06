@@ -7,7 +7,7 @@ export const carss = [
     transmission: "manual",
     fuelType: "Petrol",
     mileage: 85000, // in kilometers
-    pricePerDayInK: 15, // in your currency, e.g., dollars
+    pricePerDayInK: 14, // in your currency, e.g., dollars
     color: "Red",
     seats: 5,
     doors: 2,
@@ -25,7 +25,7 @@ export const carss = [
     transmission: "manual",
     fuelType: "Hybrid",
     mileage: 85000, // in kilometers
-    pricePerDayInK: 15, // in your currency, e.g., dollars
+    pricePerDayInK: 16, // in your currency, e.g., dollars
     color: "Red",
     seats: 5,
     doors: 2,
@@ -43,7 +43,7 @@ export const carss = [
     transmission: "auto",
     fuelType: "Diesel",
     mileage: 85000, // in kilometers
-    pricePerDayInK: 15, // in your currency, e.g., dollars
+    pricePerDayInK: 25, // in your currency, e.g., dollars
     color: "Red",
     seats: 5,
     doors: 2,
@@ -61,7 +61,7 @@ export const carss = [
     transmission: "manual",
     fuelType: "Electric",
     mileage: 85000, // in kilometers
-    pricePerDayInK: 15, // in your currency, e.g., dollars
+    pricePerDayInK: 22, // in your currency, e.g., dollars
     color: "Red",
     seats: 5,
     doors: 2,

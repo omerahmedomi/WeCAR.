@@ -3,7 +3,7 @@ import Header from "./../components/Header";
 import Footer from "./../components/Footer";
 import Search from "../Icons/Search";
 import CarCard from "../components/CarCard";
-import { carss } from "../cars";
+import { carss as originalCars} from "../cars";
 
 const RentalCars = () => {
   const [selectedGear, setSelectedGear] = useState("any");
@@ -12,12 +12,38 @@ const RentalCars = () => {
   const [cars, setCars] = useState([]);
 
   const gearOptions = ["any", "manual", "auto"];
-  const priceOptions = ["any", "below 15K", "15K-20K", "20K-25K", "above 20K"];
+  const priceOptions = ["any", "below 15K", "15K-20K", "20K-25K", "above 25K"];
   const colorOptions = ["any", "red", "black", "gray", "white"];
 
+  const applyFilters = () => {
+    const filtered = originalCars.filter((car) => {
+      const gearMatch =
+        selectedGear === "any" || car.transmission === selectedGear;
+      const colorMatch =
+        selectedColor === "any" ||
+        car.color.toLowerCase() === selectedColor.toLowerCase();
+        const priceMatch = (() => {
+          if (selectedPrice === "any") return true;
+          if (selectedPrice === "below 15K") return car.pricePerDayInK < 15;
+          if (selectedPrice === "15K-20K")
+            return car.pricePerDayInK >= 15 && car.pricePerDayInK < 20;
+          if (selectedPrice === "20K-25K")
+            return car.pricePerDayInK >= 20 && car.pricePerDayInK < 25;
+          if (selectedPrice === "above 25K") return car.pricePerDayInK >= 25;
+          return true;
+        })();
+
+
+      return gearMatch && colorMatch && priceMatch;
+    });
+
+    setCars(filtered);
+  };
+
+
   useEffect(() => {
-    setCars(carss);
-  }, []);
+    applyFilters()
+  }, [selectedGear,selectedPrice,selectedColor]);
   return (
     <>
       <Header />
@@ -49,9 +75,9 @@ const RentalCars = () => {
                       checked={selectedGear == type}
                       onChange={(e) => {
                         setSelectedGear(e.target.value);
-                        if(type == 'any') setCars(carss)
+                        if(type == 'any') setCars((prev)=>prev)
                         else{
-                          setCars(carss.filter((car)=>car.transmission == type))
+                          setCars((prev)=>prev.filter((car)=>car.transmission == type))
                         }
                        
                       }}
@@ -65,27 +91,46 @@ const RentalCars = () => {
               })}
             </div>
           </div>
-          <div className="price flex flex-col items-center space-y-2">
+          <div className="pricePerDayInK flex flex-col items-center space-y-2">
             <p className="font-semibold">
               Price / <span className="text-sm">Day</span>
             </p>
             <div className="grid grid-cols-2 prices lg:flex flex-col *:space-x-1 *:space-y-3">
-              {priceOptions.map((price, index) => {
+              {priceOptions.map((pricePerDayInK, index) => {
                 return (
                   <div>
                     <input
                       key={index}
                       type="radio"
-                      name="price"
-                      value={price}
+                      name="pricePerDayInK"
+                      value={pricePerDayInK}
                       className=""
-                      checked={selectedPrice == price}
+                      checked={selectedPrice == pricePerDayInK}
                       onChange={(e) => {
                         setSelectedPrice(e.target.value);
+                        if (pricePerDayInK == "any") setCars((prev) => prev);
+                        else if (pricePerDayInK == "below 15K") {
+                          setCars((prev)=>prev.filter((car)=>car.pricePerDayInK < 15))
+                        } else if (pricePerDayInK == "15K-20K") {
+                          setCars((prev) =>
+                            prev.filter(
+                              (car) => car.pricePerDayInK >= 15 && car.pricePerDayInK < 20
+                            )
+                          );
+                        } else if (pricePerDayInK == "20K-25K") {
+                          setCars((prev) =>
+                            prev.filter((car) => car.pricePerDayInK >= 20 && car.pricePerDayInK <20)
+                          );
+                        }else{
+                          setCars((prev) =>
+                            prev.filter((car) => car.pricePerDayInK >= 25)
+                          );
+                        }
+
                       }}
                     />
                     <label for="Any">
-                      {price.split("")[0].toUpperCase() + price.slice(1)}
+                      {pricePerDayInK.split("")[0].toUpperCase() + pricePerDayInK.slice(1)}
                     </label>
                   </div>
                 );

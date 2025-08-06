@@ -55,7 +55,7 @@ const CarCard = ({car}) => {
         </div>
         <div className="flex items-center gap-x-1 ">
           <span>
-            {car.transmission == "Auto" ? <AutomaticGear /> : <ManualGear />}
+            {car.transmission == "auto" ? <AutomaticGear /> : <ManualGear />}
           </span>
           <p>{car.transmission.split("")[0].toUpperCase() + car.transmission.slice(1)}</p>
         </div>
