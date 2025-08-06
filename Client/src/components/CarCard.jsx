@@ -1,5 +1,13 @@
 import React from "react";
-import Petrol from "./Petrol";
+import Petrol from "../Icons/Petrol";
+import CarDoor from "../Icons/CarDoor";
+import CarSeat from "../Icons/CarSeart";
+import CarEngine from "../Icons/CarEngine";
+import AutomaticGear from "../Icons/AutomaticGear";
+import ManualGear from "../Icons/ManualGear";
+import ElectricCar from "../Icons/ElectricCar";
+import Diesel from "../Icons/Diesel";
+import Hybrid from "../Icons/Hybrid";
 
 const CarCard = ({car}) => {
   return (
@@ -12,40 +20,44 @@ const CarCard = ({car}) => {
         />
       </div>
       <p className="mb-4 font-semibold">{car.name}</p>
-      <div className="infos grid grid-cols-3 gap-y-2 border-dashed border-b gap-x-6 pb-4">
+      <div className="infos grid grid-cols-3 gap-y-2 border-dashed border-b gap-x-5 pb-4">
         <div className="flex items-center gap-x-1 ">
           <span>
-            <Petrol />
+            <CarSeat />
           </span>
-          <p>Petrol</p>
+          <p>{car.seats} Seat</p>
         </div>
         <div className="flex items-center gap-x-1 ">
           <span>
-            <Petrol />
+            <CarEngine />
           </span>
-          <p>Petrol</p>
+          <p>{car.year}</p>
         </div>
         <div className="flex items-center gap-x-1 ">
           <span>
-            <Petrol />
+           {car.fuelType == 'Petrol' ? <Petrol/>: car.fuelType == 'Diesel'? <Diesel/> : car.fuelType == 'Electric' ? <ElectricCar/>:<Hybrid/> }
           </span>
-          <p>Petrol</p>
+          <p>{car.fuelType}</p>
+        </div>
+        <div className="flex items-center gap-x-1 door">
+          <span>
+            <CarDoor />
+          </span>
+          <p>{car.doors} Door</p>
         </div>
         <div className="flex items-center gap-x-1 ">
           <span>
-            <Petrol />
+            {car.transmission == "Auto" ? (
+              <AutomaticGear />
+            ) : (
+              <ManualGear />
+            )}
           </span>
-          <p>Petrol</p>
+          <p>{car.transmission}</p>
         </div>
         <div className="flex items-center gap-x-1 ">
           <span>
-            <Petrol />
-          </span>
-          <p>Petrol</p>
-        </div>
-        <div className="flex items-center gap-x-1 ">
-          <span>
-            <Petrol />
+            <Diesel/>
           </span>
           <p>Petrol</p>
         </div>
@@ -55,7 +67,9 @@ const CarCard = ({car}) => {
           <span className="font-semibold">{car.pricePerDayInK}K ETB</span>
           <span className="text-sm ">/Day</span>
         </p>
-        <button className="border border-cyan-800 focus:outline-none px-3 py rounded-sm cursor-pointer text-cyan-500 font-semibold hover:text-cyan-400 transition-colors duration-300 ">Rent Car</button>
+        <button className="border border-cyan-800 focus:outline-none px-3 py rounded-sm cursor-pointer text-cyan-500 font-semibold hover:text-cyan-400 transition-colors duration-300 ">
+          Rent Car
+        </button>
       </div>
     </div>
   );
