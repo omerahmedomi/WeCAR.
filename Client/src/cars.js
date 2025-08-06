@@ -26,7 +26,7 @@ export const carss = [
     fuelType: "Hybrid",
     mileage: 85000, // in kilometers
     pricePerDayInK: 16, // in your currency, e.g., dollars
-    color: "Red",
+    color: "Black",
     seats: 5,
     doors: 2,
     luggageCapacity: 300, // in liters
@@ -44,7 +44,7 @@ export const carss = [
     fuelType: "Diesel",
     mileage: 85000, // in kilometers
     pricePerDayInK: 25, // in your currency, e.g., dollars
-    color: "Red",
+    color: "White",
     seats: 5,
     doors: 2,
     luggageCapacity: 300, // in liters
@@ -62,7 +62,7 @@ export const carss = [
     fuelType: "Electric",
     mileage: 85000, // in kilometers
     pricePerDayInK: 22, // in your currency, e.g., dollars
-    color: "Red",
+    color: "Gray",
     seats: 5,
     doors: 2,
     luggageCapacity: 300, // in liters
