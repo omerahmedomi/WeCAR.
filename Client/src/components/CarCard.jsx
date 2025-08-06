@@ -35,7 +35,15 @@ const CarCard = ({car}) => {
         </div>
         <div className="flex items-center gap-x-1 ">
           <span>
-           {car.fuelType == 'Petrol' ? <Petrol/>: car.fuelType == 'Diesel'? <Diesel/> : car.fuelType == 'Electric' ? <ElectricCar/>:<Hybrid/> }
+            {car.fuelType == "Petrol" ? (
+              <Petrol />
+            ) : car.fuelType == "Diesel" ? (
+              <Diesel />
+            ) : car.fuelType == "Electric" ? (
+              <ElectricCar />
+            ) : (
+              <Hybrid />
+            )}
           </span>
           <p>{car.fuelType}</p>
         </div>
@@ -47,17 +55,13 @@ const CarCard = ({car}) => {
         </div>
         <div className="flex items-center gap-x-1 ">
           <span>
-            {car.transmission == "Auto" ? (
-              <AutomaticGear />
-            ) : (
-              <ManualGear />
-            )}
+            {car.transmission == "Auto" ? <AutomaticGear /> : <ManualGear />}
           </span>
-          <p>{car.transmission}</p>
+          <p>{car.transmission.split("")[0].toUpperCase() + car.transmission.slice(1)}</p>
         </div>
         <div className="flex items-center gap-x-1 ">
           <span>
-            <Diesel/>
+            <Diesel />
           </span>
           <p>Petrol</p>
         </div>

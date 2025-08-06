@@ -11,7 +11,7 @@ const RentalCars = () => {
   const [selectedColor, setSelectedColor] = useState("any");
   const [cars, setCars] = useState([]);
 
-  const gearOptions = ["any", "manual", "automatic"];
+  const gearOptions = ["any", "manual", "auto"];
   const priceOptions = ["any", "below 15K", "15K-20K", "20K-25K", "above 20K"];
   const colorOptions = ["any", "red", "black", "gray", "white"];
 
@@ -49,9 +49,15 @@ const RentalCars = () => {
                       checked={selectedGear == type}
                       onChange={(e) => {
                         setSelectedGear(e.target.value);
+                        if(type == 'any') setCars(carss)
+                        else{
+                          setCars(carss.filter((car)=>car.transmission == type))
+                        }
+                       
                       }}
+                      
                     />
-                    <label for="Any">
+                    <label for={type}>
                       {type.split("")[0].toUpperCase() + type.slice(1)}
                     </label>
                   </div>

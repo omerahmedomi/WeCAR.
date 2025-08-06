@@ -4,7 +4,7 @@ export const carss = [
     name: "Aston Martin DB7",
     model: "DB7 Vantage",
     year: 2000,
-    transmission: "Manual",
+    transmission: "manual",
     fuelType: "Petrol",
     mileage: 85000, // in kilometers
     pricePerDayInK: 15, // in your currency, e.g., dollars
@@ -22,7 +22,7 @@ export const carss = [
     name: "Aston Martin DB7",
     model: "DB7 Vantage",
     year: 2000,
-    transmission: "Manual",
+    transmission: "manual",
     fuelType: "Hybrid",
     mileage: 85000, // in kilometers
     pricePerDayInK: 15, // in your currency, e.g., dollars
@@ -40,7 +40,7 @@ export const carss = [
     name: "Aston Martin DB7",
     model: "DB7 Vantage",
     year: 2000,
-    transmission: "Auto",
+    transmission: "auto",
     fuelType: "Diesel",
     mileage: 85000, // in kilometers
     pricePerDayInK: 15, // in your currency, e.g., dollars
@@ -58,7 +58,7 @@ export const carss = [
     name: "Aston Martin DB7",
     model: "DB7 Vantage",
     year: 2000,
-    transmission: "Manual",
+    transmission: "manual",
     fuelType: "Electric",
     mileage: 85000, // in kilometers
     pricePerDayInK: 15, // in your currency, e.g., dollars
