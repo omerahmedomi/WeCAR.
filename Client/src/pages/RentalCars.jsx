@@ -9,15 +9,14 @@ const RentalCars = () => {
   const [selectedGear, setSelectedGear] = useState("any");
   const [selectedPrice, setSelectedPrice] = useState("any");
   const [selectedColor, setSelectedColor] = useState("any");
-  const [cars,setCars] = useState([])
+  const [cars, setCars] = useState([]);
 
   const gearOptions = ["any", "manual", "hybrid", "automatic"];
   const priceOptions = ["any", "below 15K", "15K-20K", "20K-25K", "above 20K"];
   const colorOptions = ["any", "red", "black", "gray", "white"];
 
   useEffect(() => {
-    
-    setCars(carss)
+    setCars(carss);
   }, []);
   return (
     <>
@@ -116,18 +115,19 @@ const RentalCars = () => {
         <div
           className="cars lg:h-[92svh] min-h-[50svh] lg:overflow-y-scroll p-3 
            grid grid-cols-[repeat(1,_min-content)] sm:grid-cols-[repeat(2,_min-content)] min-[1170px]:!grid-cols-[repeat(3,_min-content)] 2xl:!grid-cols-[repeat(4,_min-content)]
-          content-start justify-start  gap-5 sm:gap-10 lg:gap-15  grow bg-amber-100 "
+          content-start justify-center sm:justify-around
+           gap-10 sm:gap-15 lg:gap-24  grow  bg-blue-400 min-[1170px]:!justify-evenly"
         >
-          {/* <CarCard />
           <CarCard />
           <CarCard />
-          <CarCard /> */}
+          <CarCard />
+          <CarCard />
 
-          {cars.map((car,index)=>{
+          {/* {cars.map((car,index)=>{
             return(
               <CarCard key={index} car={car}/>
             )
-          })}
+          })} */}
         </div>
       </div>
       <Footer />
