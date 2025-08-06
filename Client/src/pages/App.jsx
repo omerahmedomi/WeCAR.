@@ -7,6 +7,9 @@ import { useInView } from "react-intersection-observer";
 import CountUp from "react-countup";
 import Testimonial from "../components/Testimonial";
 import Footer from "../components/Footer";
+import MedalRibbonStar from "../Icons/MedalRibbonStar";
+import Verified from "../Icons/Verified";
+import XCircle from "../Icons/XCircle";
 
 const App = () => {
   const { ref, inView } = useInView({
@@ -35,7 +38,7 @@ const App = () => {
           </motion.div>
         </section>
 
-        <section className="why mt-20  flex flex-col justify-center items-center">
+        <section className="why mt-20  flex flex-col  items-center ">
           <div className="max-w-150">
             <h1 className="text-center font-bold font-grenze text-3xl sm:text-4xl 2xl:text-5xl mb-2 ">
               Why Choose Us
@@ -46,80 +49,83 @@ const App = () => {
             </p>
           </div>
 
-          <div className=" mt-3 w-full md:w-auto max-sm:space-y-2 md:grid grid-cols-2 gap-2 2xl:gap-10">
+          <div className=" mt-5 w-full md:w-auto max-sm:space-y-2 md:grid grid-cols-2 gap-2 2xl:gap-10 font-eczar">
             <motion.div
-              className="flex gap-2  bg-red-200 p-2 "
+              className="flex gap-2 w- p-2"
               initial={{ opacity: 0, x: -200 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeInOut" }} // Animation duration
               viewport={{ once: true, amount: 0.3 }}
             >
-              <div className="size-10 text-blue-900 bg-cyan-200 flex justify-center items-center rounded-lg   ">
+              <div className="size-10 text-blue-900 bg-cyan-400 flex justify-center items-center rounded-lg   ">
                 <Call />
               </div>
               <div className="flex flex-col gap-y-2 w-100">
-                <h2>24 Hour Support</h2>
+                <h2 className="font-medium">24 Hour Support</h2>
                 <p>
                   {" "}
-                  We Stand As Your Trusted Partner. Our Dedication to Quality,
-                  Innovation, And Customer Satisfaction Sets Us Apart
+                  We’re here for you anytime, day or night. Our support team
+                  is just a call or message away—24 hours a day, 7 days a week.
                 </p>
               </div>
             </motion.div>
             <motion.div
-              className="flex gap-2 w- bg-red-200 p-2"
+              className="flex gap-2  p-2 "
               initial={{ opacity: 0, x: 200 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeInOut" }} // Animation duration
               viewport={{ once: true, amount: 0.3 }}
             >
-              <div className="size-10 text-blue-900 bg-cyan-200 flex justify-center items-center rounded-lg   ">
-                <Call />
+              <div className="size-10 text-blue-900 bg-cyan-400 flex justify-center items-center rounded-lg   ">
+                <MedalRibbonStar />
               </div>
               <div className="flex flex-col gap-y-2 w-100">
-                <h2>24 Hour Support</h2>
+                <h2 className="font-medium">Best Price</h2>
                 <p>
                   {" "}
-                  We Stand As Your Trusted Partner. Our Dedication to Quality,
-                  Innovation, And Customer Satisfaction Sets Us Apart
+                  Get the best deals without hidden fees. We constantly check
+                  market rates to ensure you get unbeatable prices for every car
+                  in our fleet.
                 </p>
               </div>
             </motion.div>
+
             <motion.div
-              className="flex gap-2 w- bg-red-200 p-2"
+              className="flex gap-2 w- p-2"
               initial={{ opacity: 0, x: -200 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeInOut" }} // Animation duration
               viewport={{ once: true, amount: 0.3 }}
             >
-              <div className="size-10 text-blue-900 bg-cyan-200 flex justify-center items-center rounded-lg   ">
-                <Call />
+              <div className="size-10 text-blue-900 bg-cyan-400 flex justify-center items-center rounded-lg   ">
+                <Verified />
               </div>
               <div className="flex flex-col gap-y-2 w-100">
-                <h2>24 Hour Support</h2>
+                <h2 className="font-medium">Verified Lisence</h2>
                 <p>
                   {" "}
-                  We Stand As Your Trusted Partner. Our Dedication to Quality,
-                  Innovation, And Customer Satisfaction Sets Us Apart
+                  Drive with confidence knowing all our vehicles are fully
+                  licensed and verified for safety, legality, and top
+                  performance.
                 </p>
               </div>
             </motion.div>
             <motion.div
-              className="flex gap-2 w- bg-red-200 p-2"
+              className="flex gap-2 w- p-2"
               initial={{ opacity: 0, x: 200 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeInOut" }} // Animation duration
               viewport={{ once: true, amount: 0.3 }}
             >
-              <div className="size-10 text-blue-900 bg-cyan-200 flex justify-center items-center rounded-lg   ">
-                <Call />
+              <div className="size-10 text-blue-900 bg-cyan-400 flex justify-center items-center rounded-lg   ">
+                <XCircle />
               </div>
               <div className="flex flex-col gap-y-2 w-100">
-                <h2>24 Hour Support</h2>
+                <h2 className="font-medium">Free Cancelation</h2>
                 <p>
                   {" "}
-                  We Stand As Your Trusted Partner. Our Dedication to Quality,
-                  Innovation, And Customer Satisfaction Sets Us Apart
+                  Plans changed? No problem. Cancel your booking for free within
+                  our flexible policy—no stress, no extra charges.
                 </p>
               </div>
             </motion.div>
@@ -184,6 +190,5 @@ const App = () => {
     </div>
   );
 };
-
 
 export default App;
