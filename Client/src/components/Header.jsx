@@ -59,7 +59,7 @@ useEffect(() => {
             key={index}
             to={navRoutes[index]}
             className={`hover:text-blue-500 bg-yellow-00 ${
-              activeNav == index && "text-blue-700 border-b"
+              activeNav == index && "text-cyan-600 font-medium"
             } max-sm:hover:bg-white   cursor-pointer max-sm:p-2 text-nowrap max-sm:border-b max-sm:block`}
             onClick={() => {
               setActiveNav(index);
