@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -6,20 +7,36 @@ const Footer = () => {
       <div className="info flex gap-4 justify-around">
         <div className="socials  ">
           <h1 className="font-semibold">Pages</h1>
-          <ul className="leading-10 text-nowrap *:hover:cursor-pointer *:hover:text-cyan-600 ">
-            <li>About Us</li>
-            <li>Our Services</li>
-            <li>Rental Cars</li>
-            <li>FAQs</li>
+          <ul className="leading-10 text-nowrap *:hover:cursor-pointer *:hover:text-cyan-600 *:active:text-cyan-600 ">
+            <li>
+              <Link to={"/about"}>About Us</Link>
+            </li>
+            <li>
+              <Link to={"/services"}>Our Services</Link>
+            </li>
+            <li>
+              <Link to={"/rental-cars"}>Rental Cars</Link>
+            </li>
+            <li>
+              <Link to={"/faqs"}>FAQs</Link>
+            </li>
           </ul>
         </div>
         <div className="socials ">
           <h1 className="font-semibold">Socials</h1>
-          <ul className="leading-10 ">
-            <li>Linkedin</li>
-            <li>Instagram</li>
-            <li>Telegram</li>
-            <li>Facebook</li>
+          <ul className="leading-10 *:hover:cursor-pointer *:hover:text-cyan-600 *:active:text-cyan-600">
+            <li>
+              <Link>Linkedin</Link>
+            </li>
+            <li>
+              <Link>Instagram</Link>
+            </li>
+            <li>
+              <Link>Telegram</Link>
+            </li>
+            <li>
+              <Link>Facebook</Link>
+            </li>
           </ul>
         </div>
         <div className="contacts max-[365px]:space-y-3">
@@ -36,7 +53,7 @@ const Footer = () => {
         <p className="font-semibold  text-nowrap max-sm:order-2 max-sm:self-center">
           &copy; {new Date().getFullYear()} WeCAR. All Rights Reserved.
         </p>
-        <div className="flex sm:gap-5 font-semibold text-nowrap max-sm:justify-evenly">
+        <div className="flex sm:gap-5 font-semibold text-nowrap max-sm:justify-evenly *:hover:cursor-pointer *:hover:text-cyan-600">
           <p> Privacy Policy</p>
           <p>Rental Terms and Conditions</p>
         </div>
