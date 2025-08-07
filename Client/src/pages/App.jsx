@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{useEffect} from "react";
 import Header from "./../components/Header";
 import { motion } from "framer-motion";
 import Call from "../Icons/Call";
@@ -16,6 +16,11 @@ const App = () => {
     threshold: 0.5,
     triggerOnce: true,
   });
+
+  useEffect(() => {
+    
+   window.scrollTo(0,0)
+  }, []);
   return (
     <div className="">
       <Header />
