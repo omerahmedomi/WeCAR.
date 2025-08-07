@@ -1,4 +1,4 @@
-import React from 'react'
+import React ,{useEffect}from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer';
 import  {MapPin,Car,Users,Globe,Truck,Wrench} from 'lucide-react'
@@ -43,13 +43,18 @@ const services = [
   },
 ];
 
+
 const OurServices = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <div className="pt-15">
+    <div >
       <Header />
 
-      <section className="py-12 px-6 md:px-12 lg:px-20 bg-gray-50">
-        <h2 className="text-3xl font-bold text-center mb-10 font-grenze">Our Services</h2>
+      <section className="py-12 px-6 md:px-12 lg:px-20 bg-gray-100 " >
+        <h2 className="text-3xl font-bold text-center mb-10 font-grenze pt-10">Our Services</h2>
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 font-eczar">
           {services.map((service, index) => (
             <div

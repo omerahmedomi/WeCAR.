@@ -1,40 +1,43 @@
 import React from "react";
 import Header from "../components/Header";
-import CarCard from "./../components/CarCard";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
-import Testimonial from "../components/Testimonial";
-import TestimonialCarousel from './../components/TestimonialCarousel';
+import Footer from "./../components/Footer";
 
-
-const responsive = {
-  desktop: {
-    breakpoint: { max: 3000, min: 1254 },
-    items: 1,
-    
-   
-  },
-  tablet: {
-    breakpoint: { max: 1254, min: 600 },
-    items: 1,
-   
-  },
-  mobile: {
-    breakpoint: { max: 600, min: 0 },
-    items: 1,
-   
-  },
-};
-
-
-const AboutUs = ({deviceType}) => {
+const AboutUs = () => {
   return (
-    <div className="pt-20 -15 ">
+    <div className="">
       <Header />
-     
-       <TestimonialCarousel/>
-        
-   
+
+      <main className="py-17  px-12 flex flex-col items-center ">
+        <p className="font-bold text-2xl sm:text-3xl font-grenze text-center mb-6">
+          Who we are as a company
+        </p>
+        <div className="space-y-4 text-cyan-900 max-w-200  md:text-lg text-justify">
+          <p>
+            We’re a modern car rental company based in Addis Ababa, Ethiopia,
+            built to make transportation easy, reliable, and accessible for
+            everyone. Whether you need a quick ride from Bole Airport, a car for
+            your wedding day, or a long-term rental for work or NGO use, we’ve
+            got you covered!
+          </p>
+          <p>
+            Our fleet includes everything from compact cars for city drives to
+            SUVs for Ethiopia’s rugged roads. We focus on safety, affordability,
+            and flexibility. You can choose to drive yourself or hire a
+            professional driver who knows local routes and traffic conditions.
+          </p>
+          <p>
+            We understand the local challenges—from unpredictable road
+            conditions to last-minute travel needs—so we’ve built our services
+            to handle them. No hidden charges, no long wait times, just
+            dependable service when you need it.
+          </p>
+          <p>
+            Trusted by travelers, locals, businesses, and NGOs across Ethiopia,
+            we’re proud to be part of your journey—wherever it takes you.
+          </p>
+        </div>
+      </main>
+      <Footer />
     </div>
   );
 };
