@@ -42,33 +42,33 @@ const TestimonialCarousel = ({ deviceType }) => {
         // renderDotsOutside={true}
       >
         <Testimonial
-          name="Umer Ahmed"
+          name="Mark Cuban"
           type="customer"
-          image
+          image="./avatarMale1.png"
           text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta doloremque dolorem a error repudiandae possimus quidem labore laudantium! Odio odit nihil suscipit, excepturi distinctio nam voluptate voluptates similique maxime soluta."
         />
         <Testimonial
           name="Jhon Doe"
           type="customer"
-          image
+          image="./avatarMale1.png"
           text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta doloremque dolorem a error repudiandae possimus quidem labore laudantium! Odio odit nihil suscipit, excepturi distinctio nam voluptate voluptates similique maxime soluta."
         />
         <Testimonial
           name="Jane Smith"
           type="customer"
-          image
+          image="./avatarFemale1.jpg"
           text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta doloremque dolorem a error repudiandae possimus quidem labore laudantium! Odio odit nihil suscipit, excepturi distinctio nam voluptate voluptates similique maxime soluta."
         />
         <Testimonial
-          name="Dolo Lala"
+          name="Emily Clark"
           type="customer"
-          image
+          image="./avatarFemale1.jpg"
           text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta doloremque dolorem a error repudiandae possimus quidem labore laudantium! Odio odit nihil suscipit, excepturi distinctio nam voluptate voluptates similique maxime soluta."
         />
         <Testimonial
-          name="Usman Ahmed"
+          name="Connor Jacobs"
           type="customer"
-          image
+          image="./avatarMale1.png"
           text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta doloremque dolorem a error repudiandae possimus quidem labore laudantium! Odio odit nihil suscipit, excepturi distinctio nam voluptate voluptates similique maxime soluta."
         />
       </Carousel>

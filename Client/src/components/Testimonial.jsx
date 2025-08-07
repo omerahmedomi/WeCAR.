@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Testimonial = ({name,type,text}) => {
+const Testimonial = ({name,type,text,image}) => {
   return (
     <div className="flex flex-col justify-center items-start w-fit max-w-130 text-sm sm:text-base mx-auto  bg-cyan-50 rounded-xl space-y-3 pl-5 py-2 ">
       <div className="size-20">
         <img
-          src=""
+          src={image}
           alt=""
           className="rounded-full bg-amber-100 w-full max-w-full h-full"
         />
