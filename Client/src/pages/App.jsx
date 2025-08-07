@@ -49,9 +49,9 @@ const App = () => {
             </p>
           </div>
 
-          <div className=" mt-5 w-full md:w-auto max-sm:space-y-2 md:grid grid-cols-2 gap-2 2xl:gap-10 font-eczar">
+          <div className=" mt-5 w-full lg:w-250 max-sm:space-y-2  md:grid grid-cols-2 gap-2 2xl:gap-10 font-eczar p-3">
             <motion.div
-              className="flex gap-2 w- p-2"
+              className="flex gap-3  p-2 "
               initial={{ opacity: 0, x: -200 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeInOut" }} // Animation duration
@@ -60,17 +60,17 @@ const App = () => {
               <div className="size-10 text-blue-900 bg-cyan-400 flex justify-center items-center rounded-lg   ">
                 <Call />
               </div>
-              <div className="flex flex-col gap-y-2 w-100">
+              <div className="flex flex-col gap-y-2 w-9/10  ">
                 <h2 className="font-medium">24 Hour Support</h2>
                 <p>
                   {" "}
-                  We’re here for you anytime, day or night. Our support team
-                  is just a call or message away—24 hours a day, 7 days a week.
+                  We’re here for you anytime, day or night. Our support team is
+                  just a call or message away—24 hours a day, 7 days a week.
                 </p>
               </div>
             </motion.div>
             <motion.div
-              className="flex gap-2  p-2 "
+              className="flex gap-3  p-2 "
               initial={{ opacity: 0, x: 200 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeInOut" }} // Animation duration
@@ -79,7 +79,7 @@ const App = () => {
               <div className="size-10 text-blue-900 bg-cyan-400 flex justify-center items-center rounded-lg   ">
                 <MedalRibbonStar />
               </div>
-              <div className="flex flex-col gap-y-2 w-100">
+              <div className="flex flex-col gap-y-2 w-9/10  ">
                 <h2 className="font-medium">Best Price</h2>
                 <p>
                   {" "}
@@ -91,7 +91,7 @@ const App = () => {
             </motion.div>
 
             <motion.div
-              className="flex gap-2 w- p-2"
+              className="flex gap-3  p-2"
               initial={{ opacity: 0, x: -200 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeInOut" }} // Animation duration
@@ -100,7 +100,7 @@ const App = () => {
               <div className="size-10 text-blue-900 bg-cyan-400 flex justify-center items-center rounded-lg   ">
                 <Verified />
               </div>
-              <div className="flex flex-col gap-y-2 w-100">
+              <div className="flex flex-col gap-y-2  w-9/10  ">
                 <h2 className="font-medium">Verified Lisence</h2>
                 <p>
                   {" "}
@@ -111,7 +111,7 @@ const App = () => {
               </div>
             </motion.div>
             <motion.div
-              className="flex gap-2 w- p-2"
+              className="flex gap-3  p-2"
               initial={{ opacity: 0, x: 200 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeInOut" }} // Animation duration
@@ -120,7 +120,7 @@ const App = () => {
               <div className="size-10 text-blue-900 bg-cyan-400 flex justify-center items-center rounded-lg   ">
                 <XCircle />
               </div>
-              <div className="flex flex-col gap-y-2 w-100">
+              <div className="flex flex-col gap-y-2  w-9/10  ">
                 <h2 className="font-medium">Free Cancelation</h2>
                 <p>
                   {" "}
@@ -165,7 +165,7 @@ const App = () => {
                 {inView && <CountUp end={5000} duration={3} suffix="+" />}
               </p>
               <p className="text-nowrap font-semibold font-eczar text-sm sm:text-base 2xl:text-lg ">
-              Happy Customers
+                Happy Customers
               </p>
             </div>
           </div>

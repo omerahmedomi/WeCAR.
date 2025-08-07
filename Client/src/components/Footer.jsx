@@ -2,11 +2,11 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="bg-gray-200 text-cyan-900 p-2 font-eczar space-y-3 text-sm ">
+    <div className="bg-gray-50 shadow-lg text-cyan-900 p-2 font-eczar space-y-3 text-sm ">
       <div className="info flex gap-4 justify-around">
         <div className="socials  ">
           <h1 className="font-semibold">Pages</h1>
-          <ul className="leading-10 text-nowrap">
+          <ul className="leading-10 text-nowrap *:hover:cursor-pointer *:hover:text-cyan-600 ">
             <li>About Us</li>
             <li>Our Services</li>
             <li>Rental Cars</li>

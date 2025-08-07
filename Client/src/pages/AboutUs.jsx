@@ -9,8 +9,7 @@ const AboutUs = () => {
   return (
     <div className='pt-20 -15 '>
       <Header/>
-      <CarCard/>
-    
+     
       
     </div>
   )
