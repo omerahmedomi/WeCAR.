@@ -2,7 +2,7 @@ import React from 'react'
 
 const Testimonial = ({name,type,text}) => {
   return (
-    <div className="flex flex-col justify-center items-start w-80 min-[350px]:w-90 sm:w-100  bg-cyan-50 rounded-xl space-y-3 pl-5 py-2 ">
+    <div className="flex flex-col justify-center items-start w-fit max-w-130 text-sm sm:text-base mx-auto  bg-cyan-50 rounded-xl space-y-3 pl-5 py-2 ">
       <div className="size-20">
         <img
           src=""

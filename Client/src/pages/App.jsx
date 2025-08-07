@@ -10,6 +10,7 @@ import Footer from "../components/Footer";
 import MedalRibbonStar from "../Icons/MedalRibbonStar";
 import Verified from "../Icons/Verified";
 import XCircle from "../Icons/XCircle";
+import TestimonialCarousel from "../components/TestimonialCarousel";
 
 const App = () => {
   const { ref, inView } = useInView({
@@ -176,17 +177,12 @@ const App = () => {
           </div>
         </section>
 
-        <section className="testimonials mt-20 flex flex-col justify-center items-center !w-full bg-green-300 mb-10 ">
+        <section className="testimonials mt-20 flex flex-col justify-center items-center !w-full  mb-10 ">
           <h1 className="font-grenze font-bold text-3xl sm:text-4xl 2xl:text-5xl mb-5 text-center">
             What Our Customers Have To Say!
           </h1>
-          <div>
-            <Testimonial
-              name="Umer Ahmed"
-              type="customer"
-              image
-              text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta doloremque dolorem a error repudiandae possimus quidem labore laudantium! Odio odit nihil suscipit, excepturi distinctio nam voluptate voluptates similique maxime soluta."
-            />
+          <div className="w-full p-2">
+            <TestimonialCarousel/>
           </div>
         </section>
 
