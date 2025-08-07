@@ -68,7 +68,7 @@ const App = () => {
               </div>
               <div className="flex flex-col gap-y-2 w-9/10  ">
                 <h2 className="font-medium">24 Hour Support</h2>
-                <p>
+                <p className="text-gray-600">
                   {" "}
                   We’re here for you anytime, day or night. Our support team is
                   just a call or message away—24 hours a day, 7 days a week.
@@ -87,7 +87,7 @@ const App = () => {
               </div>
               <div className="flex flex-col gap-y-2 w-9/10  ">
                 <h2 className="font-medium">Best Price</h2>
-                <p>
+                <p className="text-gray-600">
                   {" "}
                   Get the best deals without hidden fees. We constantly check
                   market rates to ensure you get unbeatable prices for every car
@@ -108,7 +108,7 @@ const App = () => {
               </div>
               <div className="flex flex-col gap-y-2  w-9/10  ">
                 <h2 className="font-medium">Verified Lisence</h2>
-                <p>
+                <p className="text-gray-600">
                   {" "}
                   Drive with confidence knowing all our vehicles are fully
                   licensed and verified for safety, legality, and top
@@ -128,7 +128,7 @@ const App = () => {
               </div>
               <div className="flex flex-col gap-y-2  w-9/10  ">
                 <h2 className="font-medium">Free Cancelation</h2>
-                <p>
+                <p className="text-gray-600">
                   {" "}
                   Plans changed? No problem. Cancel your booking for free within
                   our flexible policy—no stress, no extra charges.
@@ -149,7 +149,7 @@ const App = () => {
             Our journey of success is a testament to collective effort and
             determination of our team.
           </p>
-          <div className="shadow-2xl flex divide-x-1 py-2 sm:py-5 mt-4 md:mt-6">
+          <div className="shadow-lg flex divide-x-1 py-2 sm:py-5 mt-4 md:mt-6">
             <div className=" pl-2 sm:pl-10 md:pl-15 lg:pl-20 pr-2 sm:pr-5 md:pr-10 lg:pr-12">
               <p className="font-bold text-cyan-500 text-2xl sm:text-3xl 2xl:text-4xl font-grenze">
                 {inView && <CountUp end={350} duration={3} suffix="+" />}
