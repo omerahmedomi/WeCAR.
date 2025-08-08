@@ -7,11 +7,11 @@ const AboutUs = () => {
     <div className="">
       <Header />
 
-      <main className="py-17  px-12 flex flex-col items-center ">
+      <main className="py-17  px-6 md:px-12 flex flex-col items-center ">
         <p className="font-bold text-2xl sm:text-3xl font-grenze text-center mb-6">
           Who we are as a company
         </p>
-        <div className="space-y-4 text-cyan-900 max-w-200  md:text-lg text-justify">
+        <div className="space-y-4 text-cyan-900 max-w-200  md:text-lg text-justify font-eczar">
           <p>
             We’re a modern car rental company based in Addis Ababa, Ethiopia,
             built to make transportation easy, reliable, and accessible for

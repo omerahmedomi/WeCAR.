@@ -11,8 +11,8 @@ const QuestionAndAnswer = ({question,answer}) => {
       >
         <span className="font-medium ">{question}</span>
         <span
-          className={`transform transition-transform duration-500 ${
-            isOpen ? "-rotate-180" : ""
+          className={`transform transition-transform duration-700 ${
+            isOpen ? "rotate-180" : ""
           }`}
         >
           <ArrowDown />
@@ -20,7 +20,7 @@ const QuestionAndAnswer = ({question,answer}) => {
       </div>
 
       <div
-        className={`bg-gray-50 overflow-hidden transition-all duration-500 ${
+        className={`bg-gray-50 overflow-hidden transition-all duration-700 ${
           isOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
         } px-5`}
       >
