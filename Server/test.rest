@@ -1,11 +1,19 @@
-### Sing in
+### Sing Up
 POST http://localhost:5500/auth/sign-up
 Content-Type: application/json
 
-   
    {
     "firstName": "Umer",
     "lastName": "Ahmed",
     "email": "omiomeromi11@gmail.com",
     "password": "12345678"
     }
+   
+### SIgn In
+POST http://localhost:5500/auth/sign-in
+Content-Type: application/json
+ 
+   {
+      "email":"omiomeromi11@gmail.com",
+      "password":"12345678"
+   }
