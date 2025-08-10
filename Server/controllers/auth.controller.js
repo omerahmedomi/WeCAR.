@@ -21,6 +21,11 @@ export const signUp = async (req, res, next) => {
       throw error;
     }
 
+    if(password.length < 8) {
+        const error =new Error('Password must be atleast 8 charachters')
+        throw error
+    }
+
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
