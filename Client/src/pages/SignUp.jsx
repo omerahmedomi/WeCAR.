@@ -7,6 +7,7 @@ const SignUp = () => {
   const [inputs, setInputs] = useState({});
   const [error, setError] = useState();
   const [isAuthenticating, setIsAuthenticating] = useState(false);
+  const [agreement,setAgreement]=useState(false)
   return (
     <div className="bg-re  flex font-roboto box-border ">
       <div className="img flex-1 bg-blue-400 shrink-0 min-w-1/2 max-lg:hidden ">
@@ -30,7 +31,11 @@ const SignUp = () => {
         </div>
 
         <div className=" flex flex-col  gap-5 font-eczar items-start sm:items-center">
-          <div className={`flex flex-col w-full gap-5 ${!isRegistration && 'hidden'}`}>
+          <div
+            className={`flex flex-col w-full gap-5 ${
+              !isRegistration && "hidden"
+            }`}
+          >
             <Input name="fname" placeholder="First Name" />
             <Input name="lname" placeholder="Lastt Name" />
           </div>
@@ -50,9 +55,22 @@ const SignUp = () => {
             // type="password"
             // btnFunction={authenticate}
           />
+          <div className={`agreement accent-cyan-200 ${!isRegistration && "hidden"}`}>
+            <input
+              type="checkbox"
+              onChange={() => {
+                setAgreement((prev) => !prev);
+              }}
+              checked={agreement}
+              className="text-white size-3"
+            />{" "}
+            I agree to Rental Terms and Conditions
+          </div>
           <Button
             text={isAuthenticating ? "Authenticating" : "Submit"}
-            btnFunction={() => {}}
+            btnFunction={() => {
+              if (!agreement) alert("agree");
+            }}
           />
         </div>
         <hr className="text-light-cyan " />
