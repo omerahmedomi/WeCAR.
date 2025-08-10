@@ -30,6 +30,10 @@ const SignUp = () => {
         </div>
 
         <div className=" flex flex-col  gap-5 font-eczar items-start sm:items-center">
+          <div className={`flex flex-col w-full gap-5 ${!isRegistration && 'hidden'}`}>
+            <Input name="fname" placeholder="First Name" />
+            <Input name="lname" placeholder="Lastt Name" />
+          </div>
           <Input
             name="email"
             placeholder="Email"
