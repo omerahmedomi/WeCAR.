@@ -1,10 +1,11 @@
 import express from "express";
-import connectToDatabase from "./database/mongodb";
+import connectToDatabase from "./database/mongodb.js";
+import { PORT } from "./config/env.js";
 
 const app = express()
-const port = 5500;
 
-app.listen(port, async()=>{
-    console.log("Running on port:",port)
+
+app.listen(PORT || 5500 , async()=>{
+    console.log("Running on port:",PORT)
     await connectToDatabase()
 })
