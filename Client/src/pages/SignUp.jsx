@@ -1,13 +1,50 @@
 import React, { useState } from "react";
 import Input from "../components/Input";
 import Button from "../components/Button";
+import axios from "axios";
 
 const SignUp = () => {
   const [isRegistration, setIsRegistration] = useState(false);
   const [inputs, setInputs] = useState({});
-  const [error, setError] = useState();
+  const [error, setError] = useState("");
   const [isAuthenticating, setIsAuthenticating] = useState(false);
-  const [agreement,setAgreement]=useState(false)
+  const [agreement, setAgreement] = useState(false);
+
+  const apiBase ='http://localhost:5500'
+
+
+  function handleChange(e) {
+    console.log(inputs)
+    
+    setInputs((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+   
+  }
+
+  const authenticate = async() => {
+    const {firstName,lastName,email,password} = inputs
+    if(!email || !password || (isRegistration && (!firstName || !lastName))){
+      setError('Please fill all the fields!')
+      return
+    }
+console.log("first name",firstName)
+console.log("last name",lastName)
+console.log("email",email)
+console.log("password",password)
+   try {
+    const response = await axios.post(apiBase + `/auth/${isRegistration ? 'sign-up' : 'sign-in'}`,{firstName,lastName,email,password})
+    const data = response.data
+    console.log(data)
+    
+   } catch (error) {
+    console.log(error)
+    setError(error.response.data.error)
+    
+   }
+  };
+
   return (
     <div className="bg-re  flex font-roboto box-border ">
       <div className="img flex-1 bg-blue-400 shrink-0 min-w-1/2 max-lg:hidden ">
@@ -36,26 +73,30 @@ const SignUp = () => {
               !isRegistration && "hidden"
             }`}
           >
-            <Input name="fname" placeholder="First Name" />
-            <Input name="lname" placeholder="Lastt Name" />
+            <Input name="firstName" placeholder="First Name" onChange={handleChange} />
+            <Input name="lastName" placeholder="Lastt Name" onChange={handleChange} />
           </div>
           <Input
             name="email"
             placeholder="Email"
-            // onChange={handleChange}
-            // value={inputs.email}
-            // type="email"
+            onChange={handleChange}
+            value={inputs.email}
+            type="email"
             // btnFunction={authenticate}
           />
           <Input
             name="password"
             placeholder="Password"
-            // onChange={handleChange}
-            // value={inputs.password}
-            // type="password"
+            onChange={handleChange}
+            value={inputs.password}
+            type="password"
             // btnFunction={authenticate}
           />
-          <div className={`agreement accent-cyan-200 ${!isRegistration && "hidden"}`}>
+          <div
+            className={`agreement accent-cyan-200 ${
+              !isRegistration && "hidden"
+            }`}
+          >
             <input
               type="checkbox"
               onChange={() => {
@@ -69,7 +110,8 @@ const SignUp = () => {
           <Button
             text={isAuthenticating ? "Authenticating" : "Submit"}
             btnFunction={() => {
-              if (!agreement) alert("agree");
+              // if (isRegistration && !agreement) alert("agree"),
+              authenticate()
             }}
           />
         </div>
