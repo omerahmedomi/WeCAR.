@@ -2,4 +2,6 @@ import {config} from 'dotenv'
 
 config({path:'.env'})
 
-export const {} = process.env
+export const {
+    DB_URI
+} = process.env
