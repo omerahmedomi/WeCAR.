@@ -4,8 +4,13 @@ import Footer from "./../components/Footer";
 import Search from "../Icons/Search";
 import CarCard from "../components/CarCard";
 import { carss as originalCars} from "../cars";
+import { useLocation } from "react-router-dom";
+
 
 const RentalCars = () => {
+
+
+
   
   const [selectedGear, setSelectedGear] = useState("any");
   const [selectedPrice, setSelectedPrice] = useState("any");

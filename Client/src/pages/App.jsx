@@ -1,4 +1,4 @@
-import React ,{useEffect} from "react";
+import React, { useEffect } from "react";
 import Header from "./../components/Header";
 import { motion } from "framer-motion";
 import Call from "../Icons/Call";
@@ -11,6 +11,7 @@ import MedalRibbonStar from "../Icons/MedalRibbonStar";
 import Verified from "../Icons/Verified";
 import XCircle from "../Icons/XCircle";
 import TestimonialCarousel from "../components/TestimonialCarousel";
+import { useGlobal } from "../GlobalContext";
 
 const App = () => {
   const { ref, inView } = useInView({
@@ -18,9 +19,11 @@ const App = () => {
     triggerOnce: true,
   });
 
+ const { data,setData} = useGlobal();
+  console.log(data)
+
   useEffect(() => {
-    
-   window.scrollTo(0,0)
+    window.scrollTo(0, 0);
   }, []);
   return (
     <div className="">
@@ -182,7 +185,7 @@ const App = () => {
             What Our Customers Have To Say!
           </h1>
           <div className="w-full p-2">
-            <TestimonialCarousel/>
+            <TestimonialCarousel />
           </div>
         </section>
 

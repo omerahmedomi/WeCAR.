@@ -7,6 +7,7 @@ import OurServices from "./pages/OurServices";
 import AboutUs from "./pages/AboutUs";
 import FAQs from "./pages/FAQs";
 import SignUp from "./pages/SignUp";
+import { GlobalProvider } from './GlobalContext';
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <GlobalProvider>
+      <RouterProvider router={router} />
+    </GlobalProvider>
   </StrictMode>
 );

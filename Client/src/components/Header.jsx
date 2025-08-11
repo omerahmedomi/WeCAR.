@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import HamburgerMenu from "../Icons/HamburgerMenu";
 import XMark from "../Icons/XMark";
 import { Link,useLocation } from "react-router-dom";
+import { useGlobal } from "../GlobalContext";
+import ProfileDropdown from "./ProfileDropdown";
 
 const Header = () => {
   const [activeNav, setActiveNav] = useState(0);
@@ -11,6 +13,9 @@ const Header = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const location = useLocation();
 
+
+  const {data}=useGlobal()
+  console.log()
 
 useEffect(() => {
   const currentPath = location.pathname
@@ -29,15 +34,20 @@ useEffect(() => {
   return (
     <header className="flex  justify-between sm:justify-between sm:p-3  md:px-8 text-gray-900 fixed top-0 w-full z-50 sm:gap-4 font-eczar shadow-sm items-center bg-gray-100">
       <h1 className="max-sm:p-3  hover:cursor-pointer text-lg font-semibold">
-        <Link to={'/'}>WeCAR.</Link>
+        <Link to={"/"}>WeCAR.</Link>
       </h1>
       <div className={`sm:hidden max-sm:flex items-center gap-3 max-sm:p-4 `}>
-        <Link
-          className="border-2 outline-none focus:outline-none focus:ring-1 border-gray-700 px-2 cursor-pointer rounded-sm bg-white transition-colors duration-300 ring-gray-400 hover:bg-gray-50 active:bg-gray-50"
-          to={"/sign-up"}
-        >
-          Sign In
-        </Link>
+        {Object.keys(data).length > 0 ? (
+          <ProfileDropdown user={data.user} />
+        ) : (
+          <Link
+            className="border-2 outline-none focus:outline-none focus:ring-1 border-gray-700 px-2 cursor-pointer rounded-sm bg-white transition-colors duration-300 ring-gray-400 hover:bg-gray-50 active:bg-gray-50"
+            to={"/sign-up"}
+          >
+            Sign In
+          </Link>
+        )}
+
         <button
           className="hover:text-gray-600 hover:cursor-pointer"
           onClick={() => {

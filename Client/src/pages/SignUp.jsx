@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useGlobal } from "../GlobalContext";
+
 
 const SignUp = () => {
   const [isRegistration, setIsRegistration] = useState(false);
@@ -12,9 +15,12 @@ const SignUp = () => {
 
   const apiBase ='http://localhost:5500'
 
+  const navigate = useNavigate()
+
+  const {data,setData}=useGlobal()
 
   function handleChange(e) {
-    console.log(inputs)
+    setError('')
     
     setInputs((prev) => ({
       ...prev,
@@ -35,11 +41,15 @@ console.log("email",email)
 console.log("password",password)
    try {
     const response = await axios.post(apiBase + `/auth/${isRegistration ? 'sign-up' : 'sign-in'}`,{firstName,lastName,email,password})
-    const data = response.data
-    console.log(data)
+    const data = response.data.data
+   if(data){
+    setData(data)
+    navigate('/')
+
+   }
     
    } catch (error) {
-    console.log(error)
+    // console.log(error)
     setError(error.response.data.error)
     
    }
