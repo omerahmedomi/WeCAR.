@@ -14,8 +14,8 @@ const Header = () => {
   const location = useLocation();
 
 
-  const {data}=useGlobal()
-  console.log()
+  const {user}=useGlobal()
+  console.log("From header",user)
 
 useEffect(() => {
   const currentPath = location.pathname
@@ -37,8 +37,8 @@ useEffect(() => {
         <Link to={"/"}>WeCAR.</Link>
       </h1>
       <div className={`sm:hidden max-sm:flex items-center gap-3 max-sm:p-4 `}>
-        {Object.keys(data).length > 0 ? (
-          <ProfileDropdown user={data.user} />
+        {user ? (
+          <ProfileDropdown user={user} />
         ) : (
           <Link
             className="border-2 outline-none focus:outline-none focus:ring-1 border-gray-700 px-2 cursor-pointer rounded-sm bg-white transition-colors duration-300 ring-gray-400 hover:bg-gray-50 active:bg-gray-50"

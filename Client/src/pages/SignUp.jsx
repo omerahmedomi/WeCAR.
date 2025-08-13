@@ -5,7 +5,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useGlobal } from "../GlobalContext";
 
-
 const SignUp = () => {
   const [isRegistration, setIsRegistration] = useState(false);
   const [inputs, setInputs] = useState({});
@@ -13,46 +12,46 @@ const SignUp = () => {
   const [isAuthenticating, setIsAuthenticating] = useState(false);
   const [agreement, setAgreement] = useState(false);
 
-  const apiBase ='http://localhost:5500'
+ const apiBase = "http://localhost:5500";
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const {data,setData}=useGlobal()
+  const { user, setUser } = useGlobal();
 
   function handleChange(e) {
-    setError('')
-    
+    setError("");
+
     setInputs((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
-   
   }
 
-  const authenticate = async() => {
-    const {firstName,lastName,email,password} = inputs
-    if(!email || !password || (isRegistration && (!firstName || !lastName))){
-      setError('Please fill all the fields!')
-      return
+  const authenticate = async () => {
+    const { firstName, lastName, email, password } = inputs;
+    if (!email || !password || (isRegistration && (!firstName || !lastName))) {
+      setError("Please fill all the fields!");
+      return;
     }
-console.log("first name",firstName)
-console.log("last name",lastName)
-console.log("email",email)
-console.log("password",password)
-   try {
-    const response = await axios.post(apiBase + `/auth/${isRegistration ? 'sign-up' : 'sign-in'}`,{firstName,lastName,email,password})
-    const data = response.data.data
-   if(data){
-    setData(data)
-    navigate('/')
+    console.log("first name", firstName);
+    console.log("last name", lastName);
+    console.log("email", email);
+    console.log("password", password);
+    try {
+      const response = await axios.post(
+        apiBase + `/auth/${isRegistration ? "sign-up" : "sign-in"}`,
+        { firstName, lastName, email, password },{withCredentials:true}
+      );
+      console.log(response)
+      if (response.data.user) {
+        setUser(response.data.user)
 
-   }
-    
-   } catch (error) {
-    // console.log(error)
-    setError(error.response.data.error)
-    
-   }
+        navigate("/");
+      }
+    } catch (error) {
+      console.log(error)
+      setError(error.response.data.error);
+    }
   };
 
   return (
@@ -83,8 +82,16 @@ console.log("password",password)
               !isRegistration && "hidden"
             }`}
           >
-            <Input name="firstName" placeholder="First Name" onChange={handleChange} />
-            <Input name="lastName" placeholder="Lastt Name" onChange={handleChange} />
+            <Input
+              name="firstName"
+              placeholder="First Name"
+              onChange={handleChange}
+            />
+            <Input
+              name="lastName"
+              placeholder="Lastt Name"
+              onChange={handleChange}
+            />
           </div>
           <Input
             name="email"
@@ -121,7 +128,7 @@ console.log("password",password)
             text={isAuthenticating ? "Authenticating" : "Submit"}
             btnFunction={() => {
               // if (isRegistration && !agreement) alert("agree"),
-              authenticate()
+              authenticate();
             }}
           />
         </div>
@@ -142,6 +149,8 @@ console.log("password",password)
       </div>
     </div>
   );
+  
 };
 
 export default SignUp;
+
