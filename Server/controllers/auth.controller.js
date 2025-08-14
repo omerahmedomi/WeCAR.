@@ -106,12 +106,18 @@ export const signIn = async (req, res, next) => {
 };
 
 export const signOut = async(req,res,next)=>{
-res.cookie("token", "", {
-  httpOnly: true,
-  secure: false, // only secure in prod
-  sameSite: "strict",
-  expires: new Date(0), // expire immediately
-});
+  try {
+    res.cookie("token", "", {
+      httpOnly: true,
+      secure: false, // only secure in prod
+      sameSite: "strict",
+      expires: new Date(0), // expire immediately
+    });
 
-res.status(200).json({ message: "Logged out successfully" });
+    res.status(200).json({ message: "Logged out successfully" });
+  } catch (error) {
+    console.log(error)
+    next(error)
+  }
+
 }

@@ -11,8 +11,8 @@ const SignUp = () => {
   const [error, setError] = useState("");
   const [isAuthenticating, setIsAuthenticating] = useState(false);
   const [agreement, setAgreement] = useState(false);
-//"http://localhost:5500"
- const apiBase =  "http://192.168.1.4:5500";
+  //" http://192.168.1.4:5500"
+  const apiBase = "http://localhost:5500";
 
   const navigate = useNavigate();
 
@@ -33,24 +33,25 @@ const SignUp = () => {
       setError("Please fill all the fields!");
       return;
     }
-   
+
     try {
-      setIsAuthenticating(true)
+      setIsAuthenticating(true);
       const response = await axios.post(
         apiBase + `/auth/${isRegistration ? "sign-up" : "sign-in"}`,
-        { firstName, lastName, email, password },{withCredentials:true}
+        { firstName, lastName, email, password },
+        { withCredentials: true }
       );
-      console.log(response)
+      console.log(response);
       if (response.data.user) {
-        setUser(response.data.user)
+        setUser(response.data.user);
 
         navigate("/");
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
       setError(error.response.data.error);
-    }finally{
-      setIsAuthenticating(false)
+    } finally {
+      setIsAuthenticating(false);
     }
   };
 
@@ -149,7 +150,6 @@ const SignUp = () => {
       </div>
     </div>
   );
-  
 };
 
 export default SignUp;

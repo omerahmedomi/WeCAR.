@@ -17,6 +17,7 @@ Content-Type: application/json
       "email":"omiomeromi11@gmail.com",
       "password":"12345678"
    }
-
+### logut
+POST http://localhost:5500/auth/sign-out
 
 

@@ -9,7 +9,7 @@ import { useGlobal } from "../GlobalContext";
 const ProfileDropdown = ({ user }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
-  const {setUser} = useGlobal()
+  const { setUser } = useGlobal();
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -27,7 +27,7 @@ const ProfileDropdown = ({ user }) => {
   //   if (!user?.name) return "U";
   //   return user.name.charAt(0).toUpperCase();
   // };
-  const apiBase = "http://192.168.1.4:5500";
+  const apiBase = "http://localhost:5500";
   return (
     <div className="relative" ref={dropdownRef}>
       {/* Avatar Button */}
@@ -65,17 +65,23 @@ const ProfileDropdown = ({ user }) => {
                 Rental History
               </Link>
             </li>
-            {/* <li className="flex items-center gap-x-1.5 px-2 py-1 hover:bg-gray-100">
-              <Link
-                to="/settings"
-                className="block "
-                onClick={() => setIsOpen(false)}
-              >
-                Notifications
-              </Link>
-            </li> */}
+            <li
+              className="flex items-center gap-x-1.5 px-2 py-1.5 hover:bg-gray-100 cursor-pointer"
+              onClick={async () => {
+                setIsOpen(false);
+                await axios.post(
+                  apiBase + "/auth/sign-out",
+                  {},
+                  { withCredentials: true }
+                );
+                setUser(null); // remove user from state
+              }}
+            >
+              <LogOut />
+              <p className="text-red-600">Log Out</p>
+            </li>
           </ul>
-          <div className="border-t border-black flex  text-left px-1 gap-x-1 py-1 text-sm text-red-600 hover:bg-gray-100 hover:rounded-lg cursor-pointer">
+          {/* <div className="border-t border-black flex  text-left px-1 gap-x-1 py-1 text-sm text-red-600 hover:bg-gray-100 hover:rounded-lg cursor-pointer">
             <LogOut />
             <button
               onClick={async () => {
@@ -91,7 +97,7 @@ const ProfileDropdown = ({ user }) => {
             >
               Logout
             </button>
-          </div>
+          </div> */}
         </div>
       )}
     </div>
