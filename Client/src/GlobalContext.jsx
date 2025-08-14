@@ -6,12 +6,14 @@ const GlobalContext = createContext();
 
 export function GlobalProvider({ children }) {
   const [user, setUser] = useState(null);
+  const [isLoading,setIsLoading] = useState(false)
   
  const apiBase = "http://localhost:5500";
 
   useEffect(() => {
     const checkUser = async () => {
       try {
+        setIsLoading(true)
         const res = await axios.get(apiBase + "/auth/me", {
           withCredentials: true,
         });
@@ -21,13 +23,15 @@ export function GlobalProvider({ children }) {
       } catch(error) {
         setUser(null); // not logged in
         console.log(error)
+      }finally{
+        setIsLoading(false)
       }
     };
 
     checkUser();
   }, []);
   return (
-    <GlobalContext.Provider value={{ user,setUser }}>
+    <GlobalContext.Provider value={{ user,setUser,isLoading }}>
       {children}
     </GlobalContext.Provider>
   );

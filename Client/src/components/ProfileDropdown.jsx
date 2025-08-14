@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
+import ArrowDown from './../Icons/ArrowDown';
 
 const ProfileDropdown = ({ user }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,27 +18,22 @@ const ProfileDropdown = ({ user }) => {
   }, []);
 
   // Avatar: fallback to first letter of username
-  const getAvatarLetter = () => {
-    if (!user?.name) return "U";
-    return user.name.charAt(0).toUpperCase();
-  };
+  // const getAvatarLetter = () => {
+  //   if (!user?.name) return "U";
+  //   return user.name.charAt(0).toUpperCase();
+  // };
 
   return (
     <div className="relative" ref={dropdownRef}>
       {/* Avatar Button */}
       <button
         onClick={() => setIsOpen((prev) => !prev)}
-        className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-300 text-gray-700 font-semibold hover:ring-2 hover:ring-cyan-400 transition"
+        className="flex items-center justify-center  rounded-4xl text-sm bg-white ring text-gray-700  hover:ring-2 hover:ring-cyan-400 transition "
       >
-        {user?.avatar ? (
-          <img
-            src={user.avatar}
-            alt="Profile"
-            className="w-full h-full object-cover rounded-full"
-          />
-        ) : (
-          getAvatarLetter()
-        )}
+        <div className="px-4 py-2 flex items-center gap-x-1 justify-center">
+          <p>{user.firstName} </p>
+          <span className=""><ArrowDown/></span>
+        </div>
       </button>
 
       {/* Dropdown Menu */}
@@ -45,7 +41,7 @@ const ProfileDropdown = ({ user }) => {
         <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg ring-1 ring-gray-200 z-50 animate-fadeIn">
           <div className="px-4 py-3 border-b">
             <p className="text-sm font-medium text-gray-900">
-              {user?.firstName +" "+ user?.lastName || "User"}
+              {user?.firstName + " " + user?.lastName || "User"}
             </p>
             <p className="text-xs text-gray-500">
               {user?.email || "email@example.com"}
@@ -58,7 +54,7 @@ const ProfileDropdown = ({ user }) => {
                 className="block px-4 py-2 hover:bg-gray-100"
                 onClick={() => setIsOpen(false)}
               >
-                Profile
+                Rental History
               </Link>
             </li>
             <li>
@@ -67,7 +63,7 @@ const ProfileDropdown = ({ user }) => {
                 className="block px-4 py-2 hover:bg-gray-100"
                 onClick={() => setIsOpen(false)}
               >
-                Settings
+                Notifications
               </Link>
             </li>
           </ul>
@@ -77,7 +73,7 @@ const ProfileDropdown = ({ user }) => {
                 setIsOpen(false);
                 console.log("Logout clicked");
               }}
-              className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
+              className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100 hover:rounded-lg cursor-pointer"
             >
               Logout
             </button>

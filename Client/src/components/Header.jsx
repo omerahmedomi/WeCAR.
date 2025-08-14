@@ -10,11 +10,12 @@ const Header = () => {
   const Navs = ["Home", "Rental Cars", "Our Services", "About Us", "FAQs"];
   const navRoutes = ['/','/rental-cars','/services','/about','/faqs']
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticating, setIsAuthenticating] = useState(true);
   const location = useLocation();
+  
 
 
-  const {user}=useGlobal()
+  const {user,isLoading}=useGlobal()
   console.log("From header",user)
 
 useEffect(() => {
@@ -80,7 +81,7 @@ useEffect(() => {
         ))}
       </ul>
       <div className="sign-up sm:flex gap-2 hidden text-nowrap ">
-        {user ? (
+        {isLoading? <p className="text-sm text-gray-600">Checking Status...</p> : user ? (
           <ProfileDropdown user={user} />
         ) : (
           <Link
