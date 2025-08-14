@@ -107,7 +107,7 @@ export const signIn = async (req, res, next) => {
 
 export const signOut = async(req,res,next)=>{
   try {
-    res.cookie("token", "", {
+    res.cookie("access_token", "", {
       httpOnly: true,
       secure: false, // only secure in prod
       sameSite: "strict",

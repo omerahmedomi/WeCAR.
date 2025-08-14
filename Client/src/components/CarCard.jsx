@@ -8,8 +8,13 @@ import ManualGear from "../Icons/ManualGear";
 import ElectricCar from "../Icons/ElectricCar";
 import Diesel from "../Icons/Diesel";
 import Hybrid from "../Icons/Hybrid";
+import {useGlobal} from "../GlobalContext";
+import { useNavigate } from "react-router-dom";
 
-const CarCard = ({car}) => {
+const CarCard = ({ car }) => {
+  const navigate = useNavigate();
+
+  const { user } = useGlobal();
   return (
     <div className=" p-4 border border-dashed  w-fit flex flex-col rounded-md bg-white ">
       <div className="  h-45 w-60  rounded-md mb-2">
@@ -57,7 +62,10 @@ const CarCard = ({car}) => {
           <span>
             {car.transmission == "auto" ? <AutomaticGear /> : <ManualGear />}
           </span>
-          <p>{car.transmission.split("")[0].toUpperCase() + car.transmission.slice(1)}</p>
+          <p>
+            {car.transmission.split("")[0].toUpperCase() +
+              car.transmission.slice(1)}
+          </p>
         </div>
         <div className="flex items-center gap-x-1 ">
           <span>
@@ -71,7 +79,16 @@ const CarCard = ({car}) => {
           <span className="font-semibold">{car.pricePerDayInK}K ETB</span>
           <span className="text-sm ">/Day</span>
         </p>
-        <button className="border border-cyan-800 focus:outline-none px-3 py rounded-sm cursor-pointer text-cyan-500 font-semibold hover:text-cyan-400 transition-colors duration-300 ">
+        <button
+          className="border border-cyan-800 focus:outline-none px-3 py rounded-sm cursor-pointer text-cyan-500 font-semibold hover:text-cyan-400 transition-colors duration-300 "
+          onClick={() => {
+            if(user) {
+              navigate('/rental-page')
+            } else{
+              navigate('/sign-up')
+            }
+          }}
+        >
           Rent Car
         </button>
       </div>
