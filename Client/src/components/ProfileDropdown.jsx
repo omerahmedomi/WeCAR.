@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ArrowDown from './../Icons/ArrowDown';
+import History from './../Icons/History';
+import LogOut from './../Icons/LogOut';
 
 const ProfileDropdown = ({ user }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,7 +34,9 @@ const ProfileDropdown = ({ user }) => {
       >
         <div className="px-4 py-2 flex items-center gap-x-1 justify-center">
           <p>{user.firstName} </p>
-          <span className=""><ArrowDown/></span>
+          <span className="">
+            <ArrowDown />
+          </span>
         </div>
       </button>
 
@@ -47,33 +51,35 @@ const ProfileDropdown = ({ user }) => {
               {user?.email || "email@example.com"}
             </p>
           </div>
-          <ul className="py-1 text-sm text-gray-700">
-            <li>
+          <ul className=" text-sm text-gray-700 flex flex-col ">
+            <li className="flex items-center gap-x-1.5 px-2 py-1.5 hover:bg-gray-100">
+              <History />
               <Link
                 to="/profile"
-                className="block px-4 py-2 hover:bg-gray-100"
+                className="block "
                 onClick={() => setIsOpen(false)}
               >
                 Rental History
               </Link>
             </li>
-            <li>
+            {/* <li className="flex items-center gap-x-1.5 px-2 py-1 hover:bg-gray-100">
               <Link
                 to="/settings"
-                className="block px-4 py-2 hover:bg-gray-100"
+                className="block "
                 onClick={() => setIsOpen(false)}
               >
                 Notifications
               </Link>
-            </li>
+            </li> */}
           </ul>
-          <div className="border-t">
+          <div className="border-t border-black flex  text-left px-1 gap-x-1 py-1 text-sm text-red-600 hover:bg-gray-100 hover:rounded-lg cursor-pointer">
+            <LogOut />
             <button
               onClick={() => {
                 setIsOpen(false);
                 console.log("Logout clicked");
               }}
-              className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100 hover:rounded-lg cursor-pointer"
+              className=""
             >
               Logout
             </button>
