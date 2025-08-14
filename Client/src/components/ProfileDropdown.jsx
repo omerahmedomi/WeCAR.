@@ -1,60 +1,91 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
 
-export default function ProfileDropdown({ user, onLogout }) {
-  const [open, setOpen] = useState(false);
-  const dropdownRef = useRef();
+const ProfileDropdown = ({ user }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
-  // Close dropdown if clicked outside
+  // Close dropdown when clicking outside
   useEffect(() => {
-    function handleClickOutside(event) {
+    const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setOpen(false);
+        setIsOpen(false);
       }
-    }
+    };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  if (!user) return null;
+  // Avatar: fallback to first letter of username
+  const getAvatarLetter = () => {
+    if (!user?.name) return "U";
+    return user.name.charAt(0).toUpperCase();
+  };
 
   return (
-    <div className="relative inline-block text-left" ref={dropdownRef}>
+    <div className="relative" ref={dropdownRef}>
+      {/* Avatar Button */}
       <button
-        onClick={() => setOpen((prev) => !prev)}
-        className="inline-flex justify-center items-center px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        aria-expanded={open}
-        aria-haspopup="true"
+        onClick={() => setIsOpen((prev) => !prev)}
+        className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-300 text-gray-700 font-semibold hover:ring-2 hover:ring-cyan-400 transition"
       >
-        Hello, {user.firstName} ▼
+        {user?.avatar ? (
+          <img
+            src={user.avatar}
+            alt="Profile"
+            className="w-full h-full object-cover rounded-full"
+          />
+        ) : (
+          getAvatarLetter()
+        )}
       </button>
 
-      {open && (
-        <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
-          <div className="py-1">
-            <button
-              onClick={() => alert("Go to Profile")}
-              className="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
-            >
-              Profile
-            </button>
-            <button
-              onClick={() => alert("Go to Settings")}
-              className="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
-            >
-              Settings
-            </button>
+      {/* Dropdown Menu */}
+      {isOpen && (
+        <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg ring-1 ring-gray-200 z-50 animate-fadeIn">
+          <div className="px-4 py-3 border-b">
+            <p className="text-sm font-medium text-gray-900">
+              {user?.firstName +" "+ user?.lastName || "User"}
+            </p>
+            <p className="text-xs text-gray-500">
+              {user?.email || "email@example.com"}
+            </p>
+          </div>
+          <ul className="py-1 text-sm text-gray-700">
+            <li>
+              <Link
+                to="/profile"
+                className="block px-4 py-2 hover:bg-gray-100"
+                onClick={() => setIsOpen(false)}
+              >
+                Profile
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/settings"
+                className="block px-4 py-2 hover:bg-gray-100"
+                onClick={() => setIsOpen(false)}
+              >
+                Settings
+              </Link>
+            </li>
+          </ul>
+          <div className="border-t">
             <button
               onClick={() => {
-                onLogout();
-                setOpen(false);
+                setIsOpen(false);
+                console.log("Logout clicked");
               }}
-              className="w-full text-left px-4 py-2 text-red-600 hover:bg-red-100"
+              className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
             >
-              Log Out
+              Logout
             </button>
           </div>
         </div>
       )}
     </div>
   );
-}
+};
+
+export default ProfileDropdown;
