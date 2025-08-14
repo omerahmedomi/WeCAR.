@@ -1,12 +1,15 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
-import ArrowDown from './../Icons/ArrowDown';
-import History from './../Icons/History';
-import LogOut from './../Icons/LogOut';
+import ArrowDown from "./../Icons/ArrowDown";
+import History from "./../Icons/History";
+import LogOut from "./../Icons/LogOut";
+import axios from "axios";
+import { useGlobal } from "../GlobalContext";
 
 const ProfileDropdown = ({ user }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const {setUser} = useGlobal()
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -24,7 +27,7 @@ const ProfileDropdown = ({ user }) => {
   //   if (!user?.name) return "U";
   //   return user.name.charAt(0).toUpperCase();
   // };
-
+  const apiBase = "http://192.168.1.4:5500";
   return (
     <div className="relative" ref={dropdownRef}>
       {/* Avatar Button */}
@@ -75,9 +78,14 @@ const ProfileDropdown = ({ user }) => {
           <div className="border-t border-black flex  text-left px-1 gap-x-1 py-1 text-sm text-red-600 hover:bg-gray-100 hover:rounded-lg cursor-pointer">
             <LogOut />
             <button
-              onClick={() => {
+              onClick={async () => {
                 setIsOpen(false);
-                console.log("Logout clicked");
+                await axios.post(
+                  apiBase + "/auth/sign-out",
+                  {},
+                  { withCredentials: true }
+                );
+                setUser(null); // remove user from state
               }}
               className=""
             >

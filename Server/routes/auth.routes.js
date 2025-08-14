@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { signIn, signUp } from "../controllers/auth.controller.js";
+import { signIn, signOut, signUp } from "../controllers/auth.controller.js";
 import authMiddleware from "../middlewares/auth.middleware.js";
 import User from "./../model/user.model.js";
 
@@ -7,7 +7,7 @@ const authRouter = Router();
 
 authRouter.post("/sign-up", signUp);
 authRouter.post("/sign-in", signIn);
-authRouter.post("/sign-out");
+authRouter.post("/sign-out",signOut);
 authRouter.get("/me", authMiddleware, async (req, res) => {
   try {
     // Find user but only send safe fields

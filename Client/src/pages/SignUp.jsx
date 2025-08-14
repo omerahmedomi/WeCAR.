@@ -11,8 +11,8 @@ const SignUp = () => {
   const [error, setError] = useState("");
   const [isAuthenticating, setIsAuthenticating] = useState(false);
   const [agreement, setAgreement] = useState(false);
-
- const apiBase = "http://localhost:5500";
+//"http://localhost:5500"
+ const apiBase =  "http://192.168.1.4:5500";
 
   const navigate = useNavigate();
 
