@@ -33,11 +33,9 @@ const SignUp = () => {
       setError("Please fill all the fields!");
       return;
     }
-    console.log("first name", firstName);
-    console.log("last name", lastName);
-    console.log("email", email);
-    console.log("password", password);
+   
     try {
+      setIsAuthenticating(true)
       const response = await axios.post(
         apiBase + `/auth/${isRegistration ? "sign-up" : "sign-in"}`,
         { firstName, lastName, email, password },{withCredentials:true}
@@ -51,6 +49,8 @@ const SignUp = () => {
     } catch (error) {
       console.log(error)
       setError(error.response.data.error);
+    }finally{
+      setIsAuthenticating(false)
     }
   };
 
