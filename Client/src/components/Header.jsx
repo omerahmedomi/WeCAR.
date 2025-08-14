@@ -38,7 +38,9 @@ useEffect(() => {
         <Link to={"/"}>WeCAR.</Link>
       </h1>
       <div className={`sm:hidden max-sm:flex items-center gap-3 max-sm:p-4 `}>
-        {user ? (
+        {isLoading ? (
+          <p className="text-sm text-gray-600">Checking Status...</p>
+        ) : user ? (
           <ProfileDropdown user={user} />
         ) : (
           <Link
@@ -81,7 +83,9 @@ useEffect(() => {
         ))}
       </ul>
       <div className="sign-up sm:flex gap-2 hidden text-nowrap ">
-        {isLoading? <p className="text-sm text-gray-600">Checking Status...</p> : user ? (
+        {isLoading ? (
+          <p className="text-sm text-gray-600">Checking Status...</p>
+        ) : user ? (
           <ProfileDropdown user={user} />
         ) : (
           <Link

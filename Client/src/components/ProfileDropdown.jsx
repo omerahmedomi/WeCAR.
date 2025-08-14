@@ -42,7 +42,7 @@ const ProfileDropdown = ({ user }) => {
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg ring-1 ring-gray-200 z-50 animate-fadeIn">
+        <div className="absolute -right-1/2 mt-2 w-48 bg-white rounded-lg shadow-lg ring-1 ring-gray-200 z-50 animate-fadeIn">
           <div className="px-4 py-3 border-b">
             <p className="text-sm font-medium text-gray-900">
               {user?.firstName + " " + user?.lastName || "User"}

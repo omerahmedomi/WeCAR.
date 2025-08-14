@@ -34,7 +34,7 @@ const App = () => {
 
           <motion.div
             class="relative z-10 text-white p-6 font-eczar sm:text-center justify-center"
-            initial={{ x: -200, opacity: 0 }}
+            initial={{ x: 0, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 1 }}
           >
@@ -61,7 +61,7 @@ const App = () => {
           <div className=" mt-5 w-full lg:w-250 max-sm:space-y-2  md:grid grid-cols-2 gap-2 2xl:gap-10 font-eczar p-3">
             <motion.div
               className="flex gap-3  p-2 "
-              initial={{ opacity: 0, x: -200 }}
+              initial={{ opacity: 0, x: 0 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeInOut" }} // Animation duration
               viewport={{ once: true, amount: 0.3 }}
@@ -80,7 +80,7 @@ const App = () => {
             </motion.div>
             <motion.div
               className="flex gap-3  p-2 "
-              initial={{ opacity: 0, x: 200 }}
+              initial={{ opacity: 0, x: 0 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeInOut" }} // Animation duration
               viewport={{ once: true, amount: 0.3 }}
@@ -101,7 +101,7 @@ const App = () => {
 
             <motion.div
               className="flex gap-3  p-2"
-              initial={{ opacity: 0, x: -200 }}
+              initial={{ opacity: 0, x: 0 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeInOut" }} // Animation duration
               viewport={{ once: true, amount: 0.3 }}
@@ -121,7 +121,7 @@ const App = () => {
             </motion.div>
             <motion.div
               className="flex gap-3  p-2"
-              initial={{ opacity: 0, x: 200 }}
+              initial={{ opacity: 0, x: 0 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeInOut" }} // Animation duration
               viewport={{ once: true, amount: 0.3 }}
