@@ -44,7 +44,11 @@ useEffect(() => {
           <ProfileDropdown user={user} />
         ) : (
           <Link
-            className="border-2 outline-none focus:outline-none focus:ring-1 border-gray-700 px-2 cursor-pointer rounded-sm bg-white transition-colors duration-300 ring-gray-400 hover:bg-gray-50 active:bg-gray-50"
+            className="ring-2 outline-none focus:outline-none  px-3 py-0.5 cursor-pointer rounded-sm bg-white transition-all duration-300 ring-gray-400 hover:bg-gray-50 
+            hover:ring-cyan-400
+            active:bg-gray-50
+            active:ring-cyan-400
+            "
             to={"/sign-up"}
           >
             Sign In
@@ -89,7 +93,10 @@ useEffect(() => {
           <ProfileDropdown user={user} />
         ) : (
           <Link
-            className="border-2 outline-none focus:outline-none focus:ring-1 border-gray-700 px-2 cursor-pointer rounded-sm bg-white transition-colors duration-300 ring-gray-400 hover:bg-gray-50 active:bg-gray-50"
+            className="ring-2 outline-none focus:outline-none  px-3 py-0.5 cursor-pointer rounded-sm bg-white transition-all duration-300 ring-gray-400 hover:bg-gray-50 
+            hover:ring-cyan-400
+            active:bg-gray-50
+            active:ring-cyan-400"
             to={"/sign-up"}
           >
             Sign In
