@@ -34,7 +34,7 @@ const App = () => {
 
           <motion.div
             class="relative z-10 text-white p-6 font-eczar sm:text-center justify-center"
-            initial={{ x: 0, opacity: 0 }}
+            initial={{ x: -200, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 1 }}
           >

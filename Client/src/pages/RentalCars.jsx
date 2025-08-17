@@ -62,7 +62,7 @@ const RentalCars = () => {
       <div className="search mt-20 mx-auto bg-blue-10 flex justify-center w-fit relative ">
         <input
           type="search"
-          className="border  rounded-full pl-8 py-1 focus:outline-none font-eczar focus:bg-white [&::-webkit-search-cancel-button]:hidden "
+          className="border  rounded-full pl-8 py-1 focus:outline-none font-eczar focus:bg-white [&::-webkit-search-cancel-button]:hidden caret-cyan-500"
           placeholder="Search for cars"
         />
         <span className="absolute left-2 top-2 ">

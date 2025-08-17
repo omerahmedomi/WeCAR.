@@ -83,7 +83,7 @@ const CarCard = ({ car }) => {
           className="border border-cyan-800 focus:outline-none px-3 py rounded-sm cursor-pointer text-cyan-500 font-semibold hover:text-cyan-400 transition-colors duration-300 "
           onClick={() => {
             if(user) {
-              navigate('/rental-page')
+              navigate(`/rental-cars/${car.id}`,{state:car})
             } else{
               navigate('/sign-up')
             }
