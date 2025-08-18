@@ -80,7 +80,9 @@ const CarCard = ({ car }) => {
           <span className="text-sm ">/Day</span>
         </p>
         <button
-          className="border border-cyan-800 focus:outline-none px-3 py rounded-sm cursor-pointer text-cyan-500 font-semibold hover:text-cyan-400 transition-colors duration-300 "
+          className="ring ring-gray-600 border-cyan-800 focus:outline-none px-3 py-0.5 rounded-sm cursor-pointer text-cyan-500 font-semibold hover:text-cyan-400 
+          hover:ring-cyan-400
+          transition-colors duration-300 "
           onClick={() => {
             if(user) {
               navigate(`/rental-cars/${car.id}`,{state:car})
