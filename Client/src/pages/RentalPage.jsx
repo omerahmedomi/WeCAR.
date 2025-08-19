@@ -28,7 +28,7 @@ const RentalPage = () => {
   const { user } = useGlobal();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
-  const options = ["Self Drive", "Chauffeur Drive",];
+  const options = ["self", "chauffeur",];
   const [selected, setSelected] = useState(options[0]);
 const [dates, setDates] = useState({ pickUpDate: "", returnDate: "" });
   const totalDays = dayDiff(dates.pickUpDate, dates.returnDate);
@@ -128,7 +128,7 @@ const [dates, setDates] = useState({ pickUpDate: "", returnDate: "" });
             </ul>
           </div>
         </div>
-        <div className="rental-options bg-amber-200 p-2 flex flex-col space-y-3 items-center ">
+        <div className="rental-options  p-2 flex flex-col space-y-3 items-center ">
           <p className="text-xl lg:text-2xl font-grenze text-center font-semibold ">
             Rental Options
           </p>
@@ -140,7 +140,8 @@ const [dates, setDates] = useState({ pickUpDate: "", returnDate: "" });
                   onClick={() => setOpen(!open)}
                   className="w-full flex justify-between items-center py-1 px-2 border border-gray-300 rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-cyan-400"
                 >
-                  {selected}
+                  {selected.split("")[0].toUpperCase() + selected.slice(1)}{" "}
+                  Drive
                   <span>
                     <ArrowDown />
                   </span>
@@ -157,7 +158,8 @@ const [dates, setDates] = useState({ pickUpDate: "", returnDate: "" });
                         }}
                         className="py-1 px-2 cursor-pointer hover:bg-blue-100"
                       >
-                        {opt}
+                        {opt.split("")[0].toUpperCase() +
+                          opt.slice(1)} Drive
                       </li>
                     ))}
                   </ul>
@@ -198,8 +200,20 @@ const [dates, setDates] = useState({ pickUpDate: "", returnDate: "" });
             Total Price:
             <span className="ml-2">{totalPrice}K ETB</span>
           </p>
+          <button
+            className="font-eczar ring focus:outline-none px-3 py-1 rounded-md focus:ring-2 ring-cyan-400 bg-white active:ring-2 transition-all hover:bg-cyan-50 duration-300 cursor-pointer"
+            onClick={() => {
+              if (dates.returnDate <= dates.pickUpDate) {
+                alert(
+                  "Return Date cannot be less than or equal to Pick Up Date"
+                );
+              }
+            }}
+          >
+            Create Order
+          </button>
         </div>
-        <div className="note mb-10 max-w-250 mx-auto bg-amber-700 ">
+        <div className="note mb-10 max-w-250 mx-auto">
           <span className="font-grenze font-bold text-lg">Note:</span>
           <p className="font-eczar">
             Please make sure you have selected your desired correct dates and
