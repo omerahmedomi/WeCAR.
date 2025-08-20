@@ -1,10 +1,10 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./../components/Header";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useGlobal } from "../GlobalContext";
 
 import ArrowDown from "../Icons/ArrowDown";
-import Footer from './../components/Footer';
+import Footer from "./../components/Footer";
 
 const toUTCDate = (s) => {
   if (!s) return null;
@@ -22,56 +22,64 @@ const dayDiff = (startStr, endStr) => {
   // return Math.max(1, Math.round((end - start) / msPerDay));
 };
 
-
 const RentalPage = () => {
   const { state: car } = useLocation();
-  const { user } = useGlobal();
+  const { user, isLoading } = useGlobal();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
-  const options = ["self", "chauffeur",];
+  const options = ["self", "chauffeur"];
   const [selected, setSelected] = useState(options[0]);
-const [dates, setDates] = useState({ pickUpDate: "", returnDate: "" });
+  const [dates, setDates] = useState({ pickUpDate: "", returnDate: "" });
   const totalDays = dayDiff(dates.pickUpDate, dates.returnDate);
-  const totalPrice = totalDays > 0 ?  car.pricePerDayInK * totalDays + (selected == options[1] && 0.5 * totalDays) : 0;
-
-  
+  const totalPrice =
+    totalDays > 0
+      ? car.pricePerDayInK * totalDays +
+        (selected == options[1] && 0.5 * totalDays)
+      : 0;
 
   const today = new Date();
 
   // Min = tomorrow
   const minDate = new Date(today);
-  minDate.setDate(today.getDate()+1);
+  minDate.setDate(today.getDate() + 1);
 
   // Max = 5 days from today
   const maxDate = new Date(today);
   maxDate.setDate(today.getDate() + 5);
 
-  const returnMinDate =new Date(dates.pickUpDate || today)
-  returnMinDate.setDate(returnMinDate.getDate() + 1)
+  const returnMinDate = new Date(dates.pickUpDate || today);
+  returnMinDate.setDate(returnMinDate.getDate() + 1);
 
-  const returnMaxDate = new Date(today)
-  returnMaxDate.setDate(returnMinDate.getDate() +30)
-    
-  
+  const returnMaxDate = new Date(today);
+  returnMaxDate.setDate(returnMinDate.getDate() + 30);
 
-  const handleDateChange = (e)=>{
+  const handleDateChange = (e) => {
+    setDates((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    console.log(dates);
+    console.log(selected);
+  };
 
-  
-    setDates((prev)=>({...prev,[e.target.name]:e.target.value}))
-    console.log(dates)
-    console.log(selected)
+  const [option, setOption] = useState("");
 
-  }
-
-   const [option, setOption] =useState("");
-
-   
   useEffect(() => {
-    if (!user) {
-      navigate("/sign-up");
-    }
+   
+    
   }, []);
 
+  // if (isLoading) {
+  //   return (
+  //     <div className="min-h-screen flex items-center justify-center">
+  //       <p className="text-xl">Loading...</p>
+  //     </div>
+  //   );
+  // }
+
+  // Redirect if not authenticated (after loading completes)
+  if (!isLoading && !user) {
+    navigate("/sign-up");
+    // return null;
+  }
+  
   return (
     <div>
       <Header />
@@ -158,8 +166,7 @@ const [dates, setDates] = useState({ pickUpDate: "", returnDate: "" });
                         }}
                         className="py-1 px-2 cursor-pointer hover:bg-blue-100"
                       >
-                        {opt.split("")[0].toUpperCase() +
-                          opt.slice(1)} Drive
+                        {opt.split("")[0].toUpperCase() + opt.slice(1)} Drive
                       </li>
                     ))}
                   </ul>
@@ -210,7 +217,8 @@ const [dates, setDates] = useState({ pickUpDate: "", returnDate: "" });
               }
             }}
           >
-            Create Order
+            Create Order {user?.firstName}
+            {isLoading ? "True" : "False"}
           </button>
         </div>
         <div className="note mb-10 max-w-250 mx-auto">
