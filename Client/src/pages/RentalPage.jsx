@@ -5,6 +5,7 @@ import { useGlobal } from "../GlobalContext";
 
 import ArrowDown from "../Icons/ArrowDown";
 import Footer from "./../components/Footer";
+import axios from "axios";
 
 const toUTCDate = (s) => {
   if (!s) return null;
@@ -58,13 +59,27 @@ const RentalPage = () => {
     console.log(dates);
     console.log(selected);
   };
+  const apiBase = "http://localhost:5500";
 
-  const [option, setOption] = useState("");
+  const orderCar = async () => {
+    try {
+      const result = await axios.post(
+        apiBase + "/orders",
+        { userId: user._id, carId: car.id, price: totalPrice },
+        {
+          withCredentials: true,
+        }
+      );
+      const order= result.data
+      console.log("Order", result);
+    } catch (error) {
+      console.log("Error creating order", error);
+    }
+  };
 
-  useEffect(() => {
-   
-    
-  }, []);
+  useEffect(() => {}, []);
+  console.log("User", user);
+  console.log("Car", car);
 
   // if (isLoading) {
   //   return (
@@ -76,10 +91,10 @@ const RentalPage = () => {
 
   // Redirect if not authenticated (after loading completes)
   if (!isLoading && !user) {
-    navigate("/sign-up",{replace:true});
+    navigate("/sign-up", { replace: true });
     // return null;
   }
-  
+
   return (
     <div>
       <Header />
@@ -186,9 +201,7 @@ const RentalPage = () => {
               />
             </div>
             <div
-              className={`pick-up-date flex gap-5.5 items-center self-start ${
-                selected == options[2] && "hidden"
-              }`}
+              className={`pick-up-date flex gap-5.5 items-center self-start `}
             >
               <p className="font-semibold font-eczar">Return Date: </p>
               <input
@@ -214,11 +227,12 @@ const RentalPage = () => {
                 alert(
                   "Return Date cannot be less than or equal to Pick Up Date"
                 );
+                return;
               }
+              orderCar();
             }}
           >
-            Create Order {user?.firstName}
-            {isLoading ? "True" : "False"}
+            Create Order 
           </button>
         </div>
         <div className="note mb-10 max-w-250 mx-auto">

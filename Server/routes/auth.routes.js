@@ -12,7 +12,7 @@ authRouter.get("/me", authMiddleware, async (req, res) => {
   try {
     // Find user but only send safe fields
     const user = await User.findById(req.userID).select(
-      "id firstName lastName email"
+      "firstName lastName email"
     );
     console.log(user);
     if (!user) {
