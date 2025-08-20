@@ -76,7 +76,7 @@ const RentalPage = () => {
 
   // Redirect if not authenticated (after loading completes)
   if (!isLoading && !user) {
-    navigate("/sign-up");
+    navigate("/sign-up",{replace:true});
     // return null;
   }
   
