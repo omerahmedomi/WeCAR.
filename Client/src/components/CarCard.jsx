@@ -17,7 +17,7 @@ const CarCard = ({ car }) => {
   const { user } = useGlobal();
   return (
     <div className=" p-4 border border-dashed  w-fit flex flex-col rounded-md bg-white ">
-      <div className="  h-45 w-60  rounded-md mb-2">
+      <div className="  h-45 w-70 sm:w-65   rounded-md mb-2">
         <img
           src="./CarsAuth.jpg"
           alt=""

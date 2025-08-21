@@ -65,7 +65,7 @@ const RentalPage = () => {
     try {
       const result = await axios.post(
         apiBase + "/orders",
-        { userId: user._id, carId: car.id, price: totalPrice },
+        { userId: user.id, carId: car.id, price: totalPrice },
         {
           withCredentials: true,
         }
@@ -81,13 +81,13 @@ const RentalPage = () => {
   console.log("User", user);
   console.log("Car", car);
 
-  // if (isLoading) {
-  //   return (
-  //     <div className="min-h-screen flex items-center justify-center">
-  //       <p className="text-xl">Loading...</p>
-  //     </div>
-  //   );
-  // }
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-xl font-eczar">Loading...</p>
+      </div>
+    );
+  }
 
   // Redirect if not authenticated (after loading completes)
   if (!isLoading && !user) {

@@ -33,7 +33,7 @@ useEffect(() => {
   };
 
   return (
-    <header className="flex  justify-between sm:justify-between sm:p-3  md:px-8 text-gray-900 fixed top-0 w-full z-50 sm:gap-4 font-eczar shadow-sm items-center bg-gray-100">
+    <header className="flex  justify-between sm:justify-between sm:p-3  md:px-8 text-gray-900 fixed top-0 w-full z-50 sm:gap-4 font-eczar shadow-sm items-center bg-gray-100 ">
       <h1 className="max-sm:p-3  hover:cursor-pointer text-lg font-semibold">
         <Link to={"/"}>WeCAR.</Link>
       </h1>
@@ -69,7 +69,7 @@ useEffect(() => {
         className={` absolute  top-[100%]  max-sm:right-0 max-sm:pr-1  max-sm:h max-sm:shadow-sm text-sm sm:text-base 
           ${
             !isMenuOpen && "hidden"
-          } sm:relative sm:flex sm:gap-5 md:gap-10  lg:gap-15 xl:gap-20 justify-center  z-100 bg-gray-100 `}
+          } sm:relative sm:flex sm:gap-5 md:gap-10  lg:gap-15 xl:gap-20 justify-center  z-100 bg-gray-100`}
       >
         {Navs.map((nav, index) => (
           <Link

@@ -187,7 +187,7 @@ const RentalCars = () => {
           className="cars lg:h-[92svh] min-h-[50svh] lg:overflow-y-scroll p-3 
            grid grid-cols-[repeat(1,_min-content)] sm:grid-cols-[repeat(2,_min-content)] min-[964px]:!grid-cols-[repeat(3,_min-content)]  min-[1150px]:!grid-cols-[repeat(3,_min-content)] 2xl:!grid-cols-[repeat(4,_min-content)]
           content-start justify-center sm:justify-around
-           gap-y-10 sm:gap-y-15 lg:gap-x-3   grow   w-full"
+              grow   w-full gap-y-5 lg:gap-x-3"
         >
           {cars.map((car, index) => {
             return <CarCard key={index} car={car} />;
