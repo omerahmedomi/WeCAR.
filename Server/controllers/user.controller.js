@@ -16,3 +16,21 @@ export const getAllUsers = async (req,res,next) =>{
 }
 
 
+export const deleteUser = async (req,res,next) =>{
+    try {
+        console.log(req.params.id)
+       const deletedUser = await User.findOneAndDelete(req.params.id) 
+       res.cookie("access_token", "", {
+         httpOnly: true,
+         secure: false, // only secure in prod
+         sameSite: "strict",
+         expires: new Date(0), // expire immediately
+       });
+       res.status(200).send({message:"User deleted successfully",deletedUser})
+    } catch (error) {
+        next(error)
+        console.log(error)
+        
+    }
+
+}
