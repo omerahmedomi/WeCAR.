@@ -33,7 +33,7 @@ export default function Cars() {
         Add Car
       </button>
       <Table
-        columns={["id", "brand", "model"]}
+        columns={["id", "name", "model","quantity","available"]}
         data={cars}
         onEdit={(row) => {
           setEditing(row);
@@ -46,7 +46,7 @@ export default function Cars() {
         onClose={() => setModalOpen(false)}
         onSave={handleSave}
         initialData={editing}
-        fields={["brand", "model"]}
+        // fields={["name", "model"]}
       />
     </div>
   );

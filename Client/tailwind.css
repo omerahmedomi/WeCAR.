@@ -40,4 +40,7 @@ input[type='radio']{
   padding-bottom: 40px; /* create space for dots */
 }
 
+.edit-car input{
+  @apply px-2 py-1 border rounded w-50
+}
 
