@@ -9,6 +9,7 @@ import FAQs from "./pages/FAQs";
 import SignUp from "./pages/SignUp";
 import { GlobalProvider } from "./GlobalContext";
 import RentalPage from "./pages/RentalPage";
+import Admin from "./Admin/Admin";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
     path: "/rental-cars/:id",
     element: <RentalPage />,
   },
+  {
+    path:'/admin',
+    element:<Admin/>
+  }
 ]);
 
 createRoot(document.getElementById("root")).render(
