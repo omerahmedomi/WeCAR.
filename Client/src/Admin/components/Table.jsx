@@ -25,9 +25,10 @@ export default function Table({ columns, data, onEdit, onDelete }) {
             <td className="p-2 border space-x-2">
               <button
                 onClick={() => onEdit(row)}
-                className="px-2 py-1 bg-blue-500 text-white rounded"
+                className={`px-2 py-1 bg-blue-500 text-white rounded disabled:bg-gray-400 disabled:cursor-not-allowed`}
+                disabled={row.email}
               >
-                Edit
+                Edit 
               </button>
               <button
                 onClick={() => onDelete(row)}

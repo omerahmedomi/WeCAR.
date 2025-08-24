@@ -26,6 +26,8 @@ export default function Users() {
       
     }
   }
+
+  
   useEffect(() => {
     
     fetchUsers()
@@ -33,10 +35,13 @@ export default function Users() {
 
   const handleSave = (data) => {
     if (data.id) {
-      setUsers(users.map((u) => (u.id === data.id ? data : u)));
+      // setUsers(users.map((u) => (u.id === data.id ? data : u)));
+      //edit
     } else {
-      data.id = Date.now();
-      setUsers([...users, data]);
+      // data.id = Date.now();
+      // setUsers([...users, data]);
+      //add 
+      
     }
     setModalOpen(false);
   };
@@ -44,22 +49,11 @@ export default function Users() {
   return (
     <div>
       <h1 className="text-xl font-bold mb-4">Users</h1>
-      <button
-        onClick={() => {
-          setEditing(null);
-          setModalOpen(true);
-        }}
-        className="mb-4 px-3 py-1 bg-green-500 text-white rounded"
-      >
-        Add User
-      </button>
+     
       <Table
         columns={["_id", "firstName","lastName", "email"]}
         data={users}
-        onEdit={(row) => {
-          setEditing(row);
-          setModalOpen(true);
-        }}
+        
         onDelete={(row) => setUsers(users.filter((u) => u.id !== row.id))}
       />
       <Modal
@@ -67,7 +61,7 @@ export default function Users() {
         onClose={() => setModalOpen(false)}
         onSave={handleSave}
         initialData={editing}
-        fields={["name", "email"]}
+        fields={["firstName", "lastName","email"]}
       />
     </div>
   );
