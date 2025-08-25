@@ -10,16 +10,13 @@ export default function Modal({
 }) {
   const [formData, setFormData] = useState({});
 
-
   useEffect(() => {
-    if(isOpen)
-    setFormData(initialData || {});
-  }, [initialData,isOpen]);
+    if (isOpen) setFormData(initialData || {});
+  }, [initialData, isOpen]);
 
   if (!isOpen) return null;
 
   const handleChange = (e) => {
-
     const { name, value, type } = e.target;
 
     let newValue = value;
@@ -196,7 +193,7 @@ export default function Modal({
                   type="radio"
                   name="available"
                   value="true"
-                  checked={formData.available }
+                  checked={formData.available}
                   className="!w-fit"
                   onChange={handleChange}
                 />
@@ -209,7 +206,10 @@ export default function Modal({
                   value="false"
                   className="!w-fit "
                   onChange={handleChange}
-                  checked={!formData.available && Object.keys(formData).includes('available')}
+                  checked={
+                    !formData.available &&
+                    Object.keys(formData).includes("available")
+                  }
                   // checked={!formData.available || ""}
                 />
                 <span>No</span>
