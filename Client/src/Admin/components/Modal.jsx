@@ -16,13 +16,14 @@ export default function Modal({
 
   if (!isOpen) return null;
 
-  const handleChange = (e, field) => {
-    setFormData({ ...formData, [field]: e.target.value });
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    console.log(formData);
   };
 
   return (
-    <div className="fixed inset-0 bg-black/10 bg-opacity-40 flex items-center justify-center">
-      <div className="bg-white rounded-lg shadow-lg p-6 w-full h-full">
+    <div className="fixed inset-0 bg-black/10 bg-opacity-40 flex items-center justify-center font-eczar">
+      <div className="bg-white rounded-lg shadow-lg p-6 w-full h-full ">
         <h2 className="text-lg font-bold mb-4">Edit Item</h2>
         {/* {fields.map((field) => (
           <input
@@ -34,52 +35,175 @@ export default function Modal({
           />
         ))} */}
         <p className="error-message"></p>
-        <div className="edit-car grid grid-cols-3 gap-4  *:mb-2 ">
+        <div className="edit-car grid gap-4 grid-cols-[repeat(2,auto)] *:mb-2   *:bg-amber-20">
           <div>
             <span>Car Name:</span>
-            <input placeholder="Car Name" />
+            <input
+              placeholder="Car Name"
+              name="name"
+              value={formData.name || ""}
+              onChange={handleChange}
+            />
           </div>
           <div>
-            <input placeholder="Car Model" />
+            <span>Car Model:</span>
+            <input
+              placeholder="Car Model"
+              name="model"
+              value={formData.model || ""}
+              onChange={handleChange}
+            />
           </div>
           <div>
-            <input type="number" placeholder="Year" />
+            <span>Year:</span>
+            <input
+              type="number"
+              placeholder="Year"
+              name="year"
+              value={formData.year || ""}
+              onChange={handleChange}
+            />
           </div>
           <div>
-            <select name="transmission" id="">
-              <option value="manual">Manual</option>
-              <option value="auto">Auto</option>
+            <span>Transmission:</span>
+            <select name="transmission" id="" onChange={handleChange}>
+              <option
+                value=""
+                disabled
+                className="text-sm "
+                selected={!formData.transmission}
+              >
+                {" "}
+                Select Transmission
+              </option>
+              <option
+                value="manual"
+                selected={formData.transmission == "manual"}
+              >
+                Manual
+              </option>
+              <option value="auto" selected={formData.transmission == "auto"}>
+                Auto
+              </option>
             </select>
           </div>
           <div>
-            <select name="fuelType" id="">
-              <option value="petrol">Petrol</option>
-              <option value="diesel">Diesel</option>
-              <option value="electric">Electric</option>
-              <option value="hybrid">Hybrid</option>
+            <span>Fuel Type:</span>
+            <select name="fuelType" id="" onChange={handleChange}>
+              <option
+                value=""
+                disabled
+                className="text-sm"
+                selected={!formData.fuelType}
+              ></option>
+              <option value="petrol" selected={formData.fuelType == "petrol"}>
+                Petrol
+              </option>
+              <option value="diesel" selected={formData.fuelType == "diesel"}>
+                Diesel
+              </option>
+              <option
+                value="electric"
+                selected={formData.fuelType == "electric"}
+              >
+                Electric
+              </option>
+              <option value="hybrid" selected={formData.fuelType == "hybrid"}>
+                Hybrid
+              </option>
             </select>
           </div>
           <div>
-            <input type="number" placeholder="Mileage in kms" />
+            <span>Mileage:</span>
+            <input
+              type="number"
+              placeholder="Mileage in kms"
+              name="mileage"
+              value={formData.mileage || ""}
+              onChange={handleChange}
+            />
           </div>
           <div>
-            <input type="number" placeholder="Doors" min={2} max={4} />
+            <span>Doors:</span>
+            <input
+              type="number"
+              placeholder="Doors"
+              min={2}
+              max={4}
+              name="doors"
+              value={formData.doors || ""}
+              onChange={handleChange}
+            />
           </div>
           <div>
-            <input type="number" placeholder="Seats" min={2} max={4} />
+            <span>Seats:</span>
+            <input
+              type="number"
+              placeholder="Seats"
+              min={2}
+              max={4}
+              name="seats"
+              value={formData.seats || ""}
+              onChange={handleChange}
+            />
           </div>
           <div>
-            <input type="number" placeholder="Price per day in thousands" />
+            <span>Rental Price:</span>
+            <input
+              type="number"
+              placeholder="Price per day in thousands"
+              name="pricePerDayInK"
+              value={formData.pricePerDayInK || ""}
+              onChange={handleChange}
+            />
           </div>
           <div>
-            <input type="number" placeholder="Luggage Capacity in Liters" />
+            <span>Luggage Capacity:</span>
+            <input
+              type="number"
+              placeholder="Luggage Capacity in Liters"
+              name="luggageCapacity"
+              value={formData.luggageCapacity || ""}
+              onChange={handleChange}
+            />
           </div>
           <div>
-            <input type="text" placeholder="color" />
+            <span>Color:</span>
+            <input
+              type="text"
+              placeholder="Car Color"
+              name="color"
+              value={formData.color || ""}
+              onChange={handleChange}
+            />
           </div>
-          <div>
-            <input type="radio" value="Yes" />
-            <input type="radio" value="No" />
+          <div className="flex">
+            <span>Available:</span>
+            <div className=" flex flex-col ">
+              <label for="available"></label>
+              <div className="">
+                <input
+                  type="radio"
+                  name="available"
+                  value="true"
+                // checked={}
+                  className="!w-fit"
+                  onChange={handleChange}
+                />
+                <span>Yes</span>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  name="available"
+                  value="false"
+                  className="!w-fit"
+                  onChange={handleChange}
+                  // checked={}
+                />
+                <span>No</span>
+              </div>
+            </div>
           </div>
         </div>
 

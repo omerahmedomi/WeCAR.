@@ -41,6 +41,21 @@ input[type='radio']{
 }
 
 .edit-car input{
-  @apply px-2 py-1 border rounded w-50
+  @apply px-2 py-0.5 border rounded w-55
 }
 
+.edit-car span{
+  @apply font-semibold
+}
+
+.edit-car div{
+  @apply space-x-2
+}
+
+.edit-car select {
+  @apply border rounded-md px-2 py-0.5
+}
+
+.edit-car {
+  
+}

@@ -5,7 +5,7 @@ import Modal from "../components/Modal";
 
 export default function Cars() {
   const [cars, setCars] = useState([
-    { id: 1, brand: "Toyota", model: "Corolla" },
+    { id: 1, name: "Toyota", model: "Corolla",year:2000,transmission:"auto",fuelType:"electric",mileage:85,doors:2,seats:2,pricePerDayInK:15,luggageCapacity:300,color:"Red",available:true },
   ]);
   const [modalOpen, setModalOpen] = useState(false);
   const [editing, setEditing] = useState(null);
