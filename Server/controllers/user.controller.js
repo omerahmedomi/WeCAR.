@@ -25,7 +25,7 @@ export const deleteUser = async (req,res,next) =>{
          secure: false, // only secure in prod
          sameSite: "strict",
          expires: new Date(0), // expire immediately
-       });
+       });a
        res.status(200).send({message:"User deleted successfully",deletedUser})
     } catch (error) {
         next(error)

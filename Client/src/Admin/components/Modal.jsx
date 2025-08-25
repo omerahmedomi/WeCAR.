@@ -6,9 +6,12 @@ export default function Modal({
   onClose,
   onSave,
   initialData,
+  error,
+  setError
   // fields,
 }) {
   const [formData, setFormData] = useState({});
+  
 
   useEffect(() => {
     if (isOpen) setFormData(initialData || {});
@@ -17,6 +20,7 @@ export default function Modal({
   if (!isOpen) return null;
 
   const handleChange = (e) => {
+    setError('')
     const { name, value, type } = e.target;
 
     let newValue = value;
@@ -41,7 +45,7 @@ export default function Modal({
             className="w-full p-2 border rounded mb-2"
           />
         ))} */}
-        <p className="error-message"></p>
+        <p className="error-message  text-sm text-red-600 h-5 mb-4">{error}</p>
         <div className="edit-car grid gap-4 grid-cols-[repeat(2,auto)] *:mb-2   *:bg-amber-20">
           <div>
             <span>Car Name:</span>
@@ -102,7 +106,9 @@ export default function Modal({
                 disabled
                 className="text-sm"
                 selected={!formData.fuelType}
-              ></option>
+              >
+                Select Fuel Type
+              </option>
               <option value="petrol" selected={formData.fuelType == "petrol"}>
                 Petrol
               </option>
@@ -219,12 +225,17 @@ export default function Modal({
         </div>
 
         <div className="flex justify-end space-x-2">
-          <button onClick={onClose} className="px-3 py-1 rounded bg-gray-300">
+          <button
+            onClick={onClose}
+            className={`px-3 py-1 rounded-lg cursor-pointer  bg-gray-200 `}
+          >
             Cancel
           </button>
           <button
             onClick={() => onSave(formData)}
-            className="px-3 py-1 rounded bg-green-500 text-white"
+            className={`px-3 py-1 rounded-lg disabled:cursor-not-allowed disabled:bg-gray-200 bg-green-500 cursor-pointer text-white ${
+              error && "disabled"
+            }`}
           >
             Save
           </button>

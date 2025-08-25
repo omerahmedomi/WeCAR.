@@ -10,6 +10,7 @@ export default function Cars() {
   const [cars, setCars] = useState([
     // { id: 1, name: "Toyota", model: "Corolla",year:2000,transmission:"auto",fuelType:"electric",mileage:85,doors:2,seats:2,pricePerDayInK:15,luggageCapacity:300,color:"Red",available:false },
   ]);
+  const [error,setError]=useState('')
   const [modalOpen, setModalOpen] = useState(false);
   const [editing, setEditing] = useState(null);
  const apiBase = "http://localhost:5500";
@@ -29,7 +30,8 @@ export default function Cars() {
      const response = await axios.post(apiBase + `/cars`, {car:data});
      console.log(response);
    } catch (error) {
-     console.log(error);
+     console.log("Error adding car:",error);
+     setError(error.response.data.error)
    }
  };
 
@@ -47,7 +49,7 @@ export default function Cars() {
     } else {
       addCar(data);
     }
-    setModalOpen(false);
+    error.length > 0 && setModalOpen(false)
   };
 
  
@@ -69,7 +71,7 @@ export default function Cars() {
         Add Car
       </button>
       <Table
-        columns={["id", "name", "model","quantity","available"]}
+        columns={["_id", "name", "model","quantity","available"]}
         data={cars}
         onEdit={(row) => {
           setEditing(row);
@@ -79,9 +81,11 @@ export default function Cars() {
       />
       <Modal
         isOpen={modalOpen}
-        onClose={() => setModalOpen(false)}
+        onClose={() => {setModalOpen(false) ,setError('')}}
         onSave={handleSave}
         initialData={editing}
+        error={error}
+        setError={setError}
         // fields={["name", "model"]}
       />
     </div>

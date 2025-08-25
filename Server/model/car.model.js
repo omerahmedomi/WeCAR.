@@ -11,16 +11,16 @@ const carSchema = new mongoose.Schema({
   transmission: {
     type: String,
     trim: true,
-    required: true,
+    required: [true,"Transmission is required"],
     enum: ["auto", "manual"],
-    default: "auto",
+    
   },
   fuelType: {
     type: String,
     trim: true,
-    required: true,
+    required: [true,"Fuel Type is required"],
     enum: ["petrol","diesel","hybrid","electric"],
-    default: "petrol",
+    
   },
   mileage: Number,
   pricePerDayInK:{
