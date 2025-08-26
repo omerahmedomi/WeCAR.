@@ -22,9 +22,10 @@ export default function Users() {
   };
   const deleteUser = async (id) => {
     try {
+      setUsers((prev) => prev.filter((u) => u._id !== id));
       const response = await axios.delete(apiBase + `/users/${id}`);
-      console.log(response)
-       fetchUsers();
+      console.log(response);
+      
     } catch (error) {
       console.log(error);
     }
@@ -41,11 +42,7 @@ export default function Users() {
       <Table
         columns={["_id", "firstName", "lastName", "email"]}
         data={users}
-        onDelete={(row) => {
-          deleteUser(row._id)
-         
-          
-        }}
+        onDelete={(row) => deleteUser(row._id)}
       />
     </div>
   );
