@@ -3,8 +3,9 @@ import Header from "./../components/Header";
 import Footer from "./../components/Footer";
 import Search from "../Icons/Search";
 import CarCard from "../components/CarCard";
-import { carss as originalCars} from "../cars";
+// import { carss as originalCars} from "../cars";
 import { useLocation } from "react-router-dom";
+import axios from "axios";
 
 
 const RentalCars = () => {
@@ -22,7 +23,7 @@ const RentalCars = () => {
   const colorOptions = ["any", "red", "black", "gray", "white"];
 
   const applyFilters = () => {
-    const filtered = originalCars.filter((car) => {
+    const filtered = cars.filter((car) => {
       const gearMatch =
         selectedGear === "any" || car.transmission === selectedGear;
       const colorMatch =
@@ -46,6 +47,21 @@ const RentalCars = () => {
     setCars(filtered);
   };
 
+  const apiBase = 'http://localhost:5500'
+
+ const fetchCars = async()=>{
+  try {
+    const respnse = await axios.get(apiBase + `/cars`)
+    setCars(respnse.data.cars)
+  } catch (error) {
+    console.log(error)
+    
+  }
+   
+
+ }
+
+
 
   useEffect(() => {
     applyFilters()
@@ -54,6 +70,12 @@ const RentalCars = () => {
   useEffect(() => {
     
     window.scrollTo(0,0)
+  }, []);
+
+  useEffect(() => {
+    
+    fetchCars()
+      
   }, []);
   return (
     <>

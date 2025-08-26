@@ -40,11 +40,11 @@ const CarCard = ({ car }) => {
         </div>
         <div className="flex items-center gap-x-1 ">
           <span>
-            {car.fuelType == "Petrol" ? (
+            {car.fuelType == "petrol" ? (
               <Petrol />
-            ) : car.fuelType == "Diesel" ? (
+            ) : car.fuelType == "diesel" ? (
               <Diesel />
-            ) : car.fuelType == "Electric" ? (
+            ) : car.fuelType == "electric" ? (
               <ElectricCar />
             ) : (
               <Hybrid />
