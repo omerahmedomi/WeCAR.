@@ -10,6 +10,7 @@ import Diesel from "../Icons/Diesel";
 import Hybrid from "../Icons/Hybrid";
 import {useGlobal} from "../GlobalContext";
 import { useNavigate } from "react-router-dom";
+import Road from "../Icons/Road";
 
 const CarCard = ({ car }) => {
   const navigate = useNavigate();
@@ -50,7 +51,7 @@ const CarCard = ({ car }) => {
               <Hybrid />
             )}
           </span>
-          <p>{car.fuelType}</p>
+          <p>{car.fuelType.split('')[0].toUpperCase() + car.fuelType.slice(1)}</p>
         </div>
         <div className="flex items-center gap-x-1 door">
           <span>
@@ -69,9 +70,9 @@ const CarCard = ({ car }) => {
         </div>
         <div className="flex items-center gap-x-1 ">
           <span>
-            <Diesel />
+            <Road/>
           </span>
-          <p>Petrol</p>
+          <p>{car.mileage}Kms</p>
         </div>
       </div>
       <div className="mt-3 flex justify-between">
