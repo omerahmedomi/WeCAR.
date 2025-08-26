@@ -6,13 +6,9 @@ import CarCard from "../components/CarCard";
 // import { carss as originalCars} from "../cars";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-
+import Loader from "../components/Loader";
 
 const RentalCars = () => {
-
-
-
-  
   const [selectedGear, setSelectedGear] = useState("any");
   const [selectedPrice, setSelectedPrice] = useState("any");
   const [selectedColor, setSelectedColor] = useState("any");
@@ -22,6 +18,7 @@ const RentalCars = () => {
   const gearOptions = ["any", "manual", "auto"];
   const priceOptions = ["any", "below 15K", "15K-20K", "20K-25K", "above 25K"];
   const colorOptions = ["any", "red", "black", "gray", "white"];
+  const [loading, setLoading] = useState(false);
 
   const applyFilters = () => {
     const filtered = allCars.filter((car) => {
@@ -30,17 +27,16 @@ const RentalCars = () => {
       const colorMatch =
         selectedColor === "any" ||
         car.color.toLowerCase() === selectedColor.toLowerCase();
-        const priceMatch = (() => {
-          if (selectedPrice === "any") return true;
-          if (selectedPrice === "below 15K") return car.pricePerDayInK < 15;
-          if (selectedPrice === "15K-20K")
-            return car.pricePerDayInK >= 15 && car.pricePerDayInK < 20;
-          if (selectedPrice === "20K-25K")
-            return car.pricePerDayInK >= 20 && car.pricePerDayInK < 25;
-          if (selectedPrice === "above 25K") return car.pricePerDayInK >= 25;
-          return true;
-        })();
-
+      const priceMatch = (() => {
+        if (selectedPrice === "any") return true;
+        if (selectedPrice === "below 15K") return car.pricePerDayInK < 15;
+        if (selectedPrice === "15K-20K")
+          return car.pricePerDayInK >= 15 && car.pricePerDayInK < 20;
+        if (selectedPrice === "20K-25K")
+          return car.pricePerDayInK >= 20 && car.pricePerDayInK < 25;
+        if (selectedPrice === "above 25K") return car.pricePerDayInK >= 25;
+        return true;
+      })();
 
       return gearMatch && colorMatch && priceMatch;
     });
@@ -48,44 +44,38 @@ const RentalCars = () => {
     setCars(filtered);
   };
 
-  const apiBase = 'http://localhost:5500'
+  const apiBase = "http://localhost:5500";
 
- const fetchCars = async()=>{
-  try {
-    const response = await axios.get(apiBase + `/cars`)
-    const cars = response.data.cars;
-    setAllCars(cars.filter((car)=>car.available))
-    setCars(cars.filter((car) => car.available));
-  } catch (error) {
-    console.log(error)
-    
-  }
-   
-
- }
-
-
+  const fetchCars = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.get(apiBase + `/cars`);
+      const cars = response.data.cars;
+      setAllCars(cars.filter((car) => car.available));
+      setCars(cars.filter((car) => car.available));
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    
     applyFilters();
-  }, [selectedGear,selectedPrice,selectedColor]);
-  
+  }, [selectedGear, selectedPrice, selectedColor]);
+
   useEffect(() => {
-    
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0);
   }, []);
 
   useEffect(() => {
     fetchCars();
-    
-      
   }, []);
   return (
     <>
       <Header />
-      
-      <div className="search mt-20 mx-auto bg-blue-10 flex justify-center w-fit relative ">
+
+      <div className="search mt-20 mx-auto bg-blue-10 flex flex-col space-y-4 justify-center items-center w-fit relative ">
         <input
           type="search"
           className="border  rounded-full pl-8 py-1 focus:outline-none font-eczar focus:bg-white [&::-webkit-search-cancel-button]:hidden caret-cyan-500"
@@ -93,6 +83,9 @@ const RentalCars = () => {
         />
         <span className="absolute left-2 top-2 ">
           <Search />
+        </span>
+        <span className={`self-center ${!loading && 'invisible h-6'}` }>
+          <Loader loading={loading} />
         </span>
       </div>
 
@@ -209,6 +202,7 @@ const RentalCars = () => {
             </div>
           </div>
         </div>
+
         <div
           className="cars lg:h-[92svh] min-h-[50svh] lg:overflow-y-scroll p-3 
            grid grid-cols-[repeat(1,_min-content)] sm:grid-cols-[repeat(2,_min-content)] min-[964px]:!grid-cols-[repeat(3,_min-content)]  min-[1150px]:!grid-cols-[repeat(3,_min-content)] 2xl:!grid-cols-[repeat(4,_min-content)]

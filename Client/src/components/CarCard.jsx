@@ -86,7 +86,7 @@ const CarCard = ({ car }) => {
           transition-colors duration-300 "
           onClick={() => {
             if(user) {
-              navigate(`/rental-cars/${car.id}`,{state:car})
+              navigate(`/rental-cars/${car._id}`,{state:car})
             } else{
               navigate('/sign-up')
             }
