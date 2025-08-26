@@ -8,7 +8,7 @@ const Road = () => {
       xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink"
       class="si-glyph si-glyph-road"
-      className="fill-cyan-400 size-4"
+      className=" size-4"
     >
       <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
       <g
@@ -23,7 +23,7 @@ const Road = () => {
           {" "}
           <path
             d="M14.0729979,0 L9.03234845,5.5313194e-08 L9.03234845,1.04200006 L7.958,1.042 L7.958,0 L3.083,0 L1.083,16 L16.005493,16 L14.0729979,0 Z M9,15 L8,15 L8,12 L9,12 L9,15 L9,15 Z M9,10.042 L8,10.042 L8,7 L9,7 L9,10.042 L9,10.042 Z M7.958,4.959 L7.958,2.959 L8.958,2.959 L8.958,4.959 L7.958,4.959 Z"
-            className="fill-cyan-400"
+            className="fill-black"
             class="si-glyph-fill"
           >
             {" "}

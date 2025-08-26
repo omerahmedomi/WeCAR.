@@ -16,6 +16,7 @@ const RentalCars = () => {
   const [selectedGear, setSelectedGear] = useState("any");
   const [selectedPrice, setSelectedPrice] = useState("any");
   const [selectedColor, setSelectedColor] = useState("any");
+  const [allCars, setAllCars] = useState([]);
   const [cars, setCars] = useState([]);
 
   const gearOptions = ["any", "manual", "auto"];
@@ -23,7 +24,7 @@ const RentalCars = () => {
   const colorOptions = ["any", "red", "black", "gray", "white"];
 
   const applyFilters = () => {
-    const filtered = cars.filter((car) => {
+    const filtered = allCars.filter((car) => {
       const gearMatch =
         selectedGear === "any" || car.transmission === selectedGear;
       const colorMatch =
@@ -51,8 +52,9 @@ const RentalCars = () => {
 
  const fetchCars = async()=>{
   try {
-    const respnse = await axios.get(apiBase + `/cars`)
-    setCars(respnse.data.cars)
+    const response = await axios.get(apiBase + `/cars`)
+    setAllCars(response.data.cars)
+    setCars(response.data.cars)
   } catch (error) {
     console.log(error)
     
@@ -64,7 +66,8 @@ const RentalCars = () => {
 
 
   useEffect(() => {
-    applyFilters()
+    
+    applyFilters();
   }, [selectedGear,selectedPrice,selectedColor]);
   
   useEffect(() => {
@@ -73,8 +76,8 @@ const RentalCars = () => {
   }, []);
 
   useEffect(() => {
+    fetchCars();
     
-    fetchCars()
       
   }, []);
   return (

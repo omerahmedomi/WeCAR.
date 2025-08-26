@@ -83,7 +83,7 @@ export default function Cars() {
         Add Car
       </button>
       <Table
-        columns={["_id", "name", "model","quantity","available"]}
+        columns={["_id", "name", "model","available"]}
         data={cars}
         onEdit={(row) => {
           setEditing(row);

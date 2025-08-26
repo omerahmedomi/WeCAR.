@@ -19,7 +19,7 @@ export default function Table({ columns, data, onEdit, onDelete }) {
           <tr key={i} className="hover:bg-gray-50">
             {columns.map((col) => (
               <td key={col} className="p-2 border">
-                {row[col]}
+                {col=='available' ? String(row[col]):row[col]}
               </td>
             ))}
             <td className="p-2 border space-x-2">
