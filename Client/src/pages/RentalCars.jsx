@@ -53,8 +53,9 @@ const RentalCars = () => {
  const fetchCars = async()=>{
   try {
     const response = await axios.get(apiBase + `/cars`)
-    setAllCars(response.data.cars)
-    setCars(response.data.cars)
+    const cars = response.data.cars;
+    setAllCars(cars.filter((car)=>car.available))
+    setCars(cars.filter((car) => car.available));
   } catch (error) {
     console.log(error)
     
