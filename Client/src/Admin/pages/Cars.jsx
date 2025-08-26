@@ -37,10 +37,12 @@ export default function Cars() {
    }
  };
 
- const updateCar = async ()=>{
+ const updateCar = async (data)=>{
   try {
-    const response = await axios.put(apiBase + `/cars`, {});
+    const response = await axios.put(apiBase + `/cars/${data._id}`, {car:data});
     console.log(response);
+    fetchCars()
+    setModalOpen(false)
   } catch (error) {
     console.log(error);
   }
@@ -56,8 +58,8 @@ export default function Cars() {
    }
  };
   const handleSave = (data) => {
-    if (data.id) {
-      updateCar()
+    if (data._id) {
+      updateCar(data)
     } else {
       addCar(data);
     }

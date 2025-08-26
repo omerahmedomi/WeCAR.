@@ -11,6 +11,7 @@ export const getAllCars = async (req, res, next) => {
   }
 };
 export const addCar = async (req, res, next) => {
+  console.log("ADD car called")
   const session = await mongoose.startSession();
   session.startTransaction();
   try {
@@ -27,7 +28,21 @@ export const addCar = async (req, res, next) => {
     session.endSession();
   }
 };
-export const updateCar = () => {};
+export const updateCar = async (req,res,next) => {
+
+  try {
+    const {id}=req.params
+    const {car} =req.body
+    const updatedCar = await Car.findOneAndUpdate({_id:id},car,{new:true})
+
+    res.status(200).send({message:"Car updated successfully",updatedCar})
+
+  } catch (error) {
+    next(error)
+    console.log(error)
+    
+  }
+};
 export const deleteCar = async (req, res, next) => {
   try {
     console.log(req.params.id);
