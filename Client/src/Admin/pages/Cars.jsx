@@ -29,6 +29,8 @@ export default function Cars() {
    try {
      const response = await axios.post(apiBase + `/cars`, {car:data});
      console.log(response);
+     fetchCars()
+     setModalOpen(false)
    } catch (error) {
      console.log("Error adding car:",error);
      setError(error.response.data.error)
@@ -43,13 +45,23 @@ export default function Cars() {
     console.log(error);
   }
  }
+
+ const deleteCar = async (id) => {
+   try {
+     const response = await axios.delete(apiBase + `/cars/${id}`);
+     console.log(response);
+     fetchCars()
+   } catch (error) {
+     console.log(error);
+   }
+ };
   const handleSave = (data) => {
     if (data.id) {
       updateCar()
     } else {
       addCar(data);
     }
-    error.length > 0 && setModalOpen(false)
+     
   };
 
  
@@ -77,7 +89,7 @@ export default function Cars() {
           setEditing(row);
           setModalOpen(true);
         }}
-        onDelete={(row) => setCars(cars.filter((c) => c.id !== row.id))}
+        onDelete={(row) => deleteCar(row._id)}
       />
       <Modal
         isOpen={modalOpen}

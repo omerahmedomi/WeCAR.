@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { addCar, getAllCars } from '../controllers/car.controller.js';
+import { addCar, deleteCar, getAllCars } from '../controllers/car.controller.js';
 
 const carRouter = Router();
 
@@ -7,6 +7,6 @@ carRouter.get('/',getAllCars)
 carRouter.get('/:id')
 carRouter.put('/:id')
 carRouter.post('/',addCar)
-carRouter.delete('/:id')
+carRouter.delete('/:id',deleteCar)
 
 export default carRouter

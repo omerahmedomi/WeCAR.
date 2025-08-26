@@ -18,8 +18,8 @@ export const addCar = async (req, res, next) => {
     const newCar = await Car.create([car], { session });
     res.status(200).send({ message: "Car added successfully", newCar });
     console.log(car);
-    await session.commitTransaction()
-    session.endSession()
+    await session.commitTransaction();
+    session.endSession();
   } catch (error) {
     next(error);
     console.log(error);
@@ -28,4 +28,14 @@ export const addCar = async (req, res, next) => {
   }
 };
 export const updateCar = () => {};
-export const deleteCar = () => {};
+export const deleteCar = async (req, res, next) => {
+  try {
+    console.log(req.params.id);
+    const deletedCar = await Car.findOneAndDelete(req.params.id);
+
+    res.status(200).send({ message: "Car deleted successfully", deletedCar });
+  } catch (error) {
+    next(error);
+    console.log(error);
+  }
+};
