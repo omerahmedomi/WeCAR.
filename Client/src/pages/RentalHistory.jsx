@@ -30,15 +30,15 @@ const RentalHistory = () => {
     }
   }, [user]);
 
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-xl font-eczar">
-          <Loader />
-        </p>
-      </div>
-    );
-  }
+  // if (isLoading) {
+  //   return (
+  //     <div className="min-h-screen flex items-center justify-center">
+  //       <p className="text-xl font-eczar">
+  //         <Loader />
+  //       </p>
+  //     </div>
+  //   );
+  // }
 
   const apiBase = "http://localhost:5500";
 
@@ -68,11 +68,11 @@ const RentalHistory = () => {
     <div>
       <Header />
       <main className="pt-17 ">
-        {loading ? (
+        {loading || isLoading ? (
           <span className="flex justify-center items-center mt-4">
             <BeatLoader size={10} color="gray" />
           </span>
-        ) : orders.length > 0 ? (
+        ) : orders.length > 0  ? (
           <Table
             columns={[
               {

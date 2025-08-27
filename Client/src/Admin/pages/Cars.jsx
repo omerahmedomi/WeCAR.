@@ -1,8 +1,8 @@
 // src/pages/Cars.jsx
 import React, { useState,useEffect } from "react";
 import Table from "../components/Table";
-import Modal from "../components/Modal";
 import axios from "axios";
+import CarModal from "../components/CarModal";
 
 
 
@@ -85,7 +85,7 @@ export default function Cars() {
         Add Car
       </button>
       <Table
-        columns={["_id", "name", "model","available"]}
+        columns={["_id", "name", "model", "available"]}
         data={cars}
         onEdit={(row) => {
           setEditing(row);
@@ -93,9 +93,11 @@ export default function Cars() {
         }}
         onDelete={(row) => deleteCar(row._id)}
       />
-      <Modal
+      <CarModal
         isOpen={modalOpen}
-        onClose={() => {setModalOpen(false) ,setError('')}}
+        onClose={() => {
+          setModalOpen(false), setError("");
+        }}
         onSave={handleSave}
         initialData={editing}
         error={error}

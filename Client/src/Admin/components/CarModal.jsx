@@ -1,7 +1,7 @@
-// src/components/Modal.jsx
+// src/components/CarModal.jsx
 import React, { useState, useEffect } from "react";
 
-export default function Modal({
+export default function CarModal({
   isOpen,
   onClose,
   onSave,

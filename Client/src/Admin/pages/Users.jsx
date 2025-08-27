@@ -1,7 +1,6 @@
 // src/pages/Users.jsx
 import React, { useState, useEffect } from "react";
 import Table from "../components/Table";
-import Modal from "../components/Modal";
 import axios from "axios";
 
 export default function Users() {

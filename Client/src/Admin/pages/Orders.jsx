@@ -1,7 +1,8 @@
 // src/pages/Orders.jsx
 import React, { useState } from "react";
 import Table from "../components/Table";
-import Modal from "../components/Modal";
+import OrderModal from "../components/OrderModal";
+
 
 export default function Orders() {
   const [orders, setOrders] = useState([
@@ -41,7 +42,7 @@ export default function Orders() {
         }}
         onDelete={(row) => setOrders(orders.filter((o) => o.id !== row.id))}
       />
-      <Modal
+      <OrderModal
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
         onSave={handleSave}
