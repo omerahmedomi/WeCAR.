@@ -99,7 +99,7 @@ const RentalHistory = () => {
               { key: "column5", title: "Status", dataType: DataType.String },
             ]}
             data={dataArray}
-            editingMode={EditingMode.Cell}
+            // editingMode={EditingMode.Cell}
             rowKeyField={"id"}
             sortingMode={SortingMode.Single}
           />

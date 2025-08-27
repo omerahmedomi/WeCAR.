@@ -26,7 +26,7 @@ const RentalCars = () => {
         selectedGear === "any" || car.transmission === selectedGear;
       const colorMatch =
         selectedColor === "any" ||
-        car.color.toLowerCase() === selectedColor.toLowerCase();
+        car?.color.toLowerCase() === selectedColor.toLowerCase();
       const priceMatch = (() => {
         if (selectedPrice === "any") return true;
         if (selectedPrice === "below 15K") return car.pricePerDayInK < 15;
