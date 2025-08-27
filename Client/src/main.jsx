@@ -10,6 +10,7 @@ import SignUp from "./pages/SignUp";
 import { GlobalProvider } from "./GlobalContext";
 import RentalPage from "./pages/RentalPage";
 import Admin from "./Admin/Admin";
+import RentalHistory from "./pages/RentalHistory";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,9 @@ const router = createBrowserRouter([
   {
     path:'/admin',
     element:<Admin/>
+  },{
+    path:'/rental-history',
+    element:<RentalHistory/>
   }
 ]);
 

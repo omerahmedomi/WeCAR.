@@ -6,6 +6,7 @@ import { useGlobal } from "../GlobalContext";
 import ArrowDown from "../Icons/ArrowDown";
 import Footer from "./../components/Footer";
 import axios from "axios";
+import { Loader } from "lucide-react";
 
 const toUTCDate = (s) => {
   if (!s) return null;
@@ -65,7 +66,7 @@ const RentalPage = () => {
     try {
       const result = await axios.post(
         apiBase + "/orders",
-        { userId: user.id, carId: car.id, price: totalPrice },
+        { userId: user._id, carId: car._id, price: totalPrice,pickUpDate:dates.pickUpDate,returnDate:dates.returnDate },
         {
           withCredentials: true,
         }
@@ -84,7 +85,7 @@ const RentalPage = () => {
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <p className="text-xl font-eczar">Loading...</p>
+        <p className="text-xl font-eczar"><Loader /></p>
       </div>
     );
   }

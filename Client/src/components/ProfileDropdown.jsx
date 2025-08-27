@@ -58,7 +58,7 @@ const ProfileDropdown = ({ user }) => {
             <li className="flex items-center gap-x-1.5 px-2 py-1.5 hover:bg-gray-100">
               <History />
               <Link
-                to="/profile"
+                to="/rental-history"
                 className="block "
                 onClick={() => setIsOpen(false)}
               >

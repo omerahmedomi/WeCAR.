@@ -16,11 +16,19 @@ const orderSchema = new Schema({
         required:true,
 
     },
-    stauts:{
+    status:{
         type:String,
         enum:['submitted','in use','completed'],
         default:'submitted'
 
+    },
+    pickUpDate:{
+        type:Date,
+        required:true
+    },
+    returnDate:{
+        type:Date,
+        required:true
     }
 
 })
