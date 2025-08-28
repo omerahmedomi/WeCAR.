@@ -2,8 +2,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { DataType, EditingMode,SortingMode,PagingPosition,ActionType } from "ka-table/enums";
-import { Table,useTable } from "ka-table";
+import { Table,useTable ,useTableInstance} from "ka-table";
 import { updateCellValue } from "ka-table/actionCreators";
+// import "./CustomEditorDemo.scss";
+import { ICellEditorProps } from "ka-table/props";
 
 export default function Orders() {
   const [orders, setOrders] = useState([
@@ -57,26 +59,57 @@ setIsLoading(true)
   }
  }
 
- const table = useTable({
+ const table = useTable({// not needed if using custom editor
   onDispatch: (action)=>{
 
     if(action.type == ActionType.UpdateCellValue){
+      console.log("From")
          updateStatus(action.rowKeyValue,action.value)
     }
 
   }
  })
+
+ const CustomEditor = ({ column, rowKeyValue, value }) => {
+   const table = useTableInstance();
+   const close = () => {
+     table.closeEditor(rowKeyValue, column.key);
+   };
+   const [editorValue, setValue] = useState(value);
+   return (
+     <div>
+       <select
+         className="form-control"
+         autoFocus={true}
+         defaultValue={editorValue}
+         onBlur={() => {
+          //  
+          console.log("From dropwdown",rowKeyValue,value,editorValue)
+          updateStatus(rowKeyValue,editorValue)
+           table.closeEditor(rowKeyValue, column.key);
+         }}
+         onChange={(event) => {
+           setValue(event.currentTarget.value);
+         }}
+       >
+         <option value={"submitted"}>Submitted</option>
+         <option value={"in use"}>In Use</option>
+         <option value={"completed"}>Completed</option>
+       </select>
+     </div>
+   );
+ };
   return (
     <div>
       <h1 className="text-xl font-bold mb-4">Orders</h1>
       <Table
-      table={table}
+        table={table}
         columns={[
           {
             key: "column1",
             title: "Order ID",
             dataType: DataType.String,
-            width: "200px ",
+            width: "40%",
             isEditable: false,
           },
           {
@@ -119,6 +152,23 @@ setIsLoading(true)
           pageSize: 10,
           pageSizes: [5, 10, 15],
           position: PagingPosition.Bottom,
+        }}
+        childComponents={{
+          table: {
+            elementAttributes: () => ({
+              className: "custom-editor-demo-table",
+            }),
+          },
+          cellEditor: {
+            content: (props) => {
+              switch (props.column.key) {
+                // case "passed":
+                //   return <CustomLookupEditor {...props} />;
+                case "column6":
+                  return <CustomEditor {...props} />;
+              }
+            },
+          },
         }}
 
         // editableCells={[
