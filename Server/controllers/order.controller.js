@@ -47,3 +47,21 @@ export const getOrders = async (req, res, next) => {
     console.log(error);
   }
 };
+
+
+export const updateOrder  = async (req,res,next)=>{
+  try {
+    const {id}= req.params
+    const {status} =req.body
+
+    console.log(id,status)
+    const order = await Order.findByIdAndUpdate(id,{status},{new:true})
+
+    res.status(200).send({message:"Order updated successfully",order})
+  } catch (error) {
+    next(error)
+    console.log(error)
+    
+  }
+
+}

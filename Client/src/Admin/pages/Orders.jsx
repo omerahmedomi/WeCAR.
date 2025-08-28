@@ -1,14 +1,16 @@
 // src/pages/Orders.jsx
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { DataType, EditingMode, SortingMode } from "ka-table/enums";
-import { Table } from "ka-table";
+import { DataType, EditingMode,SortingMode,PagingPosition,ActionType } from "ka-table/enums";
+import { Table,useTable } from "ka-table";
+import { updateCellValue } from "ka-table/actionCreators";
 
 export default function Orders() {
   const [orders, setOrders] = useState([
     // { id: 1, user: "John Doe", car: "Toyota Corolla" },
   ]);
-
+  const [isLoading,setIsLoading] = useState(false)
+  const [editableCells, setEditableCells] = useState([]); // empty array
   const dataArray = orders.map((order, index) => ({
     column1: order._id,
     column2: order.user.firstName + " " + order.user.lastName,
@@ -16,7 +18,7 @@ export default function Orders() {
     column4: order.pickUpDate.split("T")[0],
     column5: order.returnDate.split("T")[0],
     column6: order.status,
-    id: index,
+    id: order._id,
   }));
 
   const handleSave = (data) => {
@@ -31,42 +33,100 @@ export default function Orders() {
 
   const fetchOrders = async () => {
     try {
+setIsLoading(true)
       const response = await axios.get("http://localhost:5500/orders");
       console.log(response);
       setOrders(response.data.orders);
     } catch (error) {
       console.log(error);
+    }finally{
+      setIsLoading(false)
     }
   };
   useEffect(() => {
     fetchOrders();
   }, []);
+ const updateStatus = async(id,value) =>{
+  try {
+    const response = await axios.put(`http://localhost:5500/orders/${id}`,{status:value})
+    console.log(response)
+    fetchOrders()
+  } catch (error) {
+    console.log(error)
+    
+  }
+ }
+
+ const table = useTable({
+  onDispatch: (action)=>{
+
+    if(action.type == ActionType.UpdateCellValue){
+         updateStatus(action.rowKeyValue,action.value)
+    }
+
+  }
+ })
   return (
     <div>
       <h1 className="text-xl font-bold mb-4">Orders</h1>
       <Table
+      table={table}
         columns={[
           {
             key: "column1",
             title: "Order ID",
             dataType: DataType.String,
             width: "200px ",
+            isEditable: false,
           },
-          { key: "column2", title: "Orderd by", dataType: DataType.String },
-          { key: "column3", title: "Car Ordered", dataType: DataType.String },
-          { key: "column4", title: "Pick-Up Date", dataType: DataType.String },
-          { key: "column5", title: "Return Date", dataType: DataType.String },
-          { key: "column6", title: "Status", dataType: DataType.String },
+          {
+            key: "column2",
+            title: "Orderd by",
+            dataType: DataType.String,
+            isEditable: false,
+          },
+          {
+            key: "column3",
+            title: "Car Ordered",
+            dataType: DataType.String,
+            isEditable: false,
+          },
+          {
+            key: "column4",
+            title: "Pick-Up Date",
+            dataType: DataType.String,
+            isEditable: false,
+          },
+          {
+            key: "column5",
+            title: "Return Date",
+            dataType: DataType.String,
+            isEditable: false,
+          },
+          {
+            key: "column6",
+            title: "Status",
+            dataType: DataType.String,
+          },
         ]}
         data={dataArray}
         editingMode={EditingMode.Cell}
         rowKeyField={"id"}
-        editableCells={[
-          {
-            columnKey: "column6",
-            // rowKeyValue: 1,
-          },
-        ]}
+        loading={{ enabled: isLoading }}
+        paging={{
+          enabled: true,
+          pageIndex: 0,
+          pageSize: 10,
+          pageSizes: [5, 10, 15],
+          position: PagingPosition.Bottom,
+        }}
+
+        // editableCells={[
+        //   {
+        //     columnKey: "column1",
+        //     rowKeyValue: 1,
+        //   },
+        // ]}
         // sortingMode={SortingMode.Single}
       />
 

@@ -24,11 +24,7 @@ const RentalHistory = () => {
     // return null;
   }
 
-  useEffect(() => {
-    if (user?._id) {
-      fetchUserOrders(user._id);
-    }
-  }, [user]);
+
 
   // if (isLoading) {
   //   return (
@@ -64,6 +60,12 @@ const RentalHistory = () => {
     column5: order.status,
     id: index,
   }));
+  
+    useEffect(() => {
+      if (user?._id) {
+        fetchUserOrders(user._id);
+      }
+    }, [user]);
   return (
     <div>
       <Header />
@@ -72,7 +74,7 @@ const RentalHistory = () => {
           <span className="flex justify-center items-center mt-4">
             <BeatLoader size={10} color="gray" />
           </span>
-        ) : orders.length > 0  ? (
+        ) : orders?.length   ? (
           <Table
             columns={[
               {
