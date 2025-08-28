@@ -1,17 +1,30 @@
 // src/pages/Orders.jsx
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { DataType, EditingMode,SortingMode,PagingPosition,ActionType } from "ka-table/enums";
-import { Table,useTable ,useTableInstance} from "ka-table";
-import { updateCellValue } from "ka-table/actionCreators";
+import {
+  DataType,
+  EditingMode,
+  SortingMode,
+  PagingPosition,
+  ActionType,
+} from "ka-table/enums";
+import { Table, useTable, useTableInstance } from "ka-table";
+import { updateCellValue, deleteRow } from "ka-table/actionCreators";
 // import "./CustomEditorDemo.scss";
 import { ICellEditorProps } from "ka-table/props";
+import {
+  Delete,
+  DeleteIcon,
+  LucideDelete,
+  RemoveFormattingIcon,
+  Trash,
+} from "lucide-react";
 
 export default function Orders() {
   const [orders, setOrders] = useState([
     // { id: 1, user: "John Doe", car: "Toyota Corolla" },
   ]);
-  const [isLoading,setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
   const [editableCells, setEditableCells] = useState([]); // empty array
   const dataArray = orders.map((order, index) => ({
     column1: order._id,
@@ -35,70 +48,86 @@ export default function Orders() {
 
   const fetchOrders = async () => {
     try {
-setIsLoading(true)
+      setIsLoading(true);
       const response = await axios.get("http://localhost:5500/orders");
       console.log(response);
       setOrders(response.data.orders);
     } catch (error) {
       console.log(error);
-    }finally{
-      setIsLoading(false)
+    } finally {
+      setIsLoading(false);
     }
   };
   useEffect(() => {
     fetchOrders();
   }, []);
- const updateStatus = async(id,value) =>{
-  try {
-    const response = await axios.put(`http://localhost:5500/orders/${id}`,{status:value})
-    console.log(response)
-    fetchOrders()
-  } catch (error) {
-    console.log(error)
-    
-  }
- }
-
- const table = useTable({// not needed if using custom editor
-  onDispatch: (action)=>{
-
-    if(action.type == ActionType.UpdateCellValue){
-      console.log("From")
-         updateStatus(action.rowKeyValue,action.value)
+  const updateStatus = async (id, value) => {
+    try {
+      const response = await axios.put(`http://localhost:5500/orders/${id}`, {
+        status: value,
+      });
+      console.log(response);
+      fetchOrders();
+    } catch (error) {
+      console.log(error);
     }
+  };
+  const deleteOrder = async (id) => {
+    try {
+      const response = await axios.delete(`http://localhost:5500/orders/${id}`);
+      console.log(response);
+      fetchOrders();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const table = useTable({
+    // not needed if using custom editor
+    onDispatch: (action) => {
+      if (action.type == ActionType.UpdateCellValue) {
+        console.log("From");
+        updateStatus(action.rowKeyValue, action.value);
+      }
+    },
+  });
 
-  }
- })
+  const CustomEditor = ({ column, rowKeyValue, value }) => {
+    const table = useTableInstance();
+    const close = () => {
+      table.closeEditor(rowKeyValue, column.key);
+    };
+    const [editorValue, setValue] = useState(value);
+    return (
+      <div>
+        <select
+          className="form-control"
+          autoFocus={true}
+          defaultValue={editorValue}
+          onBlur={() => {
+            //
+            value != editorValue && updateStatus(rowKeyValue, editorValue);
+            table.closeEditor(rowKeyValue, column.key);
+          }}
+          onChange={(event) => {
+            setValue(event.currentTarget.value);
+          }}
+        >
+          <option value={"submitted"}>Submitted</option>
+          <option value={"in use"}>In Use</option>
+          <option value={"completed"}>Completed</option>
+        </select>
+      </div>
+    );
+  };
 
- const CustomEditor = ({ column, rowKeyValue, value }) => {
-   const table = useTableInstance();
-   const close = () => {
-     table.closeEditor(rowKeyValue, column.key);
-   };
-   const [editorValue, setValue] = useState(value);
-   return (
-     <div>
-       <select
-         className="form-control"
-         autoFocus={true}
-         defaultValue={editorValue}
-         onBlur={() => {
-          //  
-          console.log("From dropwdown",rowKeyValue,value,editorValue)
-          updateStatus(rowKeyValue,editorValue)
-           table.closeEditor(rowKeyValue, column.key);
-         }}
-         onChange={(event) => {
-           setValue(event.currentTarget.value);
-         }}
-       >
-         <option value={"submitted"}>Submitted</option>
-         <option value={"in use"}>In Use</option>
-         <option value={"completed"}>Completed</option>
-       </select>
-     </div>
-   );
- };
+  const DeleteRow = ({ dispatch, rowKeyValue }) => {
+    return (
+      <Trash
+        onClick={() => deleteOrder(rowKeyValue)}
+        className="size-5 transition-all rounded-full p-0.5 hover:bg-gray-200 hover:cursor-pointer"
+      />
+    );
+  };
   return (
     <div>
       <h1 className="text-xl font-bold mb-4">Orders</h1>
@@ -109,8 +138,9 @@ setIsLoading(true)
             key: "column1",
             title: "Order ID",
             dataType: DataType.String,
-            width: "40%",
+            width: "",
             isEditable: false,
+            style: { wordBreak: "break-word" },
           },
           {
             key: "column2",
@@ -141,6 +171,12 @@ setIsLoading(true)
             title: "Status",
             dataType: DataType.String,
           },
+          {
+            key: ":delete",
+            width: 70,
+            style: { textAlign: "center" },
+            isEditable: false,
+          },
         ]}
         data={dataArray}
         editingMode={EditingMode.Cell}
@@ -154,11 +190,11 @@ setIsLoading(true)
           position: PagingPosition.Bottom,
         }}
         childComponents={{
-          table: {
-            elementAttributes: () => ({
-              className: "custom-editor-demo-table",
-            }),
-          },
+          // table: {
+          //   elementAttributes: () => ({
+          //     className: "custom-editor-demo-table",
+          //   }),
+          // },
           cellEditor: {
             content: (props) => {
               switch (props.column.key) {
@@ -166,6 +202,14 @@ setIsLoading(true)
                 //   return <CustomLookupEditor {...props} />;
                 case "column6":
                   return <CustomEditor {...props} />;
+              }
+            },
+          },
+          cellText: {
+            content: (props) => {
+              switch (props.column.key) {
+                case ":delete":
+                  return <DeleteRow {...props} />;
               }
             },
           },

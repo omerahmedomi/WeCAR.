@@ -65,3 +65,15 @@ export const updateOrder  = async (req,res,next)=>{
   }
 
 }
+
+
+export const deleteOrder = async (req,res,next)=>{
+  try {
+    const deletedOrder = await Order.findByIdAndDelete(req.params.id)
+    res.status(200).send({message:"Order deleted successfully",deletedOrder})
+  } catch (error) {
+    next(error)
+    console.log(error)
+    
+  }
+}
