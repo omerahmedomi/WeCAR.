@@ -9,9 +9,9 @@ import {
   ActionType,
 } from "ka-table/enums";
 import { Table, useTable, useTableInstance } from "ka-table";
-import { updateCellValue, deleteRow } from "ka-table/actionCreators";
-// import "./CustomEditorDemo.scss";
-import { ICellEditorProps } from "ka-table/props";
+// import { updateCellValue, deleteRow } from "ka-table/actionCreators";
+// // import "./CustomEditorDemo.scss";
+// import { ICellEditorProps } from "ka-table/props";
 import {
   Delete,
   DeleteIcon,
@@ -28,7 +28,7 @@ export default function Orders() {
   const [editableCells, setEditableCells] = useState([]); // empty array
   const dataArray = orders.map((order, index) => ({
     column1: order._id,
-    column2: order.user.firstName + " " + order.user.lastName,
+    column2: order.user?.firstName + " " + order.user?.lastName,
     column3: order.car.name + " " + order.car.model,
     column4: order.pickUpDate.split("T")[0],
     column5: order.returnDate.split("T")[0],
@@ -52,6 +52,7 @@ export default function Orders() {
       const response = await axios.get("http://localhost:5500/orders");
       console.log(response);
       setOrders(response.data.orders);
+      fetchOrders()
     } catch (error) {
       console.log(error);
     } finally {
@@ -124,7 +125,7 @@ export default function Orders() {
     return (
       <Trash
         onClick={() => deleteOrder(rowKeyValue)}
-        className="size-5 transition-all rounded-full p-0.5 hover:bg-gray-200 hover:cursor-pointer"
+        className="size-6 transition-all rounded-full p-1 hover:bg-gray-200 hover:cursor-pointer"
       />
     );
   };
@@ -132,7 +133,7 @@ export default function Orders() {
     <div>
       <h1 className="text-xl font-bold mb-4">Orders</h1>
       <Table
-        table={table}
+        // table={table}
         columns={[
           {
             key: "column1",
