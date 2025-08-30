@@ -25,8 +25,6 @@ const RentalHistory = () => {
     // return null;
   }
 
-
-
   // if (isLoading) {
   //   return (
   //     <div className="min-h-screen flex items-center justify-center">
@@ -65,15 +63,17 @@ const RentalHistory = () => {
     column2: Capitalize(order.car.name) + " " + Capitalize(order.car.model),
     column3: order.pickUpDate.split("T")[0],
     column4: order.returnDate.split("T")[0],
-    column5: order.status,
+    column5: order.price * 1000 + " ETB",
+    column6: order.price == order.car.pricePerDayInK ? 'Self':'Chauffeur',
+    column7: Capitalize(order.status),
     id: index,
   }));
-  
-    useEffect(() => {
-      if (user?._id) {
-        fetchUserOrders(user._id);
-      }
-    }, [user]);
+
+  useEffect(() => {
+    if (user?._id) {
+      fetchUserOrders(user._id);
+    }
+  }, [user]);
   return (
     <div>
       <Header />
@@ -82,14 +82,13 @@ const RentalHistory = () => {
           <span className="flex justify-center items-center mt-4">
             <BeatLoader size={10} color="gray" />
           </span>
-        ) : orders?.length   ? (
+        ) : orders?.length ? (
           <Table
             columns={[
               {
                 key: "column1",
                 title: "Order ID",
                 dataType: DataType.String,
-                
               },
               {
                 key: "column2",
@@ -106,7 +105,17 @@ const RentalHistory = () => {
                 title: "Return Date",
                 dataType: DataType.String,
               },
-              { key: "column5", title: "Status", dataType: DataType.String },
+              {
+                key: "column5",
+                title: "Total Price",
+                dataType: DataType.String,
+              },
+              {
+                key: "column6",
+                title: "Drive Type",
+                dataType: DataType.String,
+              },
+              { key: "column7", title: "Status", dataType: DataType.String },
             ]}
             data={dataArray}
             // editingMode={EditingMode.Cell}
