@@ -21,7 +21,7 @@ export default function Cars() {
   const [modalOpen, setModalOpen] = useState(false);
   const [editing, setEditing] = useState(null);
   const apiBase = "http://localhost:5500";
-  const [searchText,setSearchText] = useState('')
+  const [searchText, setSearchText] = useState("");
 
   const [isLoading, setIsLoading] = useState(false);
   const dataArray = cars.map((car) => ({
@@ -34,14 +34,14 @@ export default function Cars() {
 
   const fetchCars = async () => {
     try {
-      setIsLoading(true)
+      setIsLoading(true);
       const response = await axios.get(apiBase + `/cars`);
       console.log(response);
       setCars(response.data.cars);
     } catch (error) {
       console.log(error);
-    }finally{
-      setIsLoading(false)
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -101,7 +101,7 @@ export default function Cars() {
   }, []);
 
   return (
-    <div>
+    <div className="font-eczar">
       <h1 className="text-xl font-bold mb-4">Cars</h1>
       <div className="flex gap-x-2 mb-2">
         <PlusCircle
@@ -118,7 +118,7 @@ export default function Cars() {
           onChange={(event) => {
             setSearchText(event.currentTarget.value);
           }}
-          className="ring focus:outline-none focus:ring-2 ring-gray-400 rounded-md caret-gray-500  px-1 py-0.5 font-eczar "
+          className="ring focus:outline-none focus:ring-2 ring-gray-400 rounded-md caret-gray-500  px-2 py-0.5 font-eczar "
           placeholder="Search for cars"
         />
       </div>
@@ -197,6 +197,13 @@ export default function Cars() {
         searchText={searchText}
         noData={{
           text: "No Data Found",
+        }}
+        paging={{
+          enabled: true,
+          pageIndex: 0,
+          pageSize: 10,
+          pageSizes: [5, 10, 15],
+          position: PagingPosition.Bottom,
         }}
       />
       <CarModal

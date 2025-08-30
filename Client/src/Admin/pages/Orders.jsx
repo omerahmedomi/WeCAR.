@@ -24,6 +24,7 @@ export default function Orders() {
   const [orders, setOrders] = useState([
     // { id: 1, user: "John Doe", car: "Toyota Corolla" },
   ]);
+  const [searchText,setSearchText] = useState('')
   const [isLoading, setIsLoading] = useState(false);
   const [editableCells, setEditableCells] = useState([]); // empty array
   const dataArray = orders.map((order, index) => ({
@@ -130,8 +131,17 @@ export default function Orders() {
     );
   };
   return (
-    <div>
+    <div className="font-eczar">
       <h1 className="text-xl font-bold mb-4">Orders</h1>
+      <input
+        type="search"
+        value={searchText}
+        onChange={(event) => {
+          setSearchText(event.currentTarget.value);
+        }}
+        className="ring focus:outline-none focus:ring-2 ring-gray-400 rounded-md caret-gray-500  px-2 py-0.5 font-eczar mb-3"
+        placeholder="Search for cars"
+      />
       <Table
         // table={table}
         columns={[
@@ -183,6 +193,10 @@ export default function Orders() {
         editingMode={EditingMode.Cell}
         rowKeyField={"id"}
         loading={{ enabled: isLoading }}
+        noData={{
+          text: "No Data Found",
+        }}
+        searchText={searchText}
         paging={{
           enabled: true,
           pageIndex: 0,

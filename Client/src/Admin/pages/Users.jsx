@@ -15,7 +15,7 @@ export default function Users() {
   const [users, setUsers] = useState([
     // { id: 1, name: "John Doe", email: "john@example.com" },
   ]);
-
+ const[searchText,setSearchText] =useState('')
   const apiBase = "http://localhost:5500";
 
   const fetchUsers = async () => {
@@ -66,8 +66,17 @@ export default function Users() {
       );
     };
   return (
-    <div>
+    <div className="font-eczar">
       <h1 className="text-xl font-bold mb-4">Users</h1>
+      <input
+        type="search"
+        value={searchText}
+        onChange={(event) => {
+          setSearchText(event.currentTarget.value);
+        }}
+        className="ring focus:outline-none focus:ring-2 ring-gray-400 rounded-md caret-gray-500  px-2 py-0.5 font-eczar mb-3"
+        placeholder="Search for cars"
+      />
 
       <Table
         columns={[
@@ -95,6 +104,17 @@ export default function Users() {
         data={dataArray}
         loading={{ enabled: isLoading }}
         rowKeyField={"id"}
+        noData={{
+          text: "No Data Found",
+        }}
+        searchText={searchText}
+        paging={{
+          enabled: true,
+          pageIndex: 0,
+          pageSize: 10,
+          pageSizes: [5, 10, 15],
+          position: PagingPosition.Bottom,
+        }}
         childComponents={{
           cellText: {
             content: (props) => {
