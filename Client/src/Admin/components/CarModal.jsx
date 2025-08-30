@@ -1,26 +1,30 @@
 // src/components/CarModal.jsx
+import { Save, XCircle } from "lucide-react";
 import React, { useState, useEffect } from "react";
-
+import { TagsInput } from "react-tag-input-component";
 export default function CarModal({
   isOpen,
   onClose,
   onSave,
   initialData,
   error,
-  setError
+  setError,
   // fields,
 }) {
   const [formData, setFormData] = useState({});
-  
+  const [selected, setSelected] = useState(formData.features || []);
 
   useEffect(() => {
     if (isOpen) setFormData(initialData || {});
   }, [initialData, isOpen]);
 
+  useEffect(() => {
+    setSelected(formData.features || []);
+  }, [formData.features]);
   if (!isOpen) return null;
 
   const handleChange = (e) => {
-    setError('')
+    setError("");
     const { name, value, type } = e.target;
 
     let newValue = value;
@@ -33,9 +37,11 @@ export default function CarModal({
   };
 
   return (
-    <div className="fixed inset-0 bg-black/10 bg-opacity-40 flex items-center justify-center font-eczar z-50">
-      <div className="bg-white rounded-lg shadow-lg p-6 w-full h-full ">
-        <h2 className="text-lg font-bold mb-4">Edit Item</h2>
+    <div className="bg-white fixed inset-0  bg-opacity-40 flex items-center justify-center font-eczar z-50 overflow-y-scroll ">
+      <div className=" rounded-lg  p-6 w-full h-full ">
+        <h2 className="text-lg font-bold mb-4 text-center">
+          {initialData ? "Edit Car" : "Add Car"}
+        </h2>
         {/* {fields.map((field) => (
           <input
             key={field}
@@ -46,7 +52,7 @@ export default function CarModal({
           />
         ))} */}
         <p className="error-message  text-sm text-red-600 h-5 mb-4">{error}</p>
-        <div className="edit-car grid gap-4 grid-cols-[repeat(2,auto)] *:mb-2   *:bg-amber-20">
+        <div className="edit-car grid gap-x-24 gap-y-5 grid-cols-[repeat(2,auto)] *:mb-2   *:bg-amber-20 justify-center">
           <div>
             <span>Car Name:</span>
             <input
@@ -190,11 +196,11 @@ export default function CarModal({
               onChange={handleChange}
             />
           </div>
-          <div className="flex">
+          <div className="flex items-center">
             <span>Available:</span>
-            <div className=" flex flex-col ">
+            <div className=" flex items-center">
               <label for="available"></label>
-              <div className="">
+              <div className="flex items-center">
                 <input
                   type="radio"
                   name="available"
@@ -205,7 +211,7 @@ export default function CarModal({
                 />
                 <span>Yes</span>
               </div>
-              <div>
+              <div className="flex items-center">
                 <input
                   type="radio"
                   name="available"
@@ -222,23 +228,35 @@ export default function CarModal({
               </div>
             </div>
           </div>
+          <div className="max-w-80 features flex items-center">
+            <span>Features:</span>
+            <TagsInput
+              value={selected}
+              onChange={setSelected}
+              name="features"
+              placeHolder="Enter car features"
+            />
+          </div>
         </div>
 
-        <div className="flex justify-end space-x-2">
-          <button
-            onClick={onClose}
-            className={`px-3 py-1 rounded-lg cursor-pointer  bg-gray-200 `}
-          >
-            Cancel
-          </button>
-          <button
-            onClick={() => onSave(formData)}
-            className={`px-3 py-1 rounded-lg disabled:cursor-not-allowed disabled:bg-gray-200 bg-green-500 cursor-pointer text-white ${
-              error && "disabled"
+        <div className="flex justify-end space-x-3">
+          <span title="Cancel">
+            <XCircle
+              size={34}
+              onClick={onClose}
+              className={`rounded-full p-1 hover:bg-fuchsia-50  cursor-pointer hover:  `}
+            />
+          </span>
+
+          <span title="Save">
+            <Save
+              size={34}
+              onClick={() => onSave({ ...formData, features: selected })}
+              className={` rounded-lg disabled:cursor-not-allowed   cursor-pointer p-1 hover:bg-fuchsia-50
+
             }`}
-          >
-            Save
-          </button>
+            />
+          </span>
         </div>
       </div>
     </div>

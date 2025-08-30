@@ -64,3 +64,7 @@ input[type='radio']{
   table-layout:  fixed !important;
   width:  100% !important;
 }
+
+.features input {
+  @apply border-0
+}
