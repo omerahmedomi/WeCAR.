@@ -24,6 +24,11 @@ const dayDiff = (startStr, endStr) => {
   // return Math.max(1, Math.round((end - start) / msPerDay));
 };
 
+
+export function Capitalize(word){
+  return word.split("")[0].toUpperCase() + word.slice(1)
+}
+
 const RentalPage = () => {
   const { state: car } = useLocation();
   const { user, isLoading } = useGlobal();
@@ -96,6 +101,7 @@ const RentalPage = () => {
     // return null;
   }
 
+
   return (
     <div>
       <Header />
@@ -119,35 +125,35 @@ const RentalPage = () => {
             <ul className="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-3 text-gray-700 font-eczar">
               <li className="flex justify-between">
                 <span className="font-semibold">Name:</span>
-                <span>{car.name}</span>
+                <span>{Capitalize(car.name)}</span>
               </li>
               <li className="flex justify-between">
                 <span className="font-semibold">Model:</span>
-                <span>{car.model}</span>
+                <span>{Capitalize(car.model)}</span>
               </li>
               <li className="flex justify-between">
                 <span className="font-semibold">Mileage:</span>
-                <span>{car.mileage}</span>
+                <span>{car.mileage}Kms</span>
               </li>
               <li className="flex justify-between">
                 <span className="font-semibold">Transmission:</span>
-                <span>{car.transmission}</span>
+                <span>{Capitalize(car.transmission)}</span>
               </li>
               <li className="flex justify-between">
                 <span className="font-semibold">Fuel Type:</span>
-                <span>{car.fuelType}</span>
+                <span>{Capitalize(car.fuelType)}</span>
               </li>
               <li className="flex justify-between">
                 <span className="font-semibold">Luggage:</span>
-                <span>{car.luggageCapacity}</span>
+                <span>{car.luggageCapacity} Liters</span>
               </li>
               <li className="flex justify-between gap-x-10 sm:gap-x-15 lg:gap-x-10">
                 <span className="font-semibold">Features:</span>
-                <span>{car.features.join(" , ")}</span>
+                <span>{car.features.map((f)=>Capitalize(f)).join(" , ")}</span>
               </li>
               <li className="flex justify-between">
                 <span className="font-semibold">Color:</span>
-                <span>{car.color}</span>
+                <span>{Capitalize(car.color)}</span>
               </li>
             </ul>
           </div>
