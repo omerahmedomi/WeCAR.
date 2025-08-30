@@ -21,6 +21,7 @@ export default function Cars() {
   const [modalOpen, setModalOpen] = useState(false);
   const [editing, setEditing] = useState(null);
   const apiBase = "http://localhost:5500";
+  const [searchText,setSearchText] = useState('')
 
   const [isLoading, setIsLoading] = useState(false);
   const dataArray = cars.map((car) => ({
@@ -102,15 +103,25 @@ export default function Cars() {
   return (
     <div>
       <h1 className="text-xl font-bold mb-4">Cars</h1>
-      <PlusCircle
-        onClick={() => {
-          setEditing(null);
-          setModalOpen(true);
-        
-        }}
-        className="hover:bg-gray-200 rounded-full p-1 transition-all text-gray-700 hover:cursor-pointer"
-        size={30}
-      />
+      <div className="flex gap-x-2 mb-2">
+        <PlusCircle
+          onClick={() => {
+            setEditing(null);
+            setModalOpen(true);
+          }}
+          className="hover:bg-gray-200 rounded-full p-1 transition-all text-gray-700 hover:cursor-pointer"
+          size={30}
+        />
+        <input
+          type="search"
+          value={searchText}
+          onChange={(event) => {
+            setSearchText(event.currentTarget.value);
+          }}
+          className="ring focus:outline-none focus:ring-2 ring-gray-400 rounded-md caret-gray-500  px-1 py-0.5 font-eczar "
+          placeholder="Search for cars"
+        />
+      </div>
       <Table
         // columns={["_id", "name", "model", "available"]}
         // data={cars}
@@ -145,7 +156,7 @@ export default function Cars() {
             key: ":edit",
             width: 70,
             style: { textAlign: "center" },
-          }
+          },
         ]}
         data={dataArray}
         rowKeyField="id"
@@ -153,17 +164,17 @@ export default function Cars() {
           cellText: {
             content: (props) => {
               switch (props.column.key) {
-                case ":delete" : 
-                return (
-                  <Trash
-                    onClick={() => {
-                      console.log("Deleting car with id:", props.rowKeyValue);
-                      deleteCar(props.rowKeyValue);
-                    }}
-                    className="size-6 transition-all rounded-full p-1 hover:bg-gray-200 hover:cursor-pointer"
-                  />
-                );
-                case ":edit" :
+                case ":delete":
+                  return (
+                    <Trash
+                      onClick={() => {
+                        console.log("Deleting car with id:", props.rowKeyValue);
+                        deleteCar(props.rowKeyValue);
+                      }}
+                      className="size-6 transition-all rounded-full p-1 hover:bg-gray-200 hover:cursor-pointer"
+                    />
+                  );
+                case ":edit":
                   return (
                     <Edit
                       size={23}
@@ -179,11 +190,14 @@ export default function Cars() {
                     />
                   );
               }
-              
             },
           },
         }}
         loading={{ enabled: isLoading }}
+        searchText={searchText}
+        noData={{
+          text: "No Data Found",
+        }}
       />
       <CarModal
         isOpen={modalOpen}
