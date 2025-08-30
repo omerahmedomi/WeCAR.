@@ -210,8 +210,8 @@ const RentalPage = () => {
                 value={dates.returnDate}
                 name="returnDate"
                 onChange={handleDateChange}
-                min={returnMinDate.toISOString().split("T")[0]}
-                max={returnMaxDate.toISOString().split("T")[0]}
+                // min={returnMinDate.toISOString().split("T")[0]}
+                // max={returnMaxDate.toISOString().split("T")[0]}
                 disabled={!dates.pickUpDate}
                 className="px-2 py-1 w-40 border border-gray-300 rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-cyan-400"
               />

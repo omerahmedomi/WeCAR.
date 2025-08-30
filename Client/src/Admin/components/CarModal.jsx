@@ -33,7 +33,7 @@ export default function CarModal({
   };
 
   return (
-    <div className="fixed inset-0 bg-black/10 bg-opacity-40 flex items-center justify-center font-eczar">
+    <div className="fixed inset-0 bg-black/10 bg-opacity-40 flex items-center justify-center font-eczar z-50">
       <div className="bg-white rounded-lg shadow-lg p-6 w-full h-full ">
         <h2 className="text-lg font-bold mb-4">Edit Item</h2>
         {/* {fields.map((field) => (

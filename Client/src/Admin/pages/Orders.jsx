@@ -29,10 +29,10 @@ export default function Orders() {
   const dataArray = orders.map((order, index) => ({
     column1: order._id,
     column2: order.user?.firstName + " " + order.user?.lastName,
-    column3: order.car.name + " " + order.car.model,
-    column4: order.pickUpDate.split("T")[0],
-    column5: order.returnDate.split("T")[0],
-    column6: order.status,
+    column3: order.car?.name + " " + order.car?.model,
+    column4: order?.pickUpDate.split("T")[0],
+    column5: order?.returnDate.split("T")[0],
+    column6: order?.status,
     id: order._id,
   }));
 
@@ -52,7 +52,7 @@ export default function Orders() {
       const response = await axios.get("http://localhost:5500/orders");
       console.log(response);
       setOrders(response.data.orders);
-      fetchOrders()
+    
     } catch (error) {
       console.log(error);
     } finally {
