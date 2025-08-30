@@ -11,6 +11,7 @@ import Hybrid from "../Icons/Hybrid";
 import {useGlobal} from "../GlobalContext";
 import { useNavigate } from "react-router-dom";
 import Road from "../Icons/Road";
+import { Capitalize } from "../pages/RentalPage";
 
 const CarCard = ({ car }) => {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ const CarCard = ({ car }) => {
           className="object-cover w-full h-full max-w-full rounded-md"
         />
       </div>
-      <p className="mb-4 font-semibold">{car.name}</p>
+      <p className="mb-4 font-semibold">{Capitalize(car.name) + " "+ Capitalize(car.model)}</p>
       <div className="infos grid grid-cols-3 gap-y-2 border-dashed border-b gap-x-5 pb-4">
         <div className="flex items-center gap-x-1 ">
           <span>

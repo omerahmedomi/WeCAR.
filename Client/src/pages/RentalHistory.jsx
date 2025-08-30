@@ -8,6 +8,7 @@ import "ka-table/style.css";
 import { Table } from "ka-table";
 import { DataType, EditingMode, SortingMode } from "ka-table/enums";
 import { BeatLoader } from "react-spinners";
+import { Capitalize } from "./RentalPage";
 
 const RentalHistory = () => {
   const navigate = useNavigate();
@@ -53,10 +54,17 @@ const RentalHistory = () => {
   };
 
   const dataArray = orders.map((order, index) => ({
-    column1: order._id.slice(0,5) +' '+order._id.slice(5,10)+' '+order._id.slice(10,15)+' '+order._id.slice(15),
-    column2: order.car.name + " " + order.car.model,
-    column3: order.pickUpDate.split('T')[0],
-    column4: order.returnDate.split('T')[0],
+    column1:
+      order._id.slice(0, 5) +
+      " " +
+      order._id.slice(5, 10) +
+      " " +
+      order._id.slice(10, 15) +
+      " " +
+      order._id.slice(15),
+    column2: Capitalize(order.car.name) + " " + Capitalize(order.car.model),
+    column3: order.pickUpDate.split("T")[0],
+    column4: order.returnDate.split("T")[0],
     column5: order.status,
     id: index,
   }));
