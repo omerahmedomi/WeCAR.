@@ -11,7 +11,7 @@ import {
   ActionType,
 } from "ka-table/enums";
 import { Table, useTable, useTableInstance } from "ka-table";
-import { Trash } from "lucide-react";
+import { Edit, PlusCircle, Trash } from "lucide-react";
 
 export default function Cars() {
   const [cars, setCars] = useState([
@@ -102,15 +102,15 @@ export default function Cars() {
   return (
     <div>
       <h1 className="text-xl font-bold mb-4">Cars</h1>
-      <button
+      <PlusCircle
         onClick={() => {
           setEditing(null);
           setModalOpen(true);
+        
         }}
-        className="mb-4 px-3 py-1 bg-green-500 text-white rounded"
-      >
-        Add Car
-      </button>
+        className="hover:bg-gray-200 rounded-full p-1 transition-all text-gray-700 hover:cursor-pointer"
+        size={30}
+      />
       <Table
         // columns={["_id", "name", "model", "available"]}
         // data={cars}
@@ -141,27 +141,49 @@ export default function Cars() {
             style: { textAlign: "center" },
             isEditable: false,
           },
+          {
+            key: ":edit",
+            width: 70,
+            style: { textAlign: "center" },
+          }
         ]}
         data={dataArray}
         rowKeyField="id"
         childComponents={{
           cellText: {
             content: (props) => {
-              if (props.column.key === ":delete") {
+              switch (props.column.key) {
+                case ":delete" : 
                 return (
                   <Trash
-                    onClick={() =>{
+                    onClick={() => {
                       console.log("Deleting car with id:", props.rowKeyValue);
-                       deleteCar(props.rowKeyValue)
-                      }}
+                      deleteCar(props.rowKeyValue);
+                    }}
                     className="size-6 transition-all rounded-full p-1 hover:bg-gray-200 hover:cursor-pointer"
                   />
                 );
+                case ":edit" :
+                  return (
+                    <Edit
+                      size={23}
+                      onClick={() => {
+                        const carToEdit = cars.find(
+                          (car) => car._id == props.rowKeyValue
+                        );
+                        console.log(carToEdit);
+                        setEditing(carToEdit);
+                        setModalOpen(true);
+                      }}
+                      className="p-1 hover:bg-gray-200 hover:cursor-pointer"
+                    />
+                  );
               }
+              
             },
           },
         }}
-        loading={{enabled:isLoading}}
+        loading={{ enabled: isLoading }}
       />
       <CarModal
         isOpen={modalOpen}
