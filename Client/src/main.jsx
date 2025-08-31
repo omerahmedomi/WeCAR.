@@ -7,10 +7,13 @@ import OurServices from "./pages/OurServices";
 import AboutUs from "./pages/AboutUs";
 import FAQs from "./pages/FAQs";
 import SignUp from "./pages/SignUp";
-import { GlobalProvider } from "./GlobalContext";
+import { GlobalProvider} from "./GlobalContext";
 import RentalPage from "./pages/RentalPage";
 import Admin from "./Admin/Admin";
 import RentalHistory from "./pages/RentalHistory";
+import AdminRoute from "./Admin/components/AdminRoute";
+
+
 
 const router = createBrowserRouter([
   {
@@ -42,12 +45,17 @@ const router = createBrowserRouter([
     element: <RentalPage />,
   },
   {
-    path:'/admin',
-    element:<Admin/>
-  },{
-    path:'/rental-history',
-    element:<RentalHistory/>
-  }
+    path: "/admin",
+    element: (
+      <AdminRoute >
+        <Admin />
+      </AdminRoute>
+    ),
+  },
+  {
+    path: "/rental-history",
+    element: <RentalHistory />,
+  },
 ]);
 
 createRoot(document.getElementById("root")).render(

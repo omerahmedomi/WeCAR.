@@ -6,17 +6,18 @@ const GlobalContext = createContext();
 
 export function GlobalProvider({ children }) {
   const [user, setUser] = useState(null);
-  const [isLoading,setIsLoading] = useState(false)
+  const [isLoading,setIsLoading] = useState(true)
   
  const apiBase = "http://localhost:5500";
 
   useEffect(() => {
     const checkUser = async () => {
       try {
-        setIsLoading(true)
         const res = await axios.get(apiBase + "/auth/me", {
           withCredentials: true,
         });
+        console.log("HIIIIIIIIIIIIIIIII")
+        console.log("API RESPONSE",res.data)
         setUser(res.data.user);
          // restore state
        

@@ -33,8 +33,8 @@ export default function Orders() {
     column3: order.car?.name + " " + order.car?.model,
     column4: order?.pickUpDate.split("T")[0],
     column5: order?.returnDate.split("T")[0],
-    column6: order.price,
-    column7: order.price === order.car.pricePerDayInK ? "self" : "chauffeur",
+    column6: order?.price,
+    column7: order?.price === order.car?.pricePerDayInK ? "self" : "chauffeur",
     column8: order?.status,
     id: order._id,
   }));

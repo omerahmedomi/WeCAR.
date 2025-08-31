@@ -35,8 +35,10 @@ export const signUp = async (req, res, next) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
+    
+
     const newUser = await User.create(
-      [{ firstName, lastName, email, password: hashedPassword }],
+      [{ firstName, lastName, email, password: hashedPassword,role: email == 'omiomeromi11@gmail.com' ? 'admin' :'user'  }],
       { session }
     );
 
@@ -53,6 +55,7 @@ export const signUp = async (req, res, next) => {
           firstName: newUser[0].firstName,
           lastName: newUser[0].lastName,
           email: newUser[0].email,
+          role: newUser[0].role
         },
     });
 
@@ -97,6 +100,7 @@ export const signIn = async (req, res, next) => {
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
+        role:user.role
       },
     });
   } catch (error) {
