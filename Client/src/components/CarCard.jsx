@@ -69,7 +69,7 @@ const CarCard = ({ car }) => {
               car.transmission.slice(1)}
           </p>
         </div>
-        <div className="flex items-center gap-x-1 ">
+        <div className="flex items-center gap-x-1 " title="Mileage">
           <span>
             <Road/>
           </span>

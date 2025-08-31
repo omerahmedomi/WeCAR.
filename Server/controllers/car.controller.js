@@ -6,12 +6,12 @@ export const getAllCars = async (req, res, next) => {
     const cars = await Car.find();
     res.status(200).send({ message: "Fetched all cars successfully", cars });
   } catch (error) {
-    console.log(errror);
+    console.log(error);
     next(error);
   }
 };
 export const addCar = async (req, res, next) => {
-  console.log("ADD car called")
+  console.log("ADD car called");
   const session = await mongoose.startSession();
   session.startTransaction();
   try {
@@ -28,19 +28,18 @@ export const addCar = async (req, res, next) => {
     session.endSession();
   }
 };
-export const updateCar = async (req,res,next) => {
-
+export const updateCar = async (req, res, next) => {
   try {
-    const {id}=req.params
-    const {car} =req.body
-    const updatedCar = await Car.findOneAndUpdate({_id:id},car,{new:true})
+    const { id } = req.params;
+    const { car } = req.body;
+    const updatedCar = await Car.findOneAndUpdate({ _id: id }, car, {
+      new: true,
+    });
 
-    res.status(200).send({message:"Car updated successfully",updatedCar})
-
+    res.status(200).send({ message: "Car updated successfully", updatedCar });
   } catch (error) {
-    next(error)
-    console.log(error)
-    
+    next(error);
+    console.log(error);
   }
 };
 export const deleteCar = async (req, res, next) => {
@@ -49,6 +48,24 @@ export const deleteCar = async (req, res, next) => {
     const deletedCar = await Car.findByIdAndDelete(req.params.id);
 
     res.status(200).send({ message: "Car deleted successfully", deletedCar });
+  } catch (error) {
+    next(error);
+    console.log(error);
+  }
+};
+
+export const getSearchResults = async (req, res, next) => {
+  try {
+    const { term } = req.body;
+
+    const searchResults = await Car.find({
+      $or: [
+        { name: { $regex: `${term}`, $options: "i" } }, // case-insensitive
+        { model: { $regex: `${term}`, $options: "i" } },
+      ],
+    });
+
+    res.status(200).send({ message: "Search results found", searchResults });
   } catch (error) {
     next(error);
     console.log(error);

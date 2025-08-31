@@ -24,7 +24,7 @@ const carSchema = new mongoose.Schema({
   },
   mileage: Number,
   pricePerDayInK:{
-    type:String,
+    type:Number,
     trim:true,
   },
   color:{

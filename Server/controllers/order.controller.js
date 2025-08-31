@@ -25,7 +25,7 @@ export const getUserOrders = async (req, res, next) => {
     const { id } = req.params;
     const userOrders = await Order.find({ user: id })
       .populate("user", "firstName lastName")
-      .populate("car", "name model");
+      .populate("car", "name model pricePerDayInK");
 
     res
       .status(200)
@@ -40,7 +40,7 @@ export const getOrders = async (req, res, next) => {
   try {
     const orders = await Order.find()
       .populate("user", "firstName lastName")
-      .populate("car", "name model");
+      .populate("car", "name model pricePerDayInK");
     res.status(200).send({ message: "Orders fetched successfully", orders });
   } catch (error) {
     next(error);
