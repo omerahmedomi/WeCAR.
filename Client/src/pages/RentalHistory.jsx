@@ -9,6 +9,7 @@ import { Table } from "ka-table";
 import { DataType, EditingMode, SortingMode } from "ka-table/enums";
 import { BeatLoader } from "react-spinners";
 import { Capitalize } from "./RentalPage";
+import { apiBase } from "../data";
 
 const RentalHistory = () => {
   const navigate = useNavigate();
@@ -34,8 +35,6 @@ const RentalHistory = () => {
   //     </div>
   //   );
   // }
-
-  const apiBase = "http://localhost:5500";
 
   const fetchUserOrders = async (id) => {
     try {
@@ -64,7 +63,7 @@ const RentalHistory = () => {
     column3: order.pickUpDate.split("T")[0],
     column4: order.returnDate.split("T")[0],
     column5: order.price * 1000 + " ETB",
-    column6: order.price == order.car.pricePerDayInK ? 'Self':'Chauffeur',
+    column6: order.price == order.car.pricePerDayInK ? "Self" : "Chauffeur",
     column7: Capitalize(order.status),
     id: index,
   }));

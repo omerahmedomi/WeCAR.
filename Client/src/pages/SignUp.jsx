@@ -4,6 +4,7 @@ import Button from "../components/Button";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useGlobal } from "../GlobalContext";
+import { apiBase } from "../data";
 
 const SignUp = () => {
   const [isRegistration, setIsRegistration] = useState(false);
@@ -11,8 +12,6 @@ const SignUp = () => {
   const [error, setError] = useState("");
   const [isAuthenticating, setIsAuthenticating] = useState(false);
   const [agreement, setAgreement] = useState(false);
-  //" http://192.168.1.4:5500"
-  const apiBase = "http://localhost:5500";
 
   const navigate = useNavigate();
 
@@ -153,4 +152,3 @@ const SignUp = () => {
 };
 
 export default SignUp;
-

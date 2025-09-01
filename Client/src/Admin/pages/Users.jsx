@@ -10,6 +10,7 @@ import {
 } from "ka-table/enums";
 import { Table, useTable, useTableInstance } from "ka-table";
 import { Trash } from "lucide-react";
+import { apiBase } from "../../data";
 
 export default function Users() {
   const [users, setUsers] = useState([
@@ -18,7 +19,6 @@ export default function Users() {
 
   const [error, setError] = useState("");
   const [searchText, setSearchText] = useState("");
-  const apiBase = "http://localhost:5500";
 
   const fetchUsers = async () => {
     try {

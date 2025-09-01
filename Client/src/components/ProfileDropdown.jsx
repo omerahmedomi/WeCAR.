@@ -5,6 +5,7 @@ import History from "./../Icons/History";
 import LogOut from "./../Icons/LogOut";
 import axios from "axios";
 import { useGlobal } from "../GlobalContext";
+import { apiBase } from "../data";
 
 const ProfileDropdown = ({ user }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,7 +28,7 @@ const ProfileDropdown = ({ user }) => {
   //   if (!user?.name) return "U";
   //   return user.name.charAt(0).toUpperCase();
   // };
-  const apiBase = "http://localhost:5500";
+
   return (
     <div className="relative" ref={dropdownRef}>
       {/* Avatar Button */}

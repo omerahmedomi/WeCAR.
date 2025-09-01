@@ -7,6 +7,7 @@ import ArrowDown from "../Icons/ArrowDown";
 import Footer from "./../components/Footer";
 import axios from "axios";
 import { Loader } from "lucide-react";
+import { apiBase } from "../data";
 
 const toUTCDate = (s) => {
   if (!s) return null;
@@ -24,9 +25,8 @@ const dayDiff = (startStr, endStr) => {
   // return Math.max(1, Math.round((end - start) / msPerDay));
 };
 
-
-export function Capitalize(word){
-  return word.split("")[0].toUpperCase() + word.slice(1)
+export function Capitalize(word) {
+  return word.split("")[0].toUpperCase() + word.slice(1);
 }
 
 const RentalPage = () => {
@@ -65,18 +65,23 @@ const RentalPage = () => {
     console.log(dates);
     console.log(selected);
   };
-  const apiBase = "http://localhost:5500";
 
   const orderCar = async () => {
     try {
       const result = await axios.post(
         apiBase + "/orders",
-        { userId: user._id, carId: car._id, price: totalPrice,pickUpDate:dates.pickUpDate,returnDate:dates.returnDate },
+        {
+          userId: user._id,
+          carId: car._id,
+          price: totalPrice,
+          pickUpDate: dates.pickUpDate,
+          returnDate: dates.returnDate,
+        },
         {
           withCredentials: true,
         }
       );
-      const order= result.data
+      const order = result.data;
       console.log("Order", result);
     } catch (error) {
       console.log("Error creating order", error);
@@ -90,7 +95,9 @@ const RentalPage = () => {
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <p className="text-xl font-eczar"><Loader /></p>
+        <p className="text-xl font-eczar">
+          <Loader />
+        </p>
       </div>
     );
   }
@@ -100,7 +107,6 @@ const RentalPage = () => {
     navigate("/sign-up", { replace: true });
     // return null;
   }
-
 
   return (
     <div>
@@ -149,7 +155,9 @@ const RentalPage = () => {
               </li>
               <li className="flex justify-between gap-x-10 sm:gap-x-15 lg:gap-x-10">
                 <span className="font-semibold">Features:</span>
-                <span>{car.features.map((f)=>Capitalize(f)).join(" , ")}</span>
+                <span>
+                  {car.features.map((f) => Capitalize(f)).join(" , ")}
+                </span>
               </li>
               <li className="flex justify-between">
                 <span className="font-semibold">Color:</span>
@@ -239,7 +247,7 @@ const RentalPage = () => {
               orderCar();
             }}
           >
-            Create Order 
+            Create Order
           </button>
         </div>
         <div className="note mb-10 max-w-250 mx-auto">

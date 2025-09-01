@@ -7,8 +7,8 @@ import CarCard from "../components/CarCard";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import Loader from "../components/Loader";
-import {useDebounce} from 'use-debounce'
-
+import { useDebounce } from "use-debounce";
+import { apiBase } from "../data";
 
 const RentalCars = () => {
   const [selectedGear, setSelectedGear] = useState("any");
@@ -16,8 +16,8 @@ const RentalCars = () => {
   const [selectedColor, setSelectedColor] = useState("any");
   const [allCars, setAllCars] = useState([]);
   const [cars, setCars] = useState([]);
-  const [searchTerm,setSearchTerm]= useState('')
-  const [debouncedSearchTerm] = useDebounce(searchTerm,1000)
+  const [searchTerm, setSearchTerm] = useState("");
+  const [debouncedSearchTerm] = useDebounce(searchTerm, 1000);
 
   const gearOptions = ["any", "manual", "auto"];
   const priceOptions = ["any", "below 15K", "15K-20K", "20K-25K", "above 25K"];
@@ -47,14 +47,16 @@ const RentalCars = () => {
 
     setCars(filtered);
   };
-  
-  const apiBase =  "http://localhost:5500";
 
   const fetchCars = async (query) => {
     try {
       setLoading(true);
 
-      const response =   query ? await axios.post(apiBase + `/cars/search`,{term:debouncedSearchTerm}) : await axios.get(apiBase + `/cars`);
+      const response = query
+        ? await axios.post(apiBase + `/cars/search`, {
+            term: debouncedSearchTerm,
+          })
+        : await axios.get(apiBase + `/cars`);
       const cars = response.data.cars || response.data.searchResults;
       setAllCars(cars.filter((car) => car.available));
       setCars(cars.filter((car) => car.available));
@@ -86,12 +88,12 @@ const RentalCars = () => {
           className="border  rounded-full pl-8 py-1 focus:outline-none font-eczar focus:bg-white [&::-webkit-search-cancel-button]:hidden caret-cyan-500"
           placeholder="Search for cars"
           value={searchTerm}
-          onChange={(event)=>setSearchTerm(event.currentTarget.value)}
+          onChange={(event) => setSearchTerm(event.currentTarget.value)}
         />
         <span className="absolute left-2 top-2 ">
           <Search />
         </span>
-        <span className={`self-center ${!loading && 'invisible h-6'}` }>
+        <span className={`self-center ${!loading && "invisible h-6"}`}>
           <Loader loading={loading} />
         </span>
       </div>

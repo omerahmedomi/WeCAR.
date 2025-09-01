@@ -19,12 +19,13 @@ import {
   RemoveFormattingIcon,
   Trash,
 } from "lucide-react";
+import { apiBase } from "../../data";
 
 export default function Orders() {
   const [orders, setOrders] = useState([
     // { id: 1, user: "John Doe", car: "Toyota Corolla" },
   ]);
-  const [searchText,setSearchText] = useState('')
+  const [searchText, setSearchText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [editableCells, setEditableCells] = useState([]); // empty array
   const dataArray = orders.map((order, index) => ({
@@ -52,10 +53,9 @@ export default function Orders() {
   const fetchOrders = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.get("http://localhost:5500/orders");
+      const response = await axios.get(apiBase + `/orders`);
       console.log(response);
       setOrders(response.data.orders);
-    
     } catch (error) {
       console.log(error);
     } finally {
@@ -67,7 +67,7 @@ export default function Orders() {
   }, []);
   const updateStatus = async (id, value) => {
     try {
-      const response = await axios.put(`http://localhost:5500/orders/status/${id}`, {
+      const response = await axios.put(apiBase + `/orders/status/${id}`, {
         status: value,
       });
       console.log(response);
@@ -78,7 +78,7 @@ export default function Orders() {
   };
   const deleteOrder = async (id) => {
     try {
-      const response = await axios.delete(`http://localhost:5500/orders/${id}`);
+      const response = await axios.delete(apiBase + `/orders/${id}`);
       console.log(response);
       fetchOrders();
     } catch (error) {

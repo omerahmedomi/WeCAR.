@@ -12,6 +12,7 @@ import {
 } from "ka-table/enums";
 import { Table, useTable, useTableInstance } from "ka-table";
 import { Edit, PlusCircle, Trash } from "lucide-react";
+import { apiBase } from "../../data";
 
 export default function Cars() {
   const [cars, setCars] = useState([
@@ -20,7 +21,7 @@ export default function Cars() {
   const [error, setError] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
   const [editing, setEditing] = useState(null);
-  const apiBase = "http://localhost:5500";
+
   const [searchText, setSearchText] = useState("");
 
   const [isLoading, setIsLoading] = useState(false);
@@ -47,7 +48,11 @@ export default function Cars() {
 
   const addCar = async (data) => {
     try {
-      const response = await axios.post(apiBase + `/cars`, { car: data },{withCredentials:true});
+      const response = await axios.post(
+        apiBase + `/cars`,
+        { car: data },
+        { withCredentials: true }
+      );
       console.log(response);
       fetchCars();
       setModalOpen(false);
