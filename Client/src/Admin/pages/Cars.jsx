@@ -47,7 +47,7 @@ export default function Cars() {
 
   const addCar = async (data) => {
     try {
-      const response = await axios.post(apiBase + `/cars`, { car: data });
+      const response = await axios.post(apiBase + `/cars`, { car: data },{withCredentials:true});
       console.log(response);
       fetchCars();
       setModalOpen(false);

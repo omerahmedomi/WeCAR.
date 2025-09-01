@@ -1,8 +1,9 @@
 import User from "../model/user.model.js"
 
-export const adminMiddleware = (req,res,next) =>{
+export const adminMiddleware = async (req,res,next) =>{
     try {
-        const user = User.findById(req.userID)
+        console.log(req)
+        const user = await User.findById(req.userID)
         if (user.role == 'admin') {
             next()
         } else{
