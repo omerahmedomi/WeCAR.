@@ -4,6 +4,7 @@ import XMark from "../Icons/XMark";
 import { Link,useLocation } from "react-router-dom";
 import { useGlobal } from "../GlobalContext";
 import ProfileDropdown from "./ProfileDropdown";
+import ThemeToggle from "./ThemeToggle";
 
 const Header = () => {
   const [activeNav, setActiveNav] = useState(0);
@@ -86,6 +87,7 @@ useEffect(() => {
           </Link>
         ))}
       </ul>
+      <ThemeToggle/>
       <div className="sign-up sm:flex gap-2 hidden text-nowrap ">
         {isLoading ? (
           <p className="text-sm text-gray-600">Checking Status...</p>
