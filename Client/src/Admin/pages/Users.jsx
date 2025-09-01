@@ -15,7 +15,9 @@ export default function Users() {
   const [users, setUsers] = useState([
     // { id: 1, name: "John Doe", email: "john@example.com" },
   ]);
- const[searchText,setSearchText] =useState('')
+
+  const [error, setError] = useState("");
+  const [searchText, setSearchText] = useState("");
   const apiBase = "http://localhost:5500";
 
   const fetchUsers = async () => {
@@ -33,11 +35,14 @@ export default function Users() {
   const deleteUser = async (id) => {
     try {
       // setUsers((prev) => prev.filter((u) => u._id !== id));
-      const response = await axios.delete(apiBase + `/users/${id}`);
+      const response = await axios.delete(apiBase + `/users/${id}`, {
+        withCredentials: true,
+      });
       console.log(response);
       fetchUsers();
     } catch (error) {
       console.log(error);
+      setError(error.response.data.message);
     }
   };
 
@@ -47,7 +52,7 @@ export default function Users() {
     column1: user._id,
     column2: user.firstName + " " + user.lastName,
     column3: user.email,
-    // column4: user.pickUpDate.split("T")[0],
+    column4: user.role,
     // column5: user.returnDate.split("T")[0],
     // column6: user.status,
     id: user._id,
@@ -57,17 +62,60 @@ export default function Users() {
     fetchUsers();
   }, []);
 
-  const DeleteRow = ({ dispatch, rowKeyValue }) => {
-      return (
-        <Trash
-          onClick={() => deleteUser(rowKeyValue)}
-          className="size-6 transition-all rounded-full p-1 hover:bg-gray-200 hover:cursor-pointer"
-        />
+  const updateRole = async (id, value) => {
+    try {
+      const response = await axios.put(
+        apiBase + `/users/role/${id}`,
+        { role: value },
+        { withCredentials: true }
       );
-    };
+      console.log(response);
+      fetchUsers();
+    } catch (error) {
+      console.log(error.response.data.message);
+      setError(error.response.data.message);
+    }
+  };
+
+  const CustomRoleEditor = ({ column, rowKeyValue, value }) => {
+    const table = useTableInstance();
+
+    const [editorValue, setValue] = useState(value);
+    return (
+      <div>
+        <select
+          className="form-control"
+          autoFocus={true}
+          defaultValue={editorValue}
+          onBlur={() => {
+            //
+            value != editorValue && updateRole(rowKeyValue, editorValue);
+            table.closeEditor(rowKeyValue, column.key);
+          }}
+          onChange={(event) => {
+            setValue(event.currentTarget.value);
+          }}
+        >
+          <option value={"user"}>User</option>
+          <option value={"admin"}>Admin</option>
+          <option value={"super admin"}>Super Admin</option>
+        </select>
+      </div>
+    );
+  };
+
+  const DeleteRow = ({ dispatch, rowKeyValue }) => {
+    return (
+      <Trash
+        onClick={() => deleteUser(rowKeyValue)}
+        className="size-6 transition-all rounded-full p-1 hover:bg-gray-200 hover:cursor-pointer"
+      />
+    );
+  };
   return (
     <div className="font-eczar">
-      <h1 className="text-xl font-bold mb-4">Users</h1>
+      <h1 className="text-xl font-bold ">Users</h1>
+      <p className="error-message text-sm text-red-600 h-2 mb-4">{error}</p>
       <input
         type="search"
         value={searchText}
@@ -84,23 +132,33 @@ export default function Users() {
             key: "column1",
             title: "User ID",
             dataType: DataType.String,
+            isEditable: false,
           },
           {
             key: "column2",
             title: "Name",
             dataType: DataType.String,
+            isEditable: false,
           },
           {
             key: "column3",
             title: "Email",
+            dataType: DataType.String,
+            isEditable: false,
+          },
+          {
+            key: "column4",
+            title: "Role",
             dataType: DataType.String,
           },
           {
             key: ":delete",
             width: 70,
             style: { textAlign: "center" },
+            isEditable: false,
           },
         ]}
+        editingMode={EditingMode.Cell}
         data={dataArray}
         loading={{ enabled: isLoading }}
         rowKeyField={"id"}
@@ -121,6 +179,16 @@ export default function Users() {
               switch (props.column.key) {
                 case ":delete":
                   return <DeleteRow {...props} />;
+              }
+            },
+          },
+          cellEditor: {
+            content: (props) => {
+              switch (props.column.key) {
+                // case "passed":
+                //   return <CustomLookupEditor {...props} />;
+                case "column4":
+                  return <CustomRoleEditor {...props} />;
               }
             },
           },

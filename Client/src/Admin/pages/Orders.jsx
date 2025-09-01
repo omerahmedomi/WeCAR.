@@ -67,7 +67,7 @@ export default function Orders() {
   }, []);
   const updateStatus = async (id, value) => {
     try {
-      const response = await axios.put(`http://localhost:5500/orders/${id}`, {
+      const response = await axios.put(`http://localhost:5500/orders/status/${id}`, {
         status: value,
       });
       console.log(response);

@@ -49,7 +49,7 @@ export const getOrders = async (req, res, next) => {
 };
 
 
-export const updateOrder  = async (req,res,next)=>{
+export const updateStatus  = async (req,res,next)=>{
   try {
     const {id}= req.params
     const {status} =req.body
@@ -65,6 +65,9 @@ export const updateOrder  = async (req,res,next)=>{
   }
 
 }
+
+
+
 
 
 export const deleteOrder = async (req,res,next)=>{
