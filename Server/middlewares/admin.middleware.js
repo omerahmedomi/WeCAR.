@@ -4,10 +4,10 @@ export const adminMiddleware = async (req,res,next) =>{
     try {
         console.log(req)
         const user = await User.findById(req.userID)
-        if (user.role == 'admin') {
+        if (user.role == 'admin' || user.role == 'super admin') {
             next()
         } else{
-            throw new Error('Forbidden')
+            throw new Error('Forbidden Action!')
         }
     } catch (error) {
         next(error)

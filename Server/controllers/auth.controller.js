@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User from "../model/user.model.js";
-import { JWT_SECRET, JWT_EXPIRES_IN } from "../config/env.js";
+import { JWT_SECRET, JWT_EXPIRES_IN ,SUPER_ADMIN_EMAIL} from "../config/env.js";
 
 const cookieOptions = {
   httpOnly: true, // JS can't access it
@@ -17,6 +17,7 @@ export const signUp = async (req, res, next) => {
 
   try {
     console.log(req.body);
+    console.log(SUPER_ADMIN_EMAIL);
     const { firstName, lastName, email, password } = req.body;
 
     const existingUser = await User.findOne({ email });
@@ -36,9 +37,9 @@ export const signUp = async (req, res, next) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     
-
+     
     const newUser = await User.create(
-      [{ firstName, lastName, email, password: hashedPassword,role: email == 'omiomeromi11@gmail.com' ? 'admin' :'user'  }],
+      [{ firstName, lastName, email, password: hashedPassword,role: email == SUPER_ADMIN_EMAIL ? 'super admin' :'user' }],
       { session }
     );
 

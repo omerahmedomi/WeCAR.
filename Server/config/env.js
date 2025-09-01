@@ -7,4 +7,5 @@ export const {
     PORT,
     JWT_SECRET,
     JWT_EXPIRES_IN,
+    SUPER_ADMIN_EMAIL
 } = process.env
