@@ -77,7 +77,7 @@ const RentalHistory = () => {
   return (
     <div>
       <Header />
-      <main className="pt-17 ">
+      <main className="pt-17 min-h-svh">
         {loading || isLoading ? (
           <span className="flex justify-center items-center mt-4">
             <BeatLoader size={10} color="gray" />

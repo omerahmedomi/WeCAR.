@@ -114,7 +114,7 @@ export default function Cars() {
             setEditing(null);
             setModalOpen(true);
           }}
-          className="hover:bg-gray-200 rounded-full p-1 transition-all text-gray-700 hover:cursor-pointer"
+          className="hover:bg-gray-200 dark:hover:bg-gray-900 rounded-full p-1 transition-all text-gray-700 dark:text-gray-400 hover:cursor-pointer"
           size={30}
         />
         <input
