@@ -10,6 +10,7 @@ import { DataType, EditingMode, SortingMode } from "ka-table/enums";
 import { BeatLoader } from "react-spinners";
 import { Capitalize } from "./RentalPage";
 import { apiBase } from "../data";
+import Footer from "../components/Footer";
 
 const RentalHistory = () => {
   const navigate = useNavigate();
@@ -39,7 +40,7 @@ const RentalHistory = () => {
   const fetchUserOrders = async (id) => {
     try {
       SetLoading(true);
-      const response = await axios.get(apiBase + `/orders/${id}`);
+      const response = await axios.get(apiBase + `/orders/${id}`,{withCredentials:true});
       console.log(response);
       setOrders(response.data.userOrders);
       console.log(orders);
@@ -83,6 +84,7 @@ const RentalHistory = () => {
           </span>
         ) : orders?.length ? (
           <Table
+          
             columns={[
               {
                 key: "column1",
@@ -117,14 +119,16 @@ const RentalHistory = () => {
               { key: "column7", title: "Status", dataType: DataType.String },
             ]}
             data={dataArray}
+            
             // editingMode={EditingMode.Cell}
             rowKeyField={"id"}
             sortingMode={SortingMode.Single}
           />
         ) : (
-          <p className="text-center text-gray-600 font-eczar">No Orders</p>
+          <p className="text-center text-gray-600 dark:text-gray-100 font-eczar">No Orders</p>
         )}
       </main>
+      <Footer/>
     </div>
   );
 };

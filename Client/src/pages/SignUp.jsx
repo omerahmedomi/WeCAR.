@@ -55,7 +55,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="bg-re  flex font-roboto box-border ">
+    <div className="  flex font-roboto box-border ">
       <div className="img flex-1 bg-blue-400 shrink-0 min-w-1/2 max-lg:hidden ">
         <img
           src="/CarsAuth.jpg"
@@ -63,7 +63,7 @@ const SignUp = () => {
           className="w-full h-full max-w-full object-fit"
         />
       </div>
-      <div className="bg-inherit h-screen text-black w-full flex flex-col sm:w-[633px] mx-auto p-4 pt-20  gap-5">
+      <div className="bg-inherit h-screen text-black dark:text-gray-100 w-full flex flex-col sm:w-[633px] mx-auto p-4 pt-20  gap-5">
         <div className="flex flex-col text-center">
           <h1 className="font-grenze font-bold text-2xl leading-8 sm:text-3xl ">
             {isRegistration ? "Sign Up" : "Sign In"}

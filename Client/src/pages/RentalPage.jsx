@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Header from "./../components/Header";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useGlobal } from "../GlobalContext";
 
 import ArrowDown from "../Icons/ArrowDown";
@@ -25,6 +25,7 @@ const dayDiff = (startStr, endStr) => {
   // return Math.max(1, Math.round((end - start) / msPerDay));
 };
 
+
 export function Capitalize(word) {
   return word.split("")[0].toUpperCase() + word.slice(1);
 }
@@ -37,6 +38,8 @@ const RentalPage = () => {
   const options = ["self", "chauffeur"];
   const [selected, setSelected] = useState(options[0]);
   const [dates, setDates] = useState({ pickUpDate: "", returnDate: "" });
+  const [loading, setLoading] = useState(true);
+
   const totalDays = dayDiff(dates.pickUpDate, dates.returnDate);
   const totalPrice =
     totalDays > 0
@@ -68,6 +71,7 @@ const RentalPage = () => {
 
   const orderCar = async () => {
     try {
+      setLoading(false);
       const result = await axios.post(
         apiBase + "/orders",
         {
@@ -81,10 +85,14 @@ const RentalPage = () => {
           withCredentials: true,
         }
       );
+      
       const order = result.data;
       console.log("Order", result);
     } catch (error) {
       console.log("Error creating order", error);
+    }finally{
+      
+      navigate("/rental-history", { replace: true });
     }
   };
 
@@ -111,8 +119,8 @@ const RentalPage = () => {
   return (
     <div>
       <Header />
-      <main className="pt-20 px-4 sm:px-8 lg:px-16 max-w-7xl mx-auto space-y-3">
-        <div className="flex flex-col sm:flex-row bg-white rounded-2xl shadow-lg overflow-hidden">
+      <main className="pt-20 px-4 sm:px-8 lg:px-16 max-w-7xl mx-auto space-y-3 ">
+        <div className="flex flex-col sm:flex-row bg-white rounded-2xl shadow-lg overflow-hidden ">
           {/* Image Section */}
           <div className="sm:w-1/2">
             <img
@@ -123,12 +131,12 @@ const RentalPage = () => {
           </div>
 
           {/* Info Section */}
-          <div className="sm:w-1/2 p-6 sm:p-8 bg-gray-50 flex flex-col justify-center">
-            <p className="text-2xl font-bold text-gray-800 mb-4 text-center sm:text-left font-grenze">
+          <div className="sm:w-1/2 p-6 sm:p-8 bg-gray-50 flex flex-col justify-center dark:bg-gray-700 transition-colors duration-500">
+            <p className="text-2xl font-bold text-gray-800 dark:text-gray-50 mb-4 text-center transition-colors duration-500 sm:text-left font-grenze">
               Car Info
             </p>
 
-            <ul className="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-3 text-gray-700 font-eczar">
+            <ul className="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-3 text-gray-700 dark:text-gray-100 font-eczar transition-colors duration-500">
               <li className="flex justify-between">
                 <span className="font-semibold">Name:</span>
                 <span>{Capitalize(car.name)}</span>
@@ -173,10 +181,10 @@ const RentalPage = () => {
           <div className="options-wrapeer lg:flex space-y-4 gap-4 text-nowrap items-center">
             <div className="options  flex gap-2 items-center font-eczar">
               <p className="font-semibold ">Rental Option: </p>
-              <div className="relative w-40">
+              <div className="relative w-40 ">
                 <button
                   onClick={() => setOpen(!open)}
-                  className="w-full flex justify-between items-center py-1 px-2 border border-gray-300 rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                  className="w-full flex justify-between items-center py-1 px-2 border border-gray-300 rounded-lg bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-50 focus:outline-none focus:ring-2 focus:ring-cyan-400  transition-colors duration-500"
                 >
                   {selected.split("")[0].toUpperCase() + selected.slice(1)}{" "}
                   Drive
@@ -186,7 +194,7 @@ const RentalPage = () => {
                 </button>
 
                 {open && (
-                  <ul className="absolute w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg">
+                  <ul className="absolute w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg dark:text-gray-50 dark:bg-gray-700 transition-colors duration-500">
                     {options.map((opt, idx) => (
                       <li
                         key={idx}
@@ -194,7 +202,7 @@ const RentalPage = () => {
                           setSelected(opt);
                           setOpen(false);
                         }}
-                        className="py-1 px-2 cursor-pointer hover:bg-blue-100"
+                        className="py-1 px-2 cursor-pointer hover:bg-blue-100 dark:hover:bg-gray-600 first:rounded-t-lg last:rounded-b-lg  transition-colors duration-500"
                       >
                         {opt.split("")[0].toUpperCase() + opt.slice(1)} Drive
                       </li>
@@ -212,7 +220,7 @@ const RentalPage = () => {
                 onChange={handleDateChange}
                 min={minDate.toISOString().split("T")[0]} // no past dates
                 max={maxDate.toISOString().split("T")[0]} // no past dates
-                className="px-2 py-1 w-40 border border-gray-300 rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                className="px-2 py-1 w-40 border border-gray-300 rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-cyan-400 dark:bg-gray-700 dark:text-gray-100 transition-colors duration-500"
               />
             </div>
             <div
@@ -224,10 +232,10 @@ const RentalPage = () => {
                 value={dates.returnDate}
                 name="returnDate"
                 onChange={handleDateChange}
-                // min={returnMinDate.toISOString().split("T")[0]}
-                // max={returnMaxDate.toISOString().split("T")[0]}
+                min={returnMinDate.toISOString().split("T")[0]}
+                max={returnMaxDate.toISOString().split("T")[0]}
                 disabled={!dates.pickUpDate}
-                className="px-2 py-1 w-40 border border-gray-300 rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                className="px-2 py-1 w-40 border border-gray-300 rounded-lg bg-white text-gray-700 focus:outline-none dark:bg-gray-700 dark:text-gray-100 transition-colors duration-500 focus:ring-2 focus:ring-cyan-400"
               />
             </div>
           </div>
@@ -236,7 +244,7 @@ const RentalPage = () => {
             <span className="ml-2">{totalPrice}K ETB</span>
           </p>
           <button
-            className="font-eczar ring focus:outline-none px-3 py-1 rounded-md focus:ring-2 ring-cyan-400 bg-white active:ring-2 transition-all hover:bg-cyan-50 duration-300 cursor-pointer"
+            className="font-eczar ring focus:outline-none px-3 py-1 rounded-md focus:ring-2 ring-cyan-400 bg-white active:ring-2  hover:bg-cyan-50  cursor-pointer disabled:bg-gray-400 disabled:cursor-not-allowed dark:text-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 transition-colors duration-500"
             onClick={() => {
               if (dates.returnDate <= dates.pickUpDate) {
                 alert(
@@ -246,6 +254,7 @@ const RentalPage = () => {
               }
               orderCar();
             }}
+            disabled={!loading}
           >
             Create Order
           </button>

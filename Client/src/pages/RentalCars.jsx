@@ -85,7 +85,7 @@ const RentalCars = () => {
       <div className="search mt-20 mx-auto bg-blue-10 flex flex-col space-y-4 justify-center items-center w-fit relative ">
         <input
           type="search"
-          className="border  rounded-full pl-8 py-1 focus:outline-none font-eczar focus:bg-white [&::-webkit-search-cancel-button]:hidden caret-cyan-500"
+          className="border  rounded-full pl-8 py-1 focus:outline-none font-eczar focus:bg-white [&::-webkit-search-cancel-button]:hidden  dark:focus:bg-gray-600 caret-cyan-500 placeholder:text-gray-700 dark:placeholder:text-gray-100"
           placeholder="Search for cars"
           value={searchTerm}
           onChange={(event) => setSearchTerm(event.currentTarget.value)}
@@ -99,7 +99,7 @@ const RentalCars = () => {
       </div>
 
       <div className="cat-and-car-wrapper lg:flex lg:items-start w-full shadow-[3px]   font-eczar mt-4 pb-5">
-        <div className="categories lg:border-r-1 border-gray-300 flex text-nowrap gap-x-10 sm:gap-x-0 p-2  flex-wrap max-[415px]:justify-around lg:flex-col  max-lg:justify-around  md:space-y-7 md:px-9  ">
+        <div className="categories lg:border-r-1 border-gray-300 dark:border-gray-600 flex text-nowrap gap-x-10 sm:gap-x-0 p-2  flex-wrap max-[415px]:justify-around lg:flex-col  max-lg:justify-around  md:space-y-7 md:px-9  ">
           <div className="type flex flex-col items-center  space-y-2">
             <p className="font-semibold ">Gear</p>
             <div className="grid grid-cols-2 prices lg:flex flex-col *:space-x-1  *:space-y-3">

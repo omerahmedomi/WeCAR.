@@ -28,12 +28,12 @@ const App = () => {
   return (
     <div className="">
       <Header />
-      <main className="relative pt-10 ">
+      <main className="relative pt-10 dark:text-gray-200">
         <section class="hero relative h-[400px] md:h-[600px] lg:h-screen bg-[url('https://images.unsplash.com/photo-1432462770865-65b70566d673?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwcm9maWxlLWxpa2VkfDE0fHx8ZW58MHx8fHx8')] bg-cover bg-center bg-no-repeat flex flex-col justify-center items-center">
-          <div class="absolute inset-0  bg-black opacity-60 z-10"></div>
+          <div class="absolute inset-0  bg-gray-900 opacity-60 z-10 dark:opacity-75"></div>
 
           <motion.div
-            class="relative z-10 text-white p-6 font-eczar sm:text-center justify-center"
+            class="relative z-10 text-white dark:text-gray-300 p-6 font-eczar sm:text-center justify-center"
             initial={{ x: -200, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 1 }}
@@ -66,12 +66,12 @@ const App = () => {
               transition={{ duration: 0.8, ease: "easeInOut" }} // Animation duration
               viewport={{ once: true, amount: 0.3 }}
             >
-              <div className="size-10 text-blue-900 bg-cyan-400 flex justify-center items-center rounded-lg   ">
+              <div className="size-10 text-blue-900 bg-cyan-400 dark:bg-cyan-500 flex justify-center items-center rounded-lg   ">
                 <Call />
               </div>
               <div className="flex flex-col gap-y-2 w-9/10  ">
                 <h2 className="font-medium">24 Hour Support</h2>
-                <p className="text-gray-600">
+                <p className="text-gray-600 dark:text-gray-300">
                   {" "}
                   We’re here for you anytime, day or night. Our support team is
                   just a call or message away—24 hours a day, 7 days a week.
@@ -85,12 +85,12 @@ const App = () => {
               transition={{ duration: 0.8, ease: "easeInOut" }} // Animation duration
               viewport={{ once: true, amount: 0.3 }}
             >
-              <div className="size-10 text-blue-900 bg-cyan-400 flex justify-center items-center rounded-lg   ">
+              <div className="size-10 text-blue-900 bg-cyan-400 dark:bg-cyan-500 flex justify-center items-center rounded-lg   ">
                 <MedalRibbonStar />
               </div>
               <div className="flex flex-col gap-y-2 w-9/10  ">
                 <h2 className="font-medium">Best Price</h2>
-                <p className="text-gray-600">
+                <p className="text-gray-600 dark:text-gray-300">
                   {" "}
                   Get the best deals without hidden fees. We constantly check
                   market rates to ensure you get unbeatable prices for every car
@@ -106,12 +106,12 @@ const App = () => {
               transition={{ duration: 0.8, ease: "easeInOut" }} // Animation duration
               viewport={{ once: true, amount: 0.3 }}
             >
-              <div className="size-10 text-blue-900 bg-cyan-400 flex justify-center items-center rounded-lg   ">
+              <div className="size-10 text-blue-900 bg-cyan-400 dark:bg-cyan-500 flex justify-center items-center rounded-lg   ">
                 <Verified />
               </div>
               <div className="flex flex-col gap-y-2  w-9/10  ">
                 <h2 className="font-medium">Verified Lisence</h2>
-                <p className="text-gray-600">
+                <p className="text-gray-600 dark:text-gray-300">
                   {" "}
                   Drive with confidence knowing all our vehicles are fully
                   licensed and verified for safety, legality, and top
@@ -126,12 +126,12 @@ const App = () => {
               transition={{ duration: 0.8, ease: "easeInOut" }} // Animation duration
               viewport={{ once: true, amount: 0.3 }}
             >
-              <div className="size-10 text-blue-900 bg-cyan-400 flex justify-center items-center rounded-lg   ">
+              <div className="size-10 text-blue-900 bg-cyan-400 dark:bg-cyan-500 flex justify-center items-center rounded-lg   ">
                 <XCircle />
               </div>
               <div className="flex flex-col gap-y-2  w-9/10  ">
                 <h2 className="font-medium">Free Cancelation</h2>
-                <p className="text-gray-600">
+                <p className="text-gray-600 dark:text-gray-300">
                   {" "}
                   Plans changed? No problem. Cancel your booking for free within
                   our flexible policy—no stress, no extra charges.
@@ -154,7 +154,7 @@ const App = () => {
           </p>
           <div className="shadow-lg flex divide-x-1 py-2 sm:py-5 mt-4 md:mt-6">
             <div className=" pl-2 sm:pl-10 md:pl-15 lg:pl-20 pr-2 sm:pr-5 md:pr-10 lg:pr-12">
-              <p className="font-bold text-cyan-500 text-2xl sm:text-3xl 2xl:text-4xl font-grenze">
+              <p className="font-bold text-cyan-500 dark:text-cyan-300  text-2xl sm:text-3xl 2xl:text-4xl font-grenze">
                 {inView && <CountUp end={350} duration={3} suffix="+" />}
               </p>
               <p className="text-nowrap font-semibold font-eczar text-sm sm:text-base 2xl:text-lg ">
@@ -162,7 +162,7 @@ const App = () => {
               </p>
             </div>
             <div className="  px-2 sm:px-5 md:px-10 lg:px-12 ">
-              <p className="font-bold text-cyan-500 text-2xl sm:text-3xl 2xl:text-4xl font-grenze">
+              <p className="font-bold text-cyan-500 dark:text-cyan-300 text-2xl sm:text-3xl 2xl:text-4xl font-grenze">
                 {inView && <CountUp end={10000} duration={3} suffix="+" />}
               </p>
               <p className="text-nowrap font-semibold font-eczar text-sm sm:text-base 2xl:text-lg ">
@@ -170,7 +170,7 @@ const App = () => {
               </p>
             </div>
             <div className="  pr-2 sm:pr-10 md:pr-15 lg:pr-20   pl-2 sm:pl-5 md:pl-10 lg:pl-12">
-              <p className="font-bold text-cyan-500 text-2xl sm:text-3xl 2xl:text-4xl font-grenze">
+              <p className="font-bold text-cyan-500 dark:text-cyan-300 text-2xl sm:text-3xl 2xl:text-4xl font-grenze">
                 {inView && <CountUp end={5000} duration={3} suffix="+" />}
               </p>
               <p className="text-nowrap font-semibold font-eczar text-sm sm:text-base 2xl:text-lg ">

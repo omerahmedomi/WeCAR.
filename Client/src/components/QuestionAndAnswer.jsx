@@ -6,7 +6,7 @@ const QuestionAndAnswer = ({question,answer}) => {
   return (
     <>
       <div
-        className="question  bg-gray-200 flex justify-between px-5 py-3 cursor-pointer "
+        className="question  bg-gray-200  dark:bg-gray-600 flex justify-between px-5 py-3 cursor-pointer transition-colors duration-500"
         onClick={() => setIsOpen(!isOpen)}
       >
         <span className="font-medium ">{question}</span>
@@ -20,7 +20,7 @@ const QuestionAndAnswer = ({question,answer}) => {
       </div>
 
       <div
-        className={`bg-gray-50 overflow-hidden transition-all duration-700 ${
+        className={`bg-gray-50 dark:bg-gray-800 overflow-hidden transition-all duration-700 ${
           isOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
         } px-5`}
       >

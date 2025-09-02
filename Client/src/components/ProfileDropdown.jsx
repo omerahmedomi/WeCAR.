@@ -34,7 +34,7 @@ const ProfileDropdown = ({ user }) => {
       {/* Avatar Button */}
       <button
         onClick={() => setIsOpen((prev) => !prev)}
-        className="flex items-center justify-center  rounded-4xl text-sm bg-white ring text-gray-700  hover:ring-2 hover:ring-cyan-400 transition "
+        className="flex items-center justify-center  rounded-4xl text-sm bg-white dark:bg-gray-800 ring text-gray-700 dark:text-gray-100  hover:ring-2 hover:ring-cyan-400 transition-all duration-500 "
       >
         <div className="px-4 py-2 flex items-center gap-x-1 justify-center">
           <p>{user.firstName} </p>
@@ -46,28 +46,27 @@ const ProfileDropdown = ({ user }) => {
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div className="absolute -right-1/2 mt-2 w-48 bg-white rounded-lg shadow-lg ring-1 ring-gray-200 z-50 animate-fadeIn">
+        <div className="absolute -right-1/2 sm:-right-2 mt-2 w-48 bg-white dark:bg-gray-600 rounded-lg shadow-lg ring-1 ring-gray-200 z-50 animate-fadeIn">
           <div className="px-4 py-3 border-b">
-            <p className="text-sm font-medium text-gray-900">
+            <p className="text-sm font-medium text-gray-900 dark:text-gray-100">
               {user?.firstName + " " + user?.lastName || "User"}
             </p>
-            <p className="text-xs text-gray-500">
+            <p className="text-xs text-gray-500 dark:text-gray-50">
               {user?.email || "email@example.com"}
             </p>
           </div>
-          <ul className=" text-sm text-gray-700 flex flex-col ">
-            <li className="flex items-center gap-x-1.5 px-2 py-1.5 hover:bg-gray-100">
+          <ul className=" text-sm text-gray-700 flex flex-col dark:text-gray-100 transition-colors duration-500">
+            <Link
+              to="/rental-history"
+             
+              onClick={() => setIsOpen(false)}
+              className="flex items-center gap-x-1.5 px-2 py-1.5 hover:bg-gray-100 dark:hover:bg-gray-800"
+            >
               <History />
-              <Link
-                to="/rental-history"
-                className="block "
-                onClick={() => setIsOpen(false)}
-              >
-                Rental History
-              </Link>
-            </li>
+              <p>Rental History</p>
+            </Link>
             <li
-              className="flex items-center gap-x-1.5 px-2 py-1.5 hover:bg-gray-100 cursor-pointer"
+              className="flex items-center gap-x-1.5 px-2 py-1.5 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-b-lg cursor-pointer"
               onClick={async () => {
                 setIsOpen(false);
                 await axios.post(
@@ -79,7 +78,7 @@ const ProfileDropdown = ({ user }) => {
               }}
             >
               <LogOut />
-              <p className="text-red-600">Log Out</p>
+              <p className="text-red-600  dark:text-red-200">Log Out</p>
             </li>
           </ul>
           {/* <div className="border-t border-black flex  text-left px-1 gap-x-1 py-1 text-sm text-red-600 hover:bg-gray-100 hover:rounded-lg cursor-pointer">

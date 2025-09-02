@@ -53,17 +53,17 @@ const OurServices = () => {
     <div >
       <Header />
 
-      <section className="py-12 px-6 md:px-12 lg:px-20 bg-gray-100 " >
+      <section className="py-12 px-6 md:px-12 lg:px-20 bg-gray-100 dark:bg-gray-800 transition-colors duration-500" >
         <h2 className="text-3xl font-bold text-center mb-10 font-grenze pt-10">Our Services</h2>
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 font-eczar">
           {services.map((service, index) => (
             <div
               key={index}
-              className="bg-white shadow-md rounded-xl p-6 flex flex-col items-start gap-4 hover:shadow-lg transition"
+              className="bg-white dark:bg-gray-700 shadow-md rounded-xl p-6 flex flex-col items-start gap-4 hover:shadow-lg transition-all duration-500"
             >
-              <div className="text-cyan-600">{service.icon}</div>
+              <div className="text-cyan-600 dark:text-cyan-200">{service.icon}</div>
               <h3 className="text-lg font-semibold">{service.title}</h3>
-              <p className="text-sm text-gray-600">{service.description}</p>
+              <p className="text-sm text-gray-600 dark:text-gray-200">{service.description}</p>
             </div>
           ))}
         </div>
