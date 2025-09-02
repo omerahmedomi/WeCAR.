@@ -4,7 +4,7 @@ import XMark from "../Icons/XMark";
 import { Link,useLocation } from "react-router-dom";
 import { useGlobal } from "../GlobalContext";
 import ProfileDropdown from "./ProfileDropdown";
-import ThemeToggle from "./ThemeToggle";
+import ToggleSwitch from "./ToggleSwitch";
 
 const Header = () => {
   const [activeNav, setActiveNav] = useState(0);
@@ -38,7 +38,9 @@ useEffect(() => {
       <h1 className="max-sm:p-3  hover:cursor-pointer text-lg font-semibold">
         <Link to={"/"}>WeCAR.</Link>
       </h1>
+
       <div className={`sm:hidden max-sm:flex items-center gap-3 max-sm:p-4 `}>
+        <ToggleSwitch />
         {isLoading ? (
           <p className="text-sm text-gray-600">Checking Status...</p>
         ) : user ? (
@@ -87,8 +89,9 @@ useEffect(() => {
           </Link>
         ))}
       </ul>
-      <ThemeToggle/>
-      <div className="sign-up sm:flex gap-2 hidden text-nowrap ">
+
+      <div className="sign-up sm:flex gap-2 hidden text-nowrap space-x-1 ">
+        <ToggleSwitch />
         {isLoading ? (
           <p className="text-sm text-gray-600">Checking Status...</p>
         ) : user ? (
