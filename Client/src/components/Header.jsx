@@ -55,7 +55,7 @@ useEffect(() => {
             dark:hover:bg-gray-900
             hover:ring-cyan-400
             active:bg-gray-50
-            active:ring-cyan-400 
+            active:ring-cyan-400 transition-all duration-100 
             "
             to={"/sign-up"}
           >
@@ -108,7 +108,7 @@ useEffect(() => {
             dark:hover:bg-gray-900
             hover:ring-cyan-400
             active:bg-gray-50
-            active:ring-cyan-400
+            active:ring-cyan-400 transition-all duration-100 
             "
             to={"/sign-up"}
           >

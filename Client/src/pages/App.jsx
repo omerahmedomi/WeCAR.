@@ -30,7 +30,7 @@ const App = () => {
       <Header />
       <main className="relative pt-10 dark:text-gray-200">
         <section class="hero relative h-[400px] md:h-[600px] lg:h-screen bg-[url('https://images.unsplash.com/photo-1432462770865-65b70566d673?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwcm9maWxlLWxpa2VkfDE0fHx8ZW58MHx8fHx8')] bg-cover bg-center bg-no-repeat flex flex-col justify-center items-center">
-          <div class="absolute inset-0  bg-gray-900 opacity-60 z-10 dark:opacity-75"></div>
+          <div class="absolute inset-0  bg-gray-900 opacity-60 z-10 dark:opacity-75 transition-opacity duration-500"></div>
 
           <motion.div
             class="relative z-10 text-white dark:text-gray-300 p-6 font-eczar sm:text-center justify-center"
