@@ -38,9 +38,12 @@ useEffect(() => {
       <h1 className="max-sm:p-3  hover:cursor-pointer text-lg font-semibold dark:text-white">
         <Link to={"/"}>WeCAR.</Link>
       </h1>
-
-      <div className={`sm:hidden max-sm:flex items-center gap-3 max-sm:p-4 `}>
+      <span className="order sm:order-4">
+        {" "}
         <ToggleSwitch />
+      </span>
+      <div className={`sm:hidden max-sm:flex items-center gap-3 max-sm:p-4 `}>
+        {/* <ToggleSwitch /> */}
         {isLoading ? (
           <p className="text-sm text-gray-600">Checking Status...</p>
         ) : user ? (
@@ -52,7 +55,7 @@ useEffect(() => {
             dark:hover:bg-gray-900
             hover:ring-cyan-400
             active:bg-gray-50
-            active:ring-cyan-400
+            active:ring-cyan-400 
             "
             to={"/sign-up"}
           >
@@ -81,7 +84,8 @@ useEffect(() => {
             key={index}
             to={navRoutes[index]}
             className={` bg-yellow-00 ${
-              activeNav == index && "text-cyan-600 dark:text-cyan-300  font-medium"
+              activeNav == index &&
+              "text-cyan-600 dark:text-cyan-300  font-medium"
             } max-sm:hover:bg-gray-200 max-sm:dark:hover:bg-gray-500   cursor-pointer max-sm:p-2 text-nowrap  max-sm:block sm:hover:text-cyan-400 sm:dark:hover:text-cyan-100`}
             onClick={() => {
               setActiveNav(index);
@@ -93,7 +97,6 @@ useEffect(() => {
       </ul>
 
       <div className="sign-up sm:flex gap-2 hidden text-nowrap space-x-1 items-center">
-        <ToggleSwitch />
         {isLoading ? (
           <p className="text-xs ">Checking Status...</p>
         ) : user ? (
