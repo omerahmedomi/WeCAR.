@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState ,useCallback} from "react";
 import axios from "axios";
 import { useGlobal } from "../GlobalContext";
 import { useNavigate } from "react-router-dom";
@@ -16,40 +16,60 @@ const RentalHistory = () => {
   const navigate = useNavigate();
 
   const [orders, setOrders] = useState([]);
-  const [loading, SetLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const { user, isLoading } = useGlobal();
 
-  console.log("From orders", user);
+  // --- fetch function (defined before useEffect)
+  const fetchUserOrders = useCallback(async (id) => {
+    if (!id) return; // extra safety
+    try {
+      setLoading(true);
+      const response = await axios.get(`${apiBase}/orders/${id}`, {
+        withCredentials: true,
+      });
+      setOrders(response.data.userOrders || []);
+    } catch (error) {
+      console.error("fetchUserOrders error:", error);
+      setOrders([]);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
 
-  if (!isLoading && !user) {
-    navigate("/sign-up", { replace: true });
-    // return null;
+  // Redirect only after auth check finishes and user is explicitly null
+  useEffect(() => {
+    if (!isLoading && user === null) {
+      navigate("/sign-up", { replace: true });
+    }
+  }, [isLoading, user, navigate]);
+
+  // Fetch orders when we have a confirmed user id and auth check finished.
+  useEffect(() => {
+    // Guard: wait for auth check to finish and ensure a proper id exists
+    if (!isLoading && user && (user._id || user.id)) {
+      // prefer _id if available, fall back to id
+      const id = user._id || user.id;
+      fetchUserOrders(id);
+    }
+  }, [isLoading, user, fetchUserOrders]);
+
+  // prevent flicker / ensure top on mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  // Render gating: while auth check is running (or user undefined), show loader
+  if (isLoading || typeof user === "undefined") {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <Loader className="animate-spin" />
+      </div>
+    );
   }
 
-  // if (isLoading) {
-  //   return (
-  //     <div className="min-h-screen flex items-center justify-center">
-  //       <p className="text-xl font-eczar">
-  //         <Loader />
-  //       </p>
-  //     </div>
-  //   );
-  // }
-
-  const fetchUserOrders = async (id) => {
-    try {
-      SetLoading(true);
-      const response = await axios.get(apiBase + `/orders/${id}`,{withCredentials:true});
-      console.log(response);
-      setOrders(response.data.userOrders);
-      console.log(orders);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      SetLoading(false);
-    }
-  };
+  // If user is null we are redirecting (useEffect). Render nothing to avoid flicker.
+  if (user === null) return null;
 
   const dataArray = orders.map((order, index) => ({
     column1:
@@ -69,15 +89,6 @@ const RentalHistory = () => {
     id: index,
   }));
 
-  useEffect(() => {
-    if (user?.id) {
-      fetchUserOrders(user.id);
-    }
-  }, [user]);
-
-  useEffect(()=>{
-    window.scroll(0,0)
-  },[])
   return (
     <div>
       <Header />
@@ -88,7 +99,6 @@ const RentalHistory = () => {
           </span>
         ) : orders?.length ? (
           <Table
-          
             columns={[
               {
                 key: "column1",
@@ -123,16 +133,17 @@ const RentalHistory = () => {
               { key: "column7", title: "Status", dataType: DataType.String },
             ]}
             data={dataArray}
-            
             // editingMode={EditingMode.Cell}
             rowKeyField={"id"}
             sortingMode={SortingMode.Single}
           />
         ) : (
-          <p className="text-center text-gray-600 dark:text-gray-100 font-eczar">No Orders</p>
+          <p className="text-center text-gray-600 dark:text-gray-100 font-eczar">
+            No Orders
+          </p>
         )}
       </main>
-      <Footer/>
+      <Footer />
     </div>
   );
 };

@@ -75,7 +75,7 @@ const RentalPage = () => {
       const result = await axios.post(
         apiBase + "/orders",
         {
-          userId: user.id,
+          userId: user.id || user._id,
           carId: car._id,
           price: totalPrice,
           pickUpDate: dates.pickUpDate,
