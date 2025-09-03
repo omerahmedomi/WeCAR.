@@ -37,7 +37,7 @@ export default function CarModal({
   };
 
   return (
-    <div className="bg-white fixed inset-0  bg-opacity-40 flex items-center justify-center font-eczar z-50 overflow-y-scroll ">
+    <div className="bg-white dark:bg-gray-700 fixed inset-0  bg-opacity-40 flex items-center justify-center font-eczar z-50 overflow-y-scroll ">
       <div className=" rounded-lg  p-6 w-full h-full ">
         <h2 className="text-lg font-bold mb-4 text-center">
           {initialData ? "Edit Car" : "Add Car"}
@@ -244,7 +244,7 @@ export default function CarModal({
             <XCircle
               size={34}
               onClick={onClose}
-              className={`rounded-full p-1 hover:bg-fuchsia-50  cursor-pointer hover:  `}
+              className={`rounded-full p-1 hover:bg-fuchsia-50  cursor-pointer dark:hover:bg-gray-500  `}
             />
           </span>
 
@@ -252,7 +252,7 @@ export default function CarModal({
             <Save
               size={34}
               onClick={() => onSave({ ...formData, features: selected })}
-              className={` rounded-lg disabled:cursor-not-allowed   cursor-pointer p-1 hover:bg-fuchsia-50
+              className={` rounded-lg disabled:cursor-not-allowed   cursor-pointer p-1 hover:bg-fuchsia-50 dark:hover:bg-gray-500
 
             }`}
             />

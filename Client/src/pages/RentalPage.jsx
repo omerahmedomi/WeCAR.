@@ -244,7 +244,7 @@ const RentalPage = () => {
             <span className="ml-2">{totalPrice}K ETB</span>
           </p>
           <button
-            className="font-eczar ring focus:outline-none px-3 py-1 rounded-md focus:ring-2 ring-cyan-400 bg-white active:ring-2  hover:bg-cyan-50  cursor-pointer disabled:bg-gray-400 disabled:cursor-not-allowed dark:text-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 transition-colors duration-500"
+            className="font-eczar ring focus:outline-none px-3 py-1 rounded-md focus:ring-2 ring-cyan-400 bg-white active:ring-2  hover:bg-cyan-50  cursor-pointer disabled:bg-gray-200 dark:disabled:bg-gray-500 disabled:cursor-not-allowed dark:text-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 transition-colors duration-500"
             onClick={() => {
               if (dates.returnDate <= dates.pickUpDate) {
                 alert(

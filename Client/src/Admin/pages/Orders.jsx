@@ -104,7 +104,7 @@ export default function Orders() {
     return (
       <div>
         <select
-          className="form-control"
+          className="dark:bg-gray-300"
           autoFocus={true}
           defaultValue={editorValue}
           onBlur={() => {
@@ -128,7 +128,7 @@ export default function Orders() {
     return (
       <Trash
         onClick={() => deleteOrder(rowKeyValue)}
-        className="size-6 transition-all rounded-full p-1 hover:bg-gray-200 hover:cursor-pointer"
+        className="size-6 transition-all rounded-full p-1 hover:bg-gray-200 hover:cursor-pointer dark:hover:bg-gray-500"
       />
     );
   };

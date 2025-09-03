@@ -61,10 +61,29 @@ body {
 }
 
 .ka-table {
-  table-layout:  fixed !important;
-  width:  100% !important;
+  @apply dark:bg-gray-700 transition-colors duration-500
+}
+.ka-thead-background{
+  @apply dark:!bg-gray-800 dark:!text-gray-100 transition-colors duration-500;
+ 
+}
+.ka-paging{
+  @apply dark:bg-gray-500 text-gray-50
+}
+.ka-paging-size{
+  @apply dark:bg-gray-600 dark:!text-gray-100
+}
+.ka-paging-size-active{
+@apply dark:!text-gray-800
+}
+.ka-cell-text{
+  @apply dark:text-gray-100 transition-colors duration-500
+  
+}
+.features input {
+  @apply border-0 dark:text-gray-100
+}
+.features div{
+  @apply dark:bg-gray-700 dark:text-gray-500
 }
 
-.features input {
-  @apply border-0
-}

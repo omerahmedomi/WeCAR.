@@ -176,7 +176,7 @@ export default function Cars() {
                         console.log("Deleting car with id:", props.rowKeyValue);
                         deleteCar(props.rowKeyValue);
                       }}
-                      className="size-6 transition-all rounded-full p-1 hover:bg-gray-200 hover:cursor-pointer"
+                      className="size-6 transition-all rounded-full p-1 hover:bg-gray-200 hover:cursor-pointer dark:hover:bg-gray-500"
                     />
                   );
                 case ":edit":
@@ -191,7 +191,7 @@ export default function Cars() {
                         setEditing(carToEdit);
                         setModalOpen(true);
                       }}
-                      className="p-1 hover:bg-gray-200 hover:cursor-pointer"
+                      className="p-1 hover:bg-gray-200 hover:cursor-pointer dark:hover:bg-gray-500"
                     />
                   );
               }

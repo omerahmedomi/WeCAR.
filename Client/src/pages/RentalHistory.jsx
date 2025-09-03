@@ -74,6 +74,10 @@ const RentalHistory = () => {
       fetchUserOrders(user._id);
     }
   }, [user]);
+
+  useEffect(()=>{
+    window.scroll(0,0)
+  },[])
   return (
     <div>
       <Header />
