@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import {toast,ToastContainer} from 'react-toastify'
 import Header from "./../components/Header";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useGlobal } from "../GlobalContext";
@@ -8,6 +9,7 @@ import Footer from "./../components/Footer";
 import axios from "axios";
 import { Loader } from "lucide-react";
 import { apiBase } from "../data";
+import useTheme from './../hooks/useTheme';
 
 const toUTCDate = (s) => {
   if (!s) return null;
@@ -39,6 +41,7 @@ const RentalPage = () => {
   const [selected, setSelected] = useState(options[0]);
   const [dates, setDates] = useState({ pickUpDate: "", returnDate: "" });
   const [loading, setLoading] = useState(true);
+  const {theme} = useTheme()
 
   const totalDays = dayDiff(dates.pickUpDate, dates.returnDate);
   const totalPrice =
@@ -88,7 +91,11 @@ const RentalPage = () => {
       
       const order = result.data;
       console.log("Order", result);
-      navigate("/rental-history", { replace: true });
+      // navigate("/rental-history", { replace: true });
+      toast('Order Created Successfully!',{
+        type:'success',
+        theme:'dark'
+      })
     } catch (error) {
       console.log("Error creating order", error);
     }
@@ -266,6 +273,7 @@ const RentalPage = () => {
             pick up date you specified otherwise rentals may not be granted
           </p>
         </div>
+        <ToastContainer className='z-50' />
       </main>
       <Footer />
     </div>
