@@ -5,7 +5,7 @@ import authMiddleware from "../middlewares/auth.middleware.js";
 const orderRouter= Router();
 
 orderRouter.get('/',getOrders)
-orderRouter.post('/',createOrder)
+orderRouter.post('/',authMiddleware,createOrder)
 orderRouter.get('/:id',authMiddleware,getUserOrders)
 orderRouter.put('/status/:id',updateStatus)
 orderRouter.delete('/:id',deleteOrder)

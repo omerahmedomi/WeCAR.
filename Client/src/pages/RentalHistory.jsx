@@ -70,8 +70,8 @@ const RentalHistory = () => {
   }));
 
   useEffect(() => {
-    if (user?._id) {
-      fetchUserOrders(user._id);
+    if (user?.id) {
+      fetchUserOrders(user.id);
     }
   }, [user]);
 

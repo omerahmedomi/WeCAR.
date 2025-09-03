@@ -75,7 +75,7 @@ const RentalPage = () => {
       const result = await axios.post(
         apiBase + "/orders",
         {
-          userId: user._id,
+          userId: user.id,
           carId: car._id,
           price: totalPrice,
           pickUpDate: dates.pickUpDate,
@@ -88,11 +88,9 @@ const RentalPage = () => {
       
       const order = result.data;
       console.log("Order", result);
+      navigate("/rental-history", { replace: true });
     } catch (error) {
       console.log("Error creating order", error);
-    }finally{
-      
-      navigate("/rental-history", { replace: true });
     }
   };
 
