@@ -38,7 +38,8 @@ const carSchema = new mongoose.Schema({
   available:{
     type:Boolean,
     default:true,
-  }
+  },
+  images:[String]
   
 });
 

@@ -19,11 +19,11 @@ const CarCard = ({ car }) => {
   const { user } = useGlobal();
   return (
     <div className=" p-4 border border-dashed  w-fit flex flex-col rounded-md bg-white dark:bg-gray-800 transition-colors duration-500">
-      <div className="  h-45 w-70 sm:w-65   rounded-md mb-2">
+      <div className="  h-45 w-70 sm:w-65   rounded-md mb-2 overflow-hidden">
         <img
-          src="./CarsAuth.jpg"
+          src={car.images[0] || "./CarsAuth.jpg"}
           alt=""
-          className="object-cover w-full h-full max-w-full rounded-md"
+          className="object-cover w-full h-full max-w-full rounded-md transition-transform duration-300 ease-in-out hover:scale-110"
         />
       </div>
       <p className="mb-4 font-semibold">

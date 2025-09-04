@@ -101,7 +101,12 @@ const RentalPage = () => {
     }
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+      if (!isLoading && !user) {
+        navigate("/sign-up", { replace: true });
+        // return null;
+      }
+  }, [user]);
   console.log("User", user);
   console.log("Car", car);
 

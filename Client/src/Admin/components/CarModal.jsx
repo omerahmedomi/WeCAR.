@@ -13,6 +13,7 @@ export default function CarModal({
 }) {
   const [formData, setFormData] = useState({});
   const [selected, setSelected] = useState(formData.features || []);
+  const [images, setImages] = useState([]);
 
   useEffect(() => {
     if (isOpen) setFormData(initialData || {});
@@ -228,6 +229,7 @@ export default function CarModal({
               </div>
             </div>
           </div>
+
           <div className="max-w-80 features flex items-center">
             <span>Features:</span>
             <TagsInput
@@ -238,7 +240,31 @@ export default function CarModal({
             />
           </div>
         </div>
-
+        <div>
+          <span>Car Images:</span>
+          <input
+            type="file"
+            name="images"
+            multiple
+            accept="image/*"
+            onChange={(e) => setImages([...e.target.files])}
+            placeholder="Upload car image"
+            className="text-slate-500 
+file:mr-4 file:rounded-full file:border-0 file:bg-violet-50 
+file:px-4 file:py-2 file:text-sm file:font-semibold file:text-violet-700 hover:file:bg-violet-100 text-sm"
+          />
+          <div className="flex gap-2 flex-wrap mt-2">
+            {images.length > 0 &&
+              Array.from(images).map((img, idx) => (
+                <img
+                  key={idx}
+                  src={URL.createObjectURL(img)}
+                  alt="preview"
+                  className="w-20 h-20 object-cover rounded-md border"
+                />
+              ))}
+          </div>
+        </div>
         <div className="flex justify-end space-x-3">
           <span title="Cancel">
             <XCircle
@@ -251,7 +277,11 @@ export default function CarModal({
           <span title="Save">
             <Save
               size={34}
-              onClick={() => onSave({ ...formData, features: selected })}
+              onClick={() =>{
+                console.log(images)
+                onSave({ ...formData, features: selected }, images)
+              }
+              }
               className={` rounded-lg disabled:cursor-not-allowed   cursor-pointer p-1 hover:bg-fuchsia-50 dark:hover:bg-gray-500
 
             }`}

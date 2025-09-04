@@ -46,19 +46,38 @@ export default function Cars() {
     }
   };
 
-  const addCar = async (data) => {
+  const addCar = async (data, images) => {
     try {
+      console.log("DATA", data, "Images", images);
+      // Add all text fields
+
+      const fd = new FormData();
+
+      // Keep your car object intact by sending it as JSON
+      fd.append("car", JSON.stringify(data));
+
+      // Add images for Multer
+      images?.forEach((file) => fd.append("images", file));
+
+      console.log("FormData contents:");
+      for (let [key, value] of fd.entries()) {
+        console.log(key, value);
+      }
+
       const response = await axios.post(
         apiBase + `/cars`,
-        { car: data },
-        { withCredentials: true }
+        fd,
+        {
+          withCredentials: true,
+        }
       );
+
       console.log(response);
       fetchCars();
       setModalOpen(false);
     } catch (error) {
       console.log("Error adding car:", error);
-      setError(error.response.data.error);
+      setError(error.response?.data?.error || error.message);
     }
   };
 
@@ -93,11 +112,11 @@ export default function Cars() {
   //     />
   //   );
   // };
-  const handleSave = (data) => {
+  const handleSave = (data, images) => {
     if (data._id) {
-      updateCar(data);
+      updateCar(data, images);
     } else {
-      addCar(data);
+      addCar(data, images);
     }
   };
 

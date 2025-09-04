@@ -15,10 +15,22 @@ export const addCar = async (req, res, next) => {
   const session = await mongoose.startSession();
   session.startTransaction();
   try {
-    const { car } = req.body;
-    const newCar = await Car.create([car], { session });
+    // Parse car object from FormData
+    console.log(req.body)
+    const  car  = JSON.parse(req.body.car);
+    console.log(car)
+
+
+    const imageUrls = req.files?.map((file) => file.path) || [];
+    console.log("req.files:", req.files);
+
+    const newCar = await Car.create([{ ...car, images: imageUrls }], {
+      session,
+    });
+
     res.status(200).send({ message: "Car added successfully", newCar });
     console.log(car);
+
     await session.commitTransaction();
     session.endSession();
   } catch (error) {
@@ -28,6 +40,7 @@ export const addCar = async (req, res, next) => {
     session.endSession();
   }
 };
+
 export const updateCar = async (req, res, next) => {
   try {
     const { id } = req.params;
