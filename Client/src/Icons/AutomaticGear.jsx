@@ -3,7 +3,7 @@ import React from 'react'
 const AutomaticGear = () => {
   return (
     <svg
-      className='size-4 fill-cyan-600 '
+      className='size-4 fill-cyan-400 '
       viewBox="0 0 64 64"
       id="Layer_1_1_"
       version="1.1"

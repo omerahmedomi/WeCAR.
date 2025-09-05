@@ -8,24 +8,19 @@ import ArrowDown from "../Icons/ArrowDown";
 import Footer from "./../components/Footer";
 import axios from "axios";
 import { Loader } from "lucide-react";
-import { apiBase } from "../data";
+import { apiBase, dayDiff } from "../data";
 
 
-const toUTCDate = (s) => {
-  if (!s) return null;
-  const [y, m, d] = s.split("-").map(Number);
-  return new Date(Date.UTC(y, m - 1, d));
-};
 
-const dayDiff = (startStr, endStr) => {
-  const start = toUTCDate(startStr);
-  const end = toUTCDate(endStr);
-  if (!start || !end) return 0; // not both picked yet
-  const msPerDay = 24 * 60 * 60 * 1000;
-  return Math.max(1, Math.round((end - start) / msPerDay)); // exclusive of pickup day
-  // If you want same-day return to count as 1 day, use:
-  // return Math.max(1, Math.round((end - start) / msPerDay));
-};
+// const dayDiff = (startStr, endStr) => {
+//   const start = toUTCDate(startStr);
+//   const end = toUTCDate(endStr);
+//   if (!start || !end) return 0; // not both picked yet
+//   const msPerDay = 24 * 60 * 60 * 1000;
+//   return Math.max(1, Math.round((end - start) / msPerDay)); // exclusive of pickup day
+//   // If you want same-day return to count as 1 day, use:
+//   // return Math.max(1, Math.round((end - start) / msPerDay));
+// };
 
 export function Capitalize(word) {
   return word.split("")[0].toUpperCase() + word.slice(1);
@@ -134,9 +129,9 @@ const RentalPage = () => {
           {/* Image Section */}
           <div className="sm:w-1/2">
             <img
-              src="/CarsAuth.jpg"
+              src={ car.images[0] || "/CarsAuth.jpg"}
               alt="Car"
-              className="w-full h-64 sm:h-full object-fit"
+              className="w-full h-64 sm:h-full object-contain"
             />
           </div>
 

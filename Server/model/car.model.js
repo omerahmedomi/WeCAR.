@@ -26,6 +26,7 @@ const carSchema = new mongoose.Schema({
   pricePerDayInK:{
     type:Number,
     trim:true,
+    required: [true,'Car Daily price is required']
   },
   color:{
     type:String,

@@ -64,13 +64,9 @@ export default function Cars() {
         console.log(key, value);
       }
 
-      const response = await axios.post(
-        apiBase + `/cars`,
-        fd,
-        {
-          withCredentials: true,
-        }
-      );
+      const response = await axios.post(apiBase + `/cars`, fd, {
+        withCredentials: true,
+      });
 
       console.log(response);
       fetchCars();
@@ -86,6 +82,7 @@ export default function Cars() {
       const response = await axios.put(apiBase + `/cars/${data._id}`, {
         car: data,
       });
+
       console.log(response);
       fetchCars();
       setModalOpen(false);

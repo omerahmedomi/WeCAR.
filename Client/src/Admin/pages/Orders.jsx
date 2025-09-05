@@ -19,7 +19,7 @@ import {
   RemoveFormattingIcon,
   Trash,
 } from "lucide-react";
-import { apiBase } from "../../data";
+import { apiBase, dayDiff } from "../../data";
 
 export default function Orders() {
   const [orders, setOrders] = useState([
@@ -35,20 +35,24 @@ export default function Orders() {
     column4: order?.pickUpDate.split("T")[0],
     column5: order?.returnDate.split("T")[0],
     column6: order?.price,
-    column7: order?.price === order.car?.pricePerDayInK ? "self" : "chauffeur",
+    column7: order.price ==
+          order.car.pricePerDayInK *
+            dayDiff(order.pickUpDate.split("T")[0], order.returnDate.split("T")[0])
+            ? "Self"
+            : "Chauffeur",
     column8: order?.status,
     id: order._id,
   }));
 
-  const handleSave = (data) => {
-    if (data.id) {
-      setOrders(orders.map((o) => (o.id === data.id ? data : o)));
-    } else {
-      data.id = Date.now();
-      setOrders([...orders, data]);
-    }
-    setModalOpen(false);
-  };
+  // const handleSave = (data) => {
+  //   if (data.id) {
+  //     setOrders(orders.map((o) => (o.id === data.id ? data : o)));
+  //   } else {
+  //     data.id = Date.now();
+  //     setOrders([...orders, data]);
+  //     setModalOpen(false);
+  //   };
+  //   }
 
   const fetchOrders = async () => {
     try {

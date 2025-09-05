@@ -1,4 +1,4 @@
-import React, { useEffect, useState ,useCallback} from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { useGlobal } from "../GlobalContext";
 import { useNavigate } from "react-router-dom";
@@ -9,7 +9,7 @@ import { Table } from "ka-table";
 import { DataType, EditingMode, SortingMode } from "ka-table/enums";
 import { BeatLoader } from "react-spinners";
 import { Capitalize } from "./RentalPage";
-import { apiBase } from "../data";
+import { apiBase, dayDiff } from "../data";
 import Footer from "../components/Footer";
 
 const RentalHistory = () => {
@@ -84,7 +84,12 @@ const RentalHistory = () => {
     column3: order.pickUpDate.split("T")[0],
     column4: order.returnDate.split("T")[0],
     column5: order.price * 1000 + " ETB",
-    column6: order.price == order.car.pricePerDayInK ? "Self" : "Chauffeur",
+    column6:
+      order.price ==
+      order.car.pricePerDayInK *
+        dayDiff(order.pickUpDate.split("T")[0], order.returnDate.split("T")[0])
+        ? "Self"
+        : "Chauffeur",
     column7: Capitalize(order.status),
     id: index,
   }));

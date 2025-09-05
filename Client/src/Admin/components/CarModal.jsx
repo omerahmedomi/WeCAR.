@@ -52,7 +52,7 @@ export default function CarModal({
             className="w-full p-2 border rounded mb-2"
           />
         ))} */}
-        <p className="error-message  text-sm text-red-600 h-5 mb-4">{error}</p>
+        <p className="error-message  text-sm text-red-600 h-5 mb-4 text-center">{error}</p>
         <div className="edit-car grid gap-x-24 gap-y-5 grid-cols-[repeat(2,auto)] *:mb-2   *:bg-amber-20 justify-center">
           <div>
             <span>Car Name:</span>
@@ -84,7 +84,12 @@ export default function CarModal({
           </div>
           <div>
             <span>Transmission:</span>
-            <select name="transmission" id="" onChange={handleChange}>
+            <select
+              name="transmission"
+              id=""
+              onChange={handleChange}
+              className="dark:bg-gray-500"
+            >
               <option
                 value=""
                 disabled
@@ -107,7 +112,12 @@ export default function CarModal({
           </div>
           <div>
             <span>Fuel Type:</span>
-            <select name="fuelType" id="" onChange={handleChange}>
+            <select
+              name="fuelType"
+              id=""
+              onChange={handleChange}
+              className="dark:bg-gray-500"
+            >
               <option
                 value=""
                 disabled
@@ -240,36 +250,41 @@ export default function CarModal({
             />
           </div>
         </div>
-        <div>
-          <span>Car Images:</span>
-          <input
-            type="file"
-            name="images"
-            multiple
-            accept="image/*"
-            onChange={(e) => setImages([...e.target.files])}
-            placeholder="Upload car image"
-            className="text-slate-500 
+        {!initialData && (
+          <div className="w-fit mx-auto flex items-center gap-x-2">
+            <span>Car Images: </span>
+            <input
+              type="file"
+              name="images"
+              multiple
+              accept="image/*"
+              onChange={(e) => setImages([...e.target.files])}
+              placeholder="Upload car image"
+              className="text-slate-500 border p-2 rounded-md
 file:mr-4 file:rounded-full file:border-0 file:bg-violet-50 
 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-violet-700 hover:file:bg-violet-100 text-sm"
-          />
-          <div className="flex gap-2 flex-wrap mt-2">
-            {images.length > 0 &&
-              Array.from(images).map((img, idx) => (
-                <img
-                  key={idx}
-                  src={URL.createObjectURL(img)}
-                  alt="preview"
-                  className="w-20 h-20 object-cover rounded-md border"
-                />
-              ))}
+            />
+            <div className="flex flex-wrap ">
+              {images.length > 0 &&
+                Array.from(images).map((img, idx) => (
+                  <img
+                    key={idx}
+                    src={URL.createObjectURL(img)}
+                    alt="preview"
+                    className="w-20 h-15 object-cover rounded-md border"
+                  />
+                ))}
+            </div>
           </div>
-        </div>
+        )}
+
         <div className="flex justify-end space-x-3">
           <span title="Cancel">
             <XCircle
               size={34}
-              onClick={onClose}
+              onClick={() => {
+                setImages([]), onClose();
+              }}
               className={`rounded-full p-1 hover:bg-fuchsia-50  cursor-pointer dark:hover:bg-gray-500  `}
             />
           </span>
@@ -277,11 +292,10 @@ file:px-4 file:py-2 file:text-sm file:font-semibold file:text-violet-700 hover:f
           <span title="Save">
             <Save
               size={34}
-              onClick={() =>{
-                console.log(images)
-                onSave({ ...formData, features: selected }, images)
-              }
-              }
+              onClick={() => {
+                console.log(images);
+                onSave({ ...formData, features: selected }, images);
+              }}
               className={` rounded-lg disabled:cursor-not-allowed   cursor-pointer p-1 hover:bg-fuchsia-50 dark:hover:bg-gray-500
 
             }`}

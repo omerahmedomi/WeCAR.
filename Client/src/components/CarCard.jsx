@@ -23,7 +23,7 @@ const CarCard = ({ car }) => {
         <img
           src={car.images[0] || "./CarsAuth.jpg"}
           alt=""
-          className="object-cover w-full h-full max-w-full rounded-md transition-transform duration-300 ease-in-out hover:scale-110"
+          className="object-contain w-full h-full max-w-full rounded-md transition-transform duration-300 ease-in-out hover:scale-110"
         />
       </div>
       <p className="mb-4 font-semibold">
