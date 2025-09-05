@@ -32,4 +32,4 @@ This project is built with **React, Node.js, Express, and MongoDB**.
 **Other**
 - Multer (for file uploads)  
 - JWT Authentication  
-- Cloud storage ready for images (can plug in Cloudinary, AWS S3, etc.)
+- Cloud storage ready for images (Cloudinary)
