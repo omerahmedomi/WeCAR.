@@ -12,6 +12,7 @@ import RentalPage from "./pages/RentalPage";
 import Admin from "./Admin/Admin";
 import RentalHistory from "./pages/RentalHistory";
 import AdminRoute from "./Admin/components/AdminRoute";
+import NotFound from "./pages/NotFound";
 
 
 
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement:<NotFound/>
   },
   {
     path: "/rental-cars",
