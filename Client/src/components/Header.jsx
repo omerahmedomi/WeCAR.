@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import HamburgerMenu from "../Icons/HamburgerMenu";
 import XMark from "../Icons/XMark";
 import { Link,useLocation } from "react-router-dom";
@@ -11,13 +11,12 @@ const Header = () => {
   const Navs = ["Home", "Rental Cars", "Our Services", "About Us", "FAQs"];
   const navRoutes = ['/','/rental-cars','/services','/about','/faqs']
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isAuthenticating, setIsAuthenticating] = useState(true);
   const location = useLocation();
   
 
 
   const {user,isLoading}=useGlobal()
-  console.log("From header",user)
+
 
 useEffect(() => {
   const currentPath = location.pathname

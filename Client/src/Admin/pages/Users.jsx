@@ -1,21 +1,12 @@
-// src/pages/Users.jsx
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import {
-  DataType,
-  EditingMode,
-  SortingMode,
-  PagingPosition,
-  ActionType,
-} from "ka-table/enums";
-import { Table, useTable, useTableInstance } from "ka-table";
+import { DataType, EditingMode, PagingPosition } from "ka-table/enums";
+import { Table, useTableInstance } from "ka-table";
 import { Trash } from "lucide-react";
 import { apiBase } from "../../data";
 
 export default function Users() {
-  const [users, setUsers] = useState([
-    // { id: 1, name: "John Doe", email: "john@example.com" },
-  ]);
+  const [users, setUsers] = useState([]);
 
   const [error, setError] = useState("");
   const [searchText, setSearchText] = useState("");
@@ -24,7 +15,7 @@ export default function Users() {
     try {
       setIsLoading(true);
       const response = await axios.get(apiBase + `/users`);
-      console.log(response);
+
       setUsers(response.data.users);
     } catch (error) {
       console.log(error);
@@ -34,11 +25,10 @@ export default function Users() {
   };
   const deleteUser = async (id) => {
     try {
-      // setUsers((prev) => prev.filter((u) => u._id !== id));
-      const response = await axios.delete(apiBase + `/users/${id}`, {
+      await axios.delete(apiBase + `/users/${id}`, {
         withCredentials: true,
       });
-      console.log(response);
+
       fetchUsers();
     } catch (error) {
       console.log(error);
@@ -53,8 +43,6 @@ export default function Users() {
     column2: user.firstName + " " + user.lastName,
     column3: user.email,
     column4: user.role,
-    // column5: user.returnDate.split("T")[0],
-    // column6: user.status,
     id: user._id,
   }));
 
@@ -64,12 +52,12 @@ export default function Users() {
 
   const updateRole = async (id, value) => {
     try {
-      const response = await axios.put(
+      await axios.put(
         apiBase + `/users/role/${id}`,
         { role: value },
         { withCredentials: true }
       );
-      console.log(response);
+
       fetchUsers();
     } catch (error) {
       console.log(error.response.data.message);
@@ -88,7 +76,7 @@ export default function Users() {
           autoFocus={true}
           defaultValue={editorValue}
           onBlur={() => {
-            //
+           
             value != editorValue && updateRole(rowKeyValue, editorValue);
             table.closeEditor(rowKeyValue, column.key);
           }}
@@ -104,7 +92,7 @@ export default function Users() {
     );
   };
 
-  const DeleteRow = ({ dispatch, rowKeyValue }) => {
+  const DeleteRow = ({ rowKeyValue }) => {
     return (
       <Trash
         onClick={() => deleteUser(rowKeyValue)}

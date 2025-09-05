@@ -11,17 +11,6 @@ import { Loader } from "lucide-react";
 import { apiBase, dayDiff } from "../data";
 
 
-
-// const dayDiff = (startStr, endStr) => {
-//   const start = toUTCDate(startStr);
-//   const end = toUTCDate(endStr);
-//   if (!start || !end) return 0; // not both picked yet
-//   const msPerDay = 24 * 60 * 60 * 1000;
-//   return Math.max(1, Math.round((end - start) / msPerDay)); // exclusive of pickup day
-//   // If you want same-day return to count as 1 day, use:
-//   // return Math.max(1, Math.round((end - start) / msPerDay));
-// };
-
 export function Capitalize(word) {
   return word.split("")[0].toUpperCase() + word.slice(1);
 }
@@ -63,14 +52,13 @@ const RentalPage = () => {
 
   const handleDateChange = (e) => {
     setDates((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-    console.log(dates);
-    console.log(selected);
+   
   };
   ;
   const orderCar = async () => {
     try {
       setLoading(false);
-      const result = await axios.post(
+       await axios.post(
         apiBase + "/orders",
         {
           userId: user.id || user._id,
@@ -84,9 +72,8 @@ const RentalPage = () => {
         }
       );
 
-      const order = result.data;
-      console.log("Order", result);
-      // navigate("/rental-history", { replace: true });
+    
+    
       toast("Order Created Successfully!", {
         type: "success",
         theme: localStorage.getItem('theme'),
@@ -102,8 +89,6 @@ const RentalPage = () => {
         // return null;
       }
   }, [user]);
-  console.log("User", user);
-  console.log("Car", car);
 
   if (isLoading) {
     return (
@@ -126,7 +111,7 @@ const RentalPage = () => {
       <Header />
       <main className="pt-20 px-4 sm:px-8 lg:px-16 max-w-7xl mx-auto space-y-3 ">
         <div className="flex flex-col sm:flex-row bg-white rounded-2xl shadow-lg overflow-hidden ">
-          {/* Image Section */}
+         
           <div className="sm:w-1/2">
             <img
               src={ car.images[0] || "/CarsAuth.jpg"}
@@ -135,7 +120,7 @@ const RentalPage = () => {
             />
           </div>
 
-          {/* Info Section */}
+         
           <div className="sm:w-1/2 p-6 sm:p-8 bg-gray-50 flex flex-col justify-center dark:bg-gray-700 transition-colors duration-500">
             <p className="text-2xl font-bold text-gray-800 dark:text-gray-50 mb-4 text-center transition-colors duration-500 sm:text-left font-grenze">
               Car Info

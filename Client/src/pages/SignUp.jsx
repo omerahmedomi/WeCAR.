@@ -40,7 +40,7 @@ const SignUp = () => {
         { firstName, lastName, email, password },
         { withCredentials: true }
       );
-      console.log(response);
+     
       if (response.data.user) {
         setUser(response.data.user);
 
@@ -99,7 +99,7 @@ const SignUp = () => {
             onChange={handleChange}
             value={inputs.email}
             type="email"
-            // btnFunction={authenticate}
+         
           />
           <Input
             name="password"
@@ -107,7 +107,7 @@ const SignUp = () => {
             onChange={handleChange}
             value={inputs.password}
             type="password"
-            // btnFunction={authenticate}
+         
           />
           <div
             className={`agreement accent-cyan-200 ${
@@ -127,7 +127,7 @@ const SignUp = () => {
           <Button
             text={isAuthenticating ? "Authenticating" : "Submit"}
             btnFunction={() => {
-              // if (isRegistration && !agreement) alert("agree"),
+        
               authenticate();
             }}
           />

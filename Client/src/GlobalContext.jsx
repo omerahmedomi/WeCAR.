@@ -1,4 +1,3 @@
-/* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { apiBase } from "./data";
@@ -15,10 +14,8 @@ export function GlobalProvider({ children }) {
         const res = await axios.get(apiBase + "/auth/me", {
           withCredentials: true,
         });
-        console.log("HIIIIIIIIIIIIIIIII");
-        console.log("API RESPONSE", res.data);
+
         setUser(res.data.user);
-        // restore state
       } catch (error) {
         setUser(null); // not logged in
         console.log(error);

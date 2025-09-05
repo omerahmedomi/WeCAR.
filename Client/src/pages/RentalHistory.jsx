@@ -6,7 +6,7 @@ import Header from "../components/Header";
 import { Loader } from "lucide-react";
 import "ka-table/style.css";
 import { Table } from "ka-table";
-import { DataType, EditingMode, SortingMode } from "ka-table/enums";
+import { DataType, SortingMode } from "ka-table/enums";
 import { BeatLoader } from "react-spinners";
 import { Capitalize } from "./RentalPage";
 import { apiBase, dayDiff } from "../data";
@@ -20,9 +20,9 @@ const RentalHistory = () => {
 
   const { user, isLoading } = useGlobal();
 
-  // --- fetch function (defined before useEffect)
+ 
   const fetchUserOrders = useCallback(async (id) => {
-    if (!id) return; // extra safety
+    if (!id) return; 
     try {
       setLoading(true);
       const response = await axios.get(`${apiBase}/orders/${id}`, {
@@ -37,29 +37,29 @@ const RentalHistory = () => {
     }
   }, []);
 
-  // Redirect only after auth check finishes and user is explicitly null
+
   useEffect(() => {
     if (!isLoading && user === null) {
       navigate("/sign-up", { replace: true });
     }
   }, [isLoading, user, navigate]);
 
-  // Fetch orders when we have a confirmed user id and auth check finished.
+ 
   useEffect(() => {
-    // Guard: wait for auth check to finish and ensure a proper id exists
+   
     if (!isLoading && user && (user._id || user.id)) {
-      // prefer _id if available, fall back to id
+    
       const id = user._id || user.id;
       fetchUserOrders(id);
     }
   }, [isLoading, user, fetchUserOrders]);
 
-  // prevent flicker / ensure top on mount
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Render gating: while auth check is running (or user undefined), show loader
+  
   if (isLoading || typeof user === "undefined") {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -138,7 +138,7 @@ const RentalHistory = () => {
               { key: "column7", title: "Status", dataType: DataType.String },
             ]}
             data={dataArray}
-            // editingMode={EditingMode.Cell}
+         
             rowKeyField={"id"}
             sortingMode={SortingMode.Single}
           />

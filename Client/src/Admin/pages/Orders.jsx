@@ -1,64 +1,41 @@
-// src/pages/Orders.jsx
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {
   DataType,
   EditingMode,
-  SortingMode,
   PagingPosition,
   ActionType,
 } from "ka-table/enums";
 import { Table, useTable, useTableInstance } from "ka-table";
-// import { updateCellValue, deleteRow } from "ka-table/actionCreators";
-// // import "./CustomEditorDemo.scss";
-// import { ICellEditorProps } from "ka-table/props";
-import {
-  Delete,
-  DeleteIcon,
-  LucideDelete,
-  RemoveFormattingIcon,
-  Trash,
-} from "lucide-react";
+
+import { Trash } from "lucide-react";
 import { apiBase, dayDiff } from "../../data";
 
 export default function Orders() {
-  const [orders, setOrders] = useState([
-    // { id: 1, user: "John Doe", car: "Toyota Corolla" },
-  ]);
+  const [orders, setOrders] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [editableCells, setEditableCells] = useState([]); // empty array
-  const dataArray = orders.map((order, index) => ({
+  const dataArray = orders.map((order) => ({
     column1: order._id,
     column2: order.user?.firstName + " " + order.user?.lastName,
     column3: order.car?.name + " " + order.car?.model,
     column4: order?.pickUpDate.split("T")[0],
     column5: order?.returnDate.split("T")[0],
     column6: order?.price,
-    column7: order.price ==
-          order.car.pricePerDayInK *
-            dayDiff(order.pickUpDate.split("T")[0], order.returnDate.split("T")[0])
-            ? "Self"
-            : "Chauffeur",
+    column7:
+      order.price ==
+      order.car.pricePerDayInK *
+        dayDiff(order.pickUpDate.split("T")[0], order.returnDate.split("T")[0])
+        ? "Self"
+        : "Chauffeur",
     column8: order?.status,
     id: order._id,
   }));
-
-  // const handleSave = (data) => {
-  //   if (data.id) {
-  //     setOrders(orders.map((o) => (o.id === data.id ? data : o)));
-  //   } else {
-  //     data.id = Date.now();
-  //     setOrders([...orders, data]);
-  //     setModalOpen(false);
-  //   };
-  //   }
 
   const fetchOrders = async () => {
     try {
       setIsLoading(true);
       const response = await axios.get(apiBase + `/orders`);
-      console.log(response);
       setOrders(response.data.orders);
     } catch (error) {
       console.log(error);
@@ -71,10 +48,10 @@ export default function Orders() {
   }, []);
   const updateStatus = async (id, value) => {
     try {
-      const response = await axios.put(apiBase + `/orders/status/${id}`, {
+      await axios.put(apiBase + `/orders/status/${id}`, {
         status: value,
       });
-      console.log(response);
+
       fetchOrders();
     } catch (error) {
       console.log(error);
@@ -82,28 +59,25 @@ export default function Orders() {
   };
   const deleteOrder = async (id) => {
     try {
-      const response = await axios.delete(apiBase + `/orders/${id}`);
-      console.log(response);
+      await axios.delete(apiBase + `/orders/${id}`);
+
       fetchOrders();
     } catch (error) {
       console.log(error);
     }
   };
-  const table = useTable({
-    // not needed if using custom editor
-    onDispatch: (action) => {
-      if (action.type == ActionType.UpdateCellValue) {
-        console.log("From");
-        updateStatus(action.rowKeyValue, action.value);
-      }
-    },
-  });
+  // const table = useTable({
+  //   // not needed if using custom editor
+  //   onDispatch: (action) => {
+  //     if (action.type == ActionType.UpdateCellValue) {
+  //       console.log("From");
+  //       updateStatus(action.rowKeyValue, action.value);
+  //     }
+  //   },
+  // });
 
   const CustomEditor = ({ column, rowKeyValue, value }) => {
     const table = useTableInstance();
-    const close = () => {
-      table.closeEditor(rowKeyValue, column.key);
-    };
     const [editorValue, setValue] = useState(value);
     return (
       <div>
@@ -112,7 +86,6 @@ export default function Orders() {
           autoFocus={true}
           defaultValue={editorValue}
           onBlur={() => {
-            //
             value != editorValue && updateStatus(rowKeyValue, editorValue);
             table.closeEditor(rowKeyValue, column.key);
           }}
@@ -128,7 +101,7 @@ export default function Orders() {
     );
   };
 
-  const DeleteRow = ({ dispatch, rowKeyValue }) => {
+  const DeleteRow = ({ rowKeyValue }) => {
     return (
       <Trash
         onClick={() => deleteOrder(rowKeyValue)}
@@ -149,13 +122,11 @@ export default function Orders() {
         placeholder="Search for cars"
       />
       <Table
-        // table={table}
         columns={[
           {
             key: "column1",
             title: "Order ID",
             dataType: DataType.String,
-            width: "",
             isEditable: false,
             style: { wordBreak: "break-word" },
           },
@@ -225,16 +196,9 @@ export default function Orders() {
           position: PagingPosition.Bottom,
         }}
         childComponents={{
-          // table: {
-          //   elementAttributes: () => ({
-          //     className: "custom-editor-demo-table",
-          //   }),
-          // },
           cellEditor: {
             content: (props) => {
               switch (props.column.key) {
-                // case "passed":
-                //   return <CustomLookupEditor {...props} />;
                 case "column8":
                   return <CustomEditor {...props} />;
               }
@@ -249,41 +213,7 @@ export default function Orders() {
             },
           },
         }}
-
-        // editableCells={[
-        //   {
-        //     columnKey: "column1",
-        //     rowKeyValue: 1,
-        //   },
-        // ]}
-        // sortingMode={SortingMode.Single}
       />
-
-      {/* <button
-        onClick={() => {
-          setEditing(null);
-          setModalOpen(true);
-        }}
-        className="mb-4 px-3 py-1 bg-green-500 text-white rounded"
-      >
-        Add Order
-      </button> */}
-      {/* <Table
-        columns={["_id", `user`, "car"]}
-        data={orders}
-        onEdit={(row) => {
-          setEditing(row);
-          setModalOpen(true);
-        }}
-        onDelete={(row) => setOrders(orders.filter((o) => o.id !== row.id))}
-      />
-      <OrderModal
-        isOpen={modalOpen}
-        onClose={() => setModalOpen(false)}
-        onSave={handleSave}
-        initialData={editing}
-        fields={["user", "car"]}
-      />*/}
     </div>
   );
 }

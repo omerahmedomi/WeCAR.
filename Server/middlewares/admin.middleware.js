@@ -2,7 +2,7 @@ import User from "../model/user.model.js"
 
 export const adminMiddleware = async (req,res,next) =>{
     try {
-        console.log(req)
+       
         const user = await User.findById(req.userID)
         if (user.role == 'admin' || user.role == 'super admin') {
             next()

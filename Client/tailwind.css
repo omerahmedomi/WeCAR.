@@ -3,7 +3,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Eczar:wght@400..800&display=swap");
 
 @import "tailwindcss";
-/* @plugin 'daisyui'; */
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
@@ -29,9 +28,7 @@ body {
  @apply md:size-4 dark:accent-cyan-200 transition-colors duration-500
 }
 
-.infos{
-  /* grid-template-columns: repeat(3,auto); */
-}
+
 .slick-prev:before,
 .slick-next:before {
   @apply !text-red-500
@@ -54,10 +51,6 @@ body {
 
 .edit-car select {
   @apply border rounded-md px-2 py-0.5
-}
-
-.edit-car {
-  
 }
 
 .ka-table {

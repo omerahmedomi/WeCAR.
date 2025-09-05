@@ -1,4 +1,3 @@
-// src/components/CarModal.jsx
 import { Save, XCircle } from "lucide-react";
 import React, { useState, useEffect } from "react";
 import { TagsInput } from "react-tag-input-component";
@@ -9,7 +8,6 @@ export default function CarModal({
   initialData,
   error,
   setError,
-  // fields,
 }) {
   const [formData, setFormData] = useState({});
   const [selected, setSelected] = useState(formData.features || []);
@@ -30,11 +28,11 @@ export default function CarModal({
 
     let newValue = value;
     if (name === "available" && type === "radio") {
-      newValue = value === "true"; // convert string to boolean
+      newValue = value === "true"; 
     }
 
     setFormData({ ...formData, [name]: newValue });
-    console.log(formData);
+    
   };
 
   return (
@@ -43,16 +41,9 @@ export default function CarModal({
         <h2 className="text-lg font-bold mb-4 text-center">
           {initialData ? "Edit Car" : "Add Car"}
         </h2>
-        {/* {fields.map((field) => (
-          <input
-            key={field}
-            placeholder={field}
-            value={formData[field] || ""}
-            onChange={(e) => handleChange(e, field)}
-            className="w-full p-2 border rounded mb-2"
-          />
-        ))} */}
-        <p className="error-message  text-sm text-red-600 h-5 mb-4 text-center">{error}</p>
+        <p className="error-message  text-sm text-red-600 h-5 mb-4 text-center">
+          {error}
+        </p>
         <div className="edit-car grid gap-x-24 gap-y-5 grid-cols-[repeat(2,auto)] *:mb-2   *:bg-amber-20 justify-center">
           <div>
             <span>Car Name:</span>
@@ -233,7 +224,6 @@ export default function CarModal({
                     !formData.available &&
                     Object.keys(formData).includes("available")
                   }
-                  // checked={!formData.available || ""}
                 />
                 <span>No</span>
               </div>
@@ -293,7 +283,7 @@ file:px-4 file:py-2 file:text-sm file:font-semibold file:text-violet-700 hover:f
             <Save
               size={34}
               onClick={() => {
-                console.log(images);
+                
                 onSave({ ...formData, features: selected }, images);
               }}
               className={` rounded-lg disabled:cursor-not-allowed   cursor-pointer p-1 hover:bg-fuchsia-50 dark:hover:bg-gray-500

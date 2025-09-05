@@ -12,7 +12,7 @@ export const createOrder = async (req, res, next) => {
       pickUpDate,
       returnDate,
     });
-    console.log("Order", order);
+    
     res.status(201).send({ message: "order created successfully", order });
   } catch (error) {
     console.log("Error creating order", error);
@@ -54,7 +54,7 @@ export const updateStatus  = async (req,res,next)=>{
     const {id}= req.params
     const {status} =req.body
 
-    console.log(id,status)
+    
     const order = await Order.findByIdAndUpdate(id,{status},{new:true})
 
     res.status(200).send({message:"Order updated successfully",order})

@@ -3,8 +3,6 @@ import Header from "./../components/Header";
 import Footer from "./../components/Footer";
 import Search from "../Icons/Search";
 import CarCard from "../components/CarCard";
-// import { carss as originalCars} from "../cars";
-import { useLocation } from "react-router-dom";
 import axios from "axios";
 import Loader from "../components/Loader";
 import { useDebounce } from "use-debounce";

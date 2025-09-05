@@ -11,7 +11,7 @@ import MedalRibbonStar from "../Icons/MedalRibbonStar";
 import Verified from "../Icons/Verified";
 import XCircle from "../Icons/XCircle";
 import TestimonialCarousel from "../components/TestimonialCarousel";
-import { useGlobal } from "../GlobalContext";
+
 
 const App = () => {
   const { ref, inView } = useInView({
@@ -19,8 +19,8 @@ const App = () => {
     triggerOnce: true,
   });
 
- const { data,setData} = useGlobal();
-  console.log(data)
+
+  
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -63,7 +63,7 @@ const App = () => {
               className="flex gap-3  p-2 "
               initial={{ opacity: 0}}
               whileInView={{ opacity: 1}}
-              transition={{ duration: 0.8, ease: "easeInOut" }} // Animation duration
+              transition={{ duration: 0.8, ease: "easeInOut" }} // animation duration
               viewport={{ once: true, amount: 0.3 }}
             >
               <div className="size-10 text-blue-900 bg-cyan-400 dark:bg-cyan-500 flex justify-center items-center rounded-lg   ">
@@ -82,7 +82,7 @@ const App = () => {
               className="flex gap-3  p-2 "
               initial={{ opacity: 0}}
               whileInView={{ opacity: 1}}
-              transition={{ duration: 0.8, ease: "easeInOut" }} // Animation duration
+              transition={{ duration: 0.8, ease: "easeInOut" }} 
               viewport={{ once: true, amount: 0.3 }}
             >
               <div className="size-10 text-blue-900 bg-cyan-400 dark:bg-cyan-500 flex justify-center items-center rounded-lg   ">
@@ -103,7 +103,7 @@ const App = () => {
               className="flex gap-3  p-2"
               initial={{ opacity: 0}}
               whileInView={{ opacity: 1}}
-              transition={{ duration: 0.8, ease: "easeInOut" }} // Animation duration
+              transition={{ duration: 0.8, ease: "easeInOut" }} 
               viewport={{ once: true, amount: 0.3 }}
             >
               <div className="size-10 text-blue-900 bg-cyan-400 dark:bg-cyan-500 flex justify-center items-center rounded-lg   ">
@@ -123,7 +123,7 @@ const App = () => {
               className="flex gap-3  p-2"
               initial={{ opacity: 0}}
               whileInView={{ opacity: 1}}
-              transition={{ duration: 0.8, ease: "easeInOut" }} // Animation duration
+              transition={{ duration: 0.8, ease: "easeInOut" }} 
               viewport={{ once: true, amount: 0.3 }}
             >
               <div className="size-10 text-blue-900 bg-cyan-400 dark:bg-cyan-500 flex justify-center items-center rounded-lg   ">

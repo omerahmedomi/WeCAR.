@@ -16,8 +16,7 @@ export const signUp = async (req, res, next) => {
   session.startTransaction();
 
   try {
-    console.log(req.body);
-    console.log(SUPER_ADMIN_EMAIL);
+   
     const { firstName, lastName, email, password } = req.body;
 
     const existingUser = await User.findOne({ email });

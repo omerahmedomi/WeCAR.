@@ -39,7 +39,7 @@ const TestimonialCarousel = ({ deviceType }) => {
         dotListClass="custom-dot-list-style"
         itemClass="carousel-item-padding-40-px"
         renderArrowsWhenDisabled={true}
-        // renderDotsOutside={true}
+        
       >
         <Testimonial
           name="Mark Cuban"

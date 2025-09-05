@@ -11,25 +11,26 @@ export const getAllCars = async (req, res, next) => {
   }
 };
 export const addCar = async (req, res, next) => {
-  console.log("ADD car called");
+
   const session = await mongoose.startSession();
   session.startTransaction();
   try {
     // Parse car object from FormData
-    console.log(req.body)
+  
     const  car  = JSON.parse(req.body.car);
     console.log(car)
 
 
     const imageUrls = req.files?.map((file) => file.path) || [];
-    console.log("req.files:", req.files);
+   
 
     const newCar = await Car.create([{ ...car, images: imageUrls }], {
       session,
     });
 
     res.status(200).send({ message: "Car added successfully", newCar });
-    console.log(car);
+   
+    
 
     await session.commitTransaction();
     session.endSession();

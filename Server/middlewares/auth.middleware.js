@@ -1,6 +1,8 @@
 import { JWT_SECRET } from "../config/env.js"
 import jwt from 'jsonwebtoken'
+
 const authMiddleware = async (req, res, next) => {
+
   const token = req.cookies?.access_token; // read token from cookie
 console.log("token",token)
   if (!token) {
@@ -9,7 +11,7 @@ console.log("token",token)
 
   try {
     const decoded = jwt.verify(token, JWT_SECRET);
-    console.log("decoded",decoded)
+  
     // Attach user ID to req object
     req.userID = decoded.userID;
     next();

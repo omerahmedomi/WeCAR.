@@ -1,23 +1,13 @@
-// src/pages/Cars.jsx
 import React, { useState, useEffect } from "react";
-// import Table from "../components/Table";
 import axios from "axios";
 import CarModal from "../components/CarModal";
-import {
-  DataType,
-  EditingMode,
-  SortingMode,
-  PagingPosition,
-  ActionType,
-} from "ka-table/enums";
-import { Table, useTable, useTableInstance } from "ka-table";
+import { DataType, PagingPosition } from "ka-table/enums";
+import { Table } from "ka-table";
 import { Edit, PlusCircle, Trash } from "lucide-react";
 import { apiBase } from "../../data";
 
 export default function Cars() {
-  const [cars, setCars] = useState([
-    // { id: 1, name: "Toyota", model: "Corolla",year:2000,transmission:"auto",fuelType:"electric",mileage:85,doors:2,seats:2,pricePerDayInK:15,luggageCapacity:300,color:"Red",available:false },
-  ]);
+  const [cars, setCars] = useState([]);
   const [error, setError] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
   const [editing, setEditing] = useState(null);
@@ -37,7 +27,7 @@ export default function Cars() {
     try {
       setIsLoading(true);
       const response = await axios.get(apiBase + `/cars`);
-      console.log(response);
+      
       setCars(response.data.cars);
     } catch (error) {
       console.log(error);
@@ -48,27 +38,14 @@ export default function Cars() {
 
   const addCar = async (data, images) => {
     try {
-      console.log("DATA", data, "Images", images);
-      // Add all text fields
-
       const fd = new FormData();
-
-      // Keep your car object intact by sending it as JSON
       fd.append("car", JSON.stringify(data));
-
-      // Add images for Multer
       images?.forEach((file) => fd.append("images", file));
 
-      console.log("FormData contents:");
-      for (let [key, value] of fd.entries()) {
-        console.log(key, value);
-      }
-
-      const response = await axios.post(apiBase + `/cars`, fd, {
+      await axios.post(apiBase + `/cars`, fd, {
         withCredentials: true,
       });
 
-      console.log(response);
       fetchCars();
       setModalOpen(false);
     } catch (error) {
@@ -79,39 +56,33 @@ export default function Cars() {
 
   const updateCar = async (data) => {
     try {
-      const response = await axios.put(apiBase + `/cars/${data._id}`, {
+     await axios.put(apiBase + `/cars/${data._id}`, {
         car: data,
       });
 
-      console.log(response);
+      
       fetchCars();
       setModalOpen(false);
     } catch (error) {
       console.log(error);
+      setError(error.response?.data?.error || error.message);
     }
   };
 
   const deleteCar = async (id) => {
     try {
-      const response = await axios.delete(apiBase + `/cars/${id}`);
-      console.log(response);
+      await axios.delete(apiBase + `/cars/${id}`);
+     
       fetchCars();
     } catch (error) {
       console.log(error);
     }
   };
 
-  // const DeleteRow = ({  rowKeyValue }) => {
-  //   return (
-  //     <Trash
-  //       onClick={() => deleteCar(rowKeyValue)}
-  //       className="size-6 transition-all rounded-full p-1 hover:bg-gray-200 hover:cursor-pointer"
-  //     />
-  //   );
-  // };
+ 
   const handleSave = (data, images) => {
     if (data._id) {
-      updateCar(data, images);
+      updateCar(data);
     } else {
       addCar(data, images);
     }
@@ -189,7 +160,7 @@ export default function Cars() {
                   return (
                     <Trash
                       onClick={() => {
-                        console.log("Deleting car with id:", props.rowKeyValue);
+                        
                         deleteCar(props.rowKeyValue);
                       }}
                       className="size-6 transition-all rounded-full p-1 hover:bg-gray-200 hover:cursor-pointer dark:hover:bg-gray-500"
@@ -203,7 +174,7 @@ export default function Cars() {
                         const carToEdit = cars.find(
                           (car) => car._id == props.rowKeyValue
                         );
-                        console.log(carToEdit);
+                       
                         setEditing(carToEdit);
                         setModalOpen(true);
                       }}
